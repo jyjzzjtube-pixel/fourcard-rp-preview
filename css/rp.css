@@ -132,7 +132,8 @@ ul,ol{list-style:none}
 .g2.wide .ic{padding:44px 36px}
 
 /* ══ 풀블리드 ══ */
-.full{position:relative;min-height:640px;display:flex;align-items:flex-end;text-align:center;overflow:hidden}
+/* 러너펍 교육 풀블리드 실측 909px (사진 1500x792) */
+.full{position:relative;min-height:909px;display:flex;align-items:flex-end;text-align:center;overflow:hidden}
 .full::after{content:"";position:absolute;inset:0;z-index:1;
   background:linear-gradient(180deg,rgba(4,17,11,.20),rgba(4,17,11,.55) 52%,rgba(4,17,11,.96))}
 .full-in{position:relative;z-index:2;padding-bottom:76px}
@@ -626,4 +627,140 @@ ul,ol{list-style:none}
   .dock-a .more{flex:0 0 auto;font-size:16px}
   .go{grid-column:3;grid-row:2;flex:none;width:100%;max-width:340px;height:63px;border-radius:12px;
     font-size:16px;font-weight:600}
+}
+
+/* ══ 러너펍 장치 추가 — 정사각 3카드 · 좌박스+우이미지 · 입지 썸네일 ══
+   실측 근거: 러너펍 '핵심 운영 지원' 카드 이미지 419x419 radius 17 (x110/541/971),
+   '재방문 설계' 좌 텍스트 박스 + 우 대형 이미지(825x898),
+   '입지' 5단계 지도 썸네일 200x133 (x150/400/650/900/1150 · 피치 250) */
+.sq3{margin-top:56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.sq3 li{display:grid;justify-items:center}
+.sq3 figure{width:100%;border-radius:17px;overflow:hidden}
+.sq3 img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform var(--d3) var(--e)}
+.sq3 li:hover img{transform:scale(1.04)}
+.sq3 h3{margin-top:24px;font-size:28px;font-weight:700}
+.sq3 p{margin-top:12px;font-size:18px;font-weight:500;line-height:1.5;color:var(--ink2)}
+
+.rev-img{border-radius:17px;overflow:hidden;align-self:stretch;
+  border:1px solid var(--line)}
+.rev-img picture{display:block;width:100%;height:100%}
+.rev-img img{width:100%;height:100%;object-fit:cover;transition:transform var(--d3) var(--e)}
+.rev-img:hover img{transform:scale(1.03)}
+
+.sth{width:100%;max-width:200px;height:auto;aspect-ratio:200/133;object-fit:cover;
+  border-radius:10px;margin-bottom:16px}
+
+@media (max-width:900px){
+  .sq3{margin-top:26px;grid-template-columns:1fr;gap:12px}
+  .sq3 li{grid-template-columns:120px minmax(0,1fr);justify-items:start;
+    align-items:center;gap:0 14px;padding:12px;border:1px solid var(--line);border-radius:14px;
+    background:rgba(4,21,15,.55)}
+  .sq3 figure{grid-row:1/3;border-radius:10px}
+  .sq3 h3{margin-top:0;font-size:16px}
+  .sq3 p{margin-top:6px;font-size:13px;line-height:1.55}
+  .rev-img{aspect-ratio:16/10}
+  .sth{max-width:100%;margin-bottom:10px}
+}
+
+/* ══ 눈으로 보고 잡은 결함 2건 ══
+   ① 마무리 패널이 '1일정 편성지역과 매장별 일정 확인' 처럼 한 줄로 붙어 나왔다.
+      예전 클래스명이 .panel 이었는데 지금은 .pnl 이라 ol.panel.flow3 규칙이 무효였다.
+   ② 재방문 섹션 배경사진과 우측 실사진이 겹쳐 화면이 지저분했다. 배경을 뺀다. */
+ol.pnl.flow3,ul.pnl.flow3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px;padding:28px 32px;font-size:16px;font-weight:400}
+ol.pnl.flow3 li,ul.pnl.flow3 li{display:grid;gap:8px;justify-items:center;text-align:center;
+  padding:0;border:0;background:none}
+ol.pnl.flow3 span{width:44px;height:44px;display:grid;place-items:center;border-radius:12px;
+  background:var(--gold);color:#07160F;font-size:18px;font-weight:800}
+ol.pnl.flow3 strong{font-size:20px;font-weight:700;color:var(--ink)}
+ol.pnl.flow3 em{font-style:normal;font-size:16px;font-weight:500;color:var(--ink2)}
+
+#revisit .bgimg{display:none}
+#revisit::before{display:none}
+.rev{align-items:start}
+.rev-img{max-height:640px}
+
+@media (max-width:900px){
+  ol.pnl.flow3,ul.pnl.flow3{grid-template-columns:1fr;gap:12px;padding:16px}
+  ol.pnl.flow3 span{width:34px;height:34px;font-size:15px}
+  ol.pnl.flow3 strong{font-size:16px}
+  ol.pnl.flow3 em{font-size:13px}
+  .rev-img{max-height:none}
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   [독립검수 반영] 러너펍 캡처 18장 vs 포카드 캡처 대조에서 나온 지적 처리
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* P2-5 · 섹션 영문 오버라인 (러너펍 'STANDARDIZED SYSTEM' 자리 — 없었다) */
+.sec .kick,.full .kick{display:block;margin-bottom:16px;font-size:16px;font-weight:700;
+  letter-spacing:.16em;color:var(--gold)}
+
+/* P1-3 · 본문 CTA — 페이지 전체에 CTA 가 0건이었다(하단 고정바 버튼뿐) */
+.ctaline{margin-top:34px;text-align:center}
+.pill{display:inline-flex;align-items:center;justify-content:center;height:63px;padding:0 44px;
+  border-radius:999px;background:var(--gold);color:#07160F;font-size:18px;font-weight:700;
+  transition:background var(--d1) var(--e),transform var(--d1) var(--e)}
+.pill:hover{background:var(--gold2);transform:translateY(-2px)}
+
+/* P1-1 · 텍스트 없는 풀블리드 사진 배너 (러너펍 rd_04) */
+.banner{position:relative;height:520px;overflow:hidden}
+.banner picture{display:block;width:100%;height:100%}
+.banner img{width:100%;height:100%;object-fit:cover}
+
+/* P1-4 · FAQ 페이지네이션 (러너펍 rd_16) */
+.faq details[hidden]{display:none}
+.faqpg{margin-top:34px;display:flex;justify-content:center;align-items:center;gap:10px}
+.faqpg button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+  background:none;color:var(--ink2);font-size:16px;font-weight:700;cursor:pointer;
+  transition:background var(--d1) var(--e),color var(--d1) var(--e),border-color var(--d1) var(--e)}
+.faqpg button:hover{border-color:var(--gold);color:var(--gold2)}
+.faqpg button.on{background:var(--gold);border-color:var(--gold);color:#07160F}
+
+/* P3-7 · 개설 절차 배경사진이 밝아 곡선 연결선과 본문 대비가 낮았다 → 순검정에 가깝게 */
+#process .bgimg img{opacity:.045}
+#process::before{background:linear-gradient(180deg,rgba(7,22,15,.965),rgba(7,22,15,.99))}
+
+/* P3-9 · 재방문 좌우 박스 하단 42px 어긋남 */
+.rev{align-items:stretch}
+.rev-l{align-content:space-between}
+
+/* P4-12 · 매장 현황 섹션만 좁은 컨테이너 (러너펍 실측 약 1036px) */
+#network .wrap{width:min(1036px,calc(100% - 48px))}
+
+/* P4-13 · 우측 플로팅 카드 (러너펍 실측 170x215 · 우여백 80px) */
+@media (min-width:1500px){ .fixcard{right:80px;width:170px;height:215px} .fixcard img{width:112px;height:112px} }
+@media (min-width:1201px) and (max-width:1499px){ .fixcard{right:26px;width:150px;height:190px} .fixcard img{width:98px;height:98px} }
+
+/* P4-14 · 헤더 로고 좌여백(러너펍 150px) · 활성 밑줄을 헤더 하단선에 붙이고 폭을 넓힌다 */
+@media (min-width:901px){
+  .hd-in{width:min(1500px,calc(100% - 0px));padding-inline:150px 40px}
+  .nav a::after{bottom:0;left:0;right:0;height:3px}
+}
+
+/* P4-15 · 상담바 동의문과 라벨 baseline 34px 어긋남 */
+@media (min-width:901px){ .dock-a{align-self:end;padding-bottom:6px} }
+
+@media (max-width:900px){
+  .sec .kick,.full .kick{margin-bottom:8px;font-size:12px;letter-spacing:.14em}
+  .ctaline{margin-top:20px}
+  .pill{height:48px;padding:0 26px;font-size:15px}
+  .banner{height:220px}
+  .faqpg{margin-top:20px;gap:8px}
+  .faqpg button{width:44px;height:44px;font-size:14px}  /* 터치 하한 44px */
+  #network .wrap{width:calc(100% - 32px)}
+}
+
+/* P4-11 · 본사 지원 좌측 칸 — 러너펍은 이미지만이 아니라 제목·설명이 든 콘텐츠 카드다.
+   좌우 비율도 러너펍 실측 578:698 (약 45:55) 로 맞춘다 */
+@media (min-width:901px){ .sup{grid-template-columns:0.9fr repeat(2,minmax(0,1fr))} }
+.sup-img{position:relative}
+.sup-img figcaption{position:absolute;inset:auto 0 0;padding:26px 24px;text-align:left;
+  background:linear-gradient(180deg,transparent,rgba(4,17,11,.94))}
+.sup-img figcaption strong{display:block;font-size:22px;font-weight:700}
+.sup-img figcaption span{display:block;margin-top:8px;font-size:15px;line-height:1.55;color:var(--ink2)}
+@media (max-width:900px){
+  .sup-img figcaption{padding:14px}
+  .sup-img figcaption strong{font-size:15px}
+  .sup-img figcaption span{margin-top:5px;font-size:12px;line-height:1.5}
 }

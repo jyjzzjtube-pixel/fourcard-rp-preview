@@ -96,4 +96,41 @@
     });
   }
   bind(document.getElementById('inq'), '.dock-s');
+
+  /* FAQ 페이지네이션 — 러너펍은 FAQ 를 3페이지로 나눈다 (rd_16) */
+  (function () {
+    var box = document.querySelector('[data-faq]');
+    var pg = document.querySelector('[data-faqpg]');
+    if (!box || !pg) return;
+    var items = [].slice.call(box.querySelectorAll('details'));
+    var per = 3;
+    var pages = Math.max(1, Math.ceil(items.length / per));
+    var cur = 1;
+    function draw() {
+      items.forEach(function (el, i) {
+        var on = Math.floor(i / per) + 1 === cur;
+        el.hidden = !on;
+        if (!on) el.open = false;
+      });
+      [].forEach.call(pg.querySelectorAll('button'), function (b) {
+        var v = b.getAttribute('data-pg');
+        if (v === 'prev' || v === 'next') {
+          b.disabled = (v === 'prev' && cur === 1) || (v === 'next' && cur === pages);
+          b.style.opacity = b.disabled ? '.35' : '1';
+        } else {
+          b.hidden = Number(v) > pages;
+          b.classList.toggle('on', Number(v) === cur);
+        }
+      });
+    }
+    pg.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      var v = b.getAttribute('data-pg');
+      if (v === 'prev') cur = Math.max(1, cur - 1);
+      else if (v === 'next') cur = Math.min(pages, cur + 1);
+      else cur = Number(v);
+      draw();
+    });
+    draw();
+  })();
 })();
