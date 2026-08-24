@@ -793,35 +793,14 @@ ol.pnl.flow3 em{font-style:normal;font-size:16px;font-weight:500;color:var(--ink
    러너펍 실측 수치는 1440 기준인데 min-width:901 에 그대로 걸려,
    900→901 에서 문서가 +3,270px 길어졌다(폭이 넓어지는데 더 길어지는 역전).
    901~1180 은 중간 타이포로 채운다. 1181 이상에서 러너펍 수치 완전 적용. */
-/* 상한을 1180 → 1339 로 넓힌다. 러너펍 실측치는 컨테이너 1280 + 좌우 여백 기준이라
-   1181~1339 에 그대로 걸면 줄바꿈이 폭증해 1180→1280 에서 +1,560px 역전이 났다(실측). */
-@media (min-width:901px) and (max-width:1339px){
-  .sec{padding-block:70px}
-  .hero h1{font-size:44px;line-height:1.12}
-  .hero-t{font-size:24px}
-  .hero-d{margin-top:52px;font-size:19px}
-  .t1{font-size:32px}
-  .t2{font-size:20px}
-  .sec .kick,.full .kick{font-size:14px;margin-bottom:12px}
-  .rg-h{height:52px;font-size:20px}
-  .rg li{font-size:18px;line-height:1.32}
-  .ic h3,.sup-c h3,.cc h3,.rbox h3,.sq3 h3,.steps h3,.apps h3,.rbox.hi h3{font-size:22px}
-  .ic p,.sup-c p,.rbox p,.sq3 p,.steps p,.apps p{font-size:16px;line-height:1.55}
-  .cc li,.rbox.hi li,.lines li{font-size:16px}
-  .ic .em{font-size:48px}
-  .num{font-size:32px}
-  .sc b{font-size:28px}
-  .pnl{font-size:18px}
-  .chain{font-size:18px}
-  .poster strong{font-size:34px}
-  .faq summary{font-size:19px;padding:22px 8px}
-  .faq p{font-size:16px;padding-bottom:22px}
-  .pill{height:56px;padding:0 34px;font-size:16px}
-  .ctaline{margin-top:26px}
-  .banner{height:400px}
-  .full{min-height:700px}
-}
-
+/* ⚠ 중간 타이포 구간(901~1339) 폐기 — 실측으로 판단을 뒤집었다.
+   넣은 이유: 900→901 에서 +3,270px 급변을 없애려고.
+   폐기 이유: 이 구간만 글자가 작아 1339→1340 에서 다시 +1,735px 역전이 났다.
+   러너펍은 컨테이너 1280 고정이라 중간 구간 자체가 없다. 폭이 커지면 글자는 그대로고
+   줄바꿈만 줄어 문서가 짧아진다 — 그게 정상 거동이다.
+   900→901 급변은 모바일 CSS ↔ 데스크톱 CSS 전환이라 불가피하다(러너펍도 모바일 7,616
+   vs 데스크톱 15,682 로 2배 뛴다). 없애려던 것이 과했다. 러너펍 방식으로 되돌린다.
+   폐기된 블록은 아래에 주석으로 남긴다. */
 /* ══════════════════════════════════════════════════════════════════════
    [2차 독립검수 반영] 캡처 45장 대조에서 나온 지적 처리
    ══════════════════════════════════════════════════════════════════════ */
