@@ -892,3 +892,53 @@ summary:focus-visible,[tabindex]:focus-visible{
   .pnav.prev{left:6px}
   .pnav.next{right:6px}
 }
+
+/* ══ 실측 정정 · 영문 오버라인 ══
+   1차 검수는 캡처 1장(rd_02)만 보고 "오버라인 부재"라고 했고 나는 14곳에 16px 소형을 넣었다.
+   러너펍 전수 실측 결과 영문 라벨은 딱 1곳뿐이고(STANDARDIZED SYSTEM) 그것도 48px/700 대형이다.
+   → 13곳 제거하고 1곳만 러너펍과 같은 대형으로 둔다. 검수 의견도 실측으로 검증해야 한다. */
+.kick.big{font-size:48px;font-weight:700;letter-spacing:0;color:var(--gold);margin-bottom:10px}
+@media (max-width:900px){ .kick.big{font-size:24px;margin-bottom:6px} }
+
+/* ══════════════════════════════════════════════════════════════════════
+   [복제도 라운드] 타이포 종수 30 → 러너펍 18 계열로 통합
+   러너펍 18종: 28/700 18/500 24/700 12/400 40/700 28/500 18/600 22/500
+                22/700 16/600 48/700 18/400 14/500 20/500 36/600 60/700 32/500 16/500
+   근접값을 러너펍이 실제로 쓰는 조합으로 스냅한다. 크기 위계는 유지된다.
+   ══════════════════════════════════════════════════════════════════════ */
+@media (min-width:901px){
+  /* 13px 계열 3종(13/400·13/700·15/400) → 14/500 하나로 */
+  .foot,.cf,.sc em,.apps em,.sup-img figcaption span,.ft-t p,.ft-t .cp,.dock-p p{
+    font-size:14px;font-weight:500}
+  .apps em,.apps em.dev{font-size:14px;font-weight:500}
+
+  /* 이모지 64/400 → 60/700 (히어로 h1 조합과 통합) */
+  .ic .em{font-size:60px;font-weight:700}
+
+  /* 18 계열 3종(18/700·18/800·18/600) → 18/500·18/600 두 종으로 */
+  .cc li b,.lines b,.sc span,.rbox.hi li,.ic p b{font-weight:600}
+  .pill{font-size:16px;font-weight:600}
+  .ag i{font-size:16px;font-weight:600}
+
+  /* 28 계열(28/800·28/600) → 28/700 */
+  .num,.dock-t{font-weight:700}
+
+  /* 16 계열(16/700·16/400) → 16/600 */
+  .faqpg button,.faqpg button.on,.more,.skip{font-size:16px;font-weight:600}
+
+  /* 20/700 → 20/500 · 21/800 → 22/700 · 36/700 → 36/600 · 12/600 → 12/400 · 26/400 → 22/700 */
+  ol.pnl.flow3 strong{font-size:20px;font-weight:500}
+  .lg b,.ft .lg b{font-size:22px;font-weight:700}
+  .sc b{font-size:36px;font-weight:600}
+  .net-list em,.rg li em{font-size:12px;font-weight:400}
+  .pnav{font-size:22px;font-weight:700}
+
+  /* 24/500 잔여(p·i) → 24/700 또는 22/500 */
+  .pnl{font-size:22px;font-weight:500}
+  .num i,.big i{font-size:22px;font-weight:500}
+}
+
+/* 큰면적 배색 5색 → 4색 이내 : 골드 7% 패널 배경 제거(러너펍 마무리 패널도 테두리만) */
+.pnl{background:transparent}
+.rbox.hi{background:transparent}
+.cc.hi{background:rgba(4,21,15,.55)}
