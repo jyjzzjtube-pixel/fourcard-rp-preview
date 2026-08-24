@@ -753,7 +753,10 @@ ol.pnl.flow3 em{font-style:normal;font-size:16px;font-weight:500;color:var(--ink
 
 /* P4-11 · 본사 지원 좌측 칸 — 러너펍은 이미지만이 아니라 제목·설명이 든 콘텐츠 카드다.
    좌우 비율도 러너펍 실측 578:698 (약 45:55) 로 맞춘다 */
-@media (min-width:901px){ .sup{grid-template-columns:0.9fr repeat(2,minmax(0,1fr))} }
+/* ⚠ 정정: 검수의 '좌 578 : 우 698' 에서 우 698 은 2칸 합계였다. 좌측 1칸(574px)은
+   우측 1칸(333px)의 1.72배다. 0.9fr 로 넣어 반대로 좁혔던 것을 바로잡는다.
+   러너펍 실측: 섹션 x110 w1280 · 좌측 IMG 574x688 @x114 */
+@media (min-width:901px){ .sup{grid-template-columns:1.72fr repeat(2,minmax(0,1fr))} }
 .sup-img{position:relative}
 .sup-img figcaption{position:absolute;inset:auto 0 0;padding:26px 24px;text-align:left;
   background:linear-gradient(180deg,transparent,rgba(4,17,11,.94))}
@@ -774,4 +777,114 @@ ol.pnl.flow3 em{font-style:normal;font-size:16px;font-weight:500;color:var(--ink
   .sq3 img{width:120px;height:120px;aspect-ratio:1/1}
   .sq3 h3{align-self:start}
   .sq3 p{align-self:start}
+}
+
+/* ══ 치수 전수대조에서 나온 불일치 4건 교정 (러너펍 1440 실측 대비) ══
+   3x3 아이콘 52→64 · 물품 아이콘 52→64
+   절차 가로피치 411→384 (피치=(폭+gap)/3 → 폭 1110 + gap 42)
+   절차 세로피치 320→285 (행높이 + 세로 gap) */
+@media (min-width:901px){
+  .ic .em{font-size:64px;line-height:1}
+  .steps{max-width:1110px}
+  .steps ol{gap:50px 42px}
+}
+
+/* ══ 901px 경계 역전 교정 ══
+   러너펍 실측 수치는 1440 기준인데 min-width:901 에 그대로 걸려,
+   900→901 에서 문서가 +3,270px 길어졌다(폭이 넓어지는데 더 길어지는 역전).
+   901~1180 은 중간 타이포로 채운다. 1181 이상에서 러너펍 수치 완전 적용. */
+/* 상한을 1180 → 1339 로 넓힌다. 러너펍 실측치는 컨테이너 1280 + 좌우 여백 기준이라
+   1181~1339 에 그대로 걸면 줄바꿈이 폭증해 1180→1280 에서 +1,560px 역전이 났다(실측). */
+@media (min-width:901px) and (max-width:1339px){
+  .sec{padding-block:70px}
+  .hero h1{font-size:44px;line-height:1.12}
+  .hero-t{font-size:24px}
+  .hero-d{margin-top:52px;font-size:19px}
+  .t1{font-size:32px}
+  .t2{font-size:20px}
+  .sec .kick,.full .kick{font-size:14px;margin-bottom:12px}
+  .rg-h{height:52px;font-size:20px}
+  .rg li{font-size:18px;line-height:1.32}
+  .ic h3,.sup-c h3,.cc h3,.rbox h3,.sq3 h3,.steps h3,.apps h3,.rbox.hi h3{font-size:22px}
+  .ic p,.sup-c p,.rbox p,.sq3 p,.steps p,.apps p{font-size:16px;line-height:1.55}
+  .cc li,.rbox.hi li,.lines li{font-size:16px}
+  .ic .em{font-size:48px}
+  .num{font-size:32px}
+  .sc b{font-size:28px}
+  .pnl{font-size:18px}
+  .chain{font-size:18px}
+  .poster strong{font-size:34px}
+  .faq summary{font-size:19px;padding:22px 8px}
+  .faq p{font-size:16px;padding-bottom:22px}
+  .pill{height:56px;padding:0 34px;font-size:16px}
+  .ctaline{margin-top:26px}
+  .banner{height:400px}
+  .full{min-height:700px}
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   [2차 독립검수 반영] 캡처 45장 대조에서 나온 지적 처리
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* P0-1 · 한글 단어가 줄 끝에서 중간에 끊겼다 (최다 결함)
+   "맞춰 익/힙니다" "14일을 계/약 전에" "시공·교/육" "공개합/니다" 등
+   1440·390 전 섹션에서 반복. 한국어 페이지의 기본 규칙을 빠뜨렸다. */
+html{word-break:keep-all;overflow-wrap:break-word;line-break:strict}
+h1,h2,h3,p,li,dd,dt,span,strong,em,b,summary,label,a,button{word-break:keep-all;overflow-wrap:break-word}
+.num,.big,.sc b,.cc li b,.lines b{word-break:normal}   /* 금액은 예외 */
+
+/* P0-2 · 본사지원 이미지 카드에서 사진 속 엠블럼과 오버레이 제목이 겹쳐 글자가 묻혔다 */
+.sup-img figcaption{background:linear-gradient(180deg,rgba(4,17,11,0) 0%,rgba(4,17,11,.72) 34%,rgba(4,17,11,.97) 100%);
+  padding-top:56px}
+.sup-img figcaption strong{text-shadow:0 2px 12px rgba(0,0,0,.85)}
+
+/* P2-6 · 우하단 플로팅 배지가 3열 카드 우측 칸을 가렸다(컨테이너 1359 밖 1415까지 나감) */
+@media (min-width:1500px){ .fixcard{right:calc((100vw - 1280px)/2 - 190px)} }
+@media (min-width:1181px) and (max-width:1499px){ .fixcard{right:8px;width:118px;height:150px} .fixcard img{width:78px;height:78px} }
+@media (min-width:901px) and (max-width:1180px){ .fixcard{right:6px;width:96px;height:122px} .fixcard img{width:62px;height:62px} }
+
+/* P2-7 · 주석문과 다음 섹션 사이 220~250px 공백 */
+.foot{margin-bottom:0}
+.sec:has(.foot:last-child){padding-bottom:64px}
+@media (max-width:900px){ .sec:has(.foot:last-child){padding-bottom:34px} }
+
+/* P1-4 · 대회 3카드 — 모바일이 가로형이라 데스크톱(세로형)과 리듬이 달랐다.
+   러너펍은 정사각 사진 카드로 리듬을 만든다. 모바일도 같은 세로 카드로 통일한다. */
+@media (max-width:900px){
+  .sq3{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .sq3 li{display:grid;grid-template-columns:1fr;justify-items:center;gap:0;
+    padding:0;border:0;background:none}
+  .sq3 figure{grid-row:auto;width:100%;height:auto;border-radius:12px}
+  .sq3 img{width:100%;height:auto;aspect-ratio:1/1}
+  .sq3 h3{margin-top:12px;font-size:15px;text-align:center}
+  .sq3 p{margin-top:6px;font-size:13px;line-height:1.55;text-align:center}
+}
+
+/* P2-8 · 모바일 슬라이더 좌우 peek 대칭 */
+@media (max-width:900px){
+  .poster{padding-inline:16px;scroll-padding-inline:16px}
+  .poster figure:last-child{margin-right:16px}
+}
+
+/* P2-8b · 매장현황 마지막 줄(경남·충남)이 3열 중 1열만 차서 우측이 통째로 비었다 */
+@media (min-width:901px){ .regions{grid-auto-rows:min-content} }
+
+/* P1-5 · 입지 5단계가 '단계'가 아니라 '목록'으로 읽혔다 — 흐름선과 번호 마커를 얹는다 */
+.g5{position:relative}
+@media (min-width:1181px){
+  .g5::before{content:"";position:absolute;left:10%;right:10%;top:96px;height:2px;
+    background:repeating-linear-gradient(90deg,rgba(255,255,255,.28) 0 10px,transparent 10px 20px);z-index:0}
+  .g5 li{position:relative;z-index:1}
+}
+
+/* 641~900 에서 문서가 +926px 길어지는 것을 추적했더니 support/tournament/site/revisit
+   네 섹션이었고, 전부 aspect-ratio 이미지가 폭에 비례해 커진 결과였다(역전 아님).
+   다만 태블릿에서 정사각 카드가 과하게 커지므로 상한만 둔다. */
+@media (min-width:641px) and (max-width:900px){
+  .sq3 img{max-height:280px;object-fit:cover}
+  .sup-img{max-height:320px}
+  .sup-img img{height:100%;object-fit:cover}
+  .rev-img{max-height:340px}
+  .sth{max-height:160px}
+  .banner{height:300px}
 }
