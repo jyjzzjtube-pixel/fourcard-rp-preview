@@ -215,7 +215,10 @@
     <h2 class="t1 gold">도시는 달라도 브랜드 기준은 같습니다</h2>
     <p class="t2">실제 운영 중인 매장 사진으로 사인과 테이블 중심 공간을 확인하실 수 있습니다</p>
   </div>
-  <div class="poster">
+  <div class="posterwrap">
+    <button class="pnav prev" type="button" aria-label="이전 매장 보기" data-pnav="-1">‹</button>
+    <button class="pnav next" type="button" aria-label="다음 매장 보기" data-pnav="1">›</button>
+  <div class="poster" data-track tabindex="0" aria-label="실제 매장 사진 목록">
     <figure><picture><source srcset="assets/seolv1-900.avif" type="image/avif"><img src="assets/seolv1-900.webp" alt="FOURCARD 선릉점" loading="lazy" decoding="async"></picture><figcaption><span>SEOUL</span><strong>선릉점</strong></figcaption></figure>
     <figure><picture><source srcset="assets/gangnam-v-900.avif" type="image/avif"><img src="assets/gangnam-v-900.webp" alt="FOURCARD 강남점" loading="lazy" decoding="async"></picture><figcaption><span>SEOUL</span><strong>강남점</strong></figcaption></figure>
     <figure><picture><source srcset="assets/jamsil-v-900.avif" type="image/avif"><img src="assets/jamsil-v-900.webp" alt="FOURCARD 잠실새내점" loading="lazy" decoding="async"></picture><figcaption><span>SEOUL</span><strong>잠실새내점</strong></figcaption></figure>
@@ -417,7 +420,7 @@
       <li><a href="https://fourcard-erp.vercel.app/" target="_blank" rel="noopener noreferrer"><h3>가맹점 ERP</h3><p>가맹점 운영을 위한 전용 관리 화면</p><em>운영 중</em></a></li>
       <li><a href="https://www.fourcardinfo.com/cardgame/php/schedule.php" target="_blank" rel="noopener noreferrer"><h3>대회 일정</h3><p>지역별 대회 일정과 진행 정보</p><em>운영 중</em></a></li>
       <li><a href="https://www.fourcardinfo.com/cardgame/php/register-player.php" target="_blank" rel="noopener noreferrer"><h3>선수 등록·예약</h3><p>선수 등록과 대회 예약 경로</p><em>운영 중</em></a></li>
-      <li><a href="https://www.fourcardinfo.com/cardgame/php/ranking.php" target="_blank" rel="noopener noreferrer"><h3>포인트·랭킹</h3><p>참여 기록과 포인트, 순위 확인</p><em>운영 중</em></a></li>
+      <li><a href="https://www.fourcardinfo.com/cardgame/php/point-ranking.php" target="_blank" rel="noopener noreferrer"><h3>포인트·랭킹</h3><p>참여 기록과 포인트, 순위 확인</p><em>운영 중</em></a></li>
       <li><a href="https://www.fourcardinfo.com/cardgame/php/news.php" target="_blank" rel="noopener noreferrer"><h3>대회 소식</h3><p>공식 공지와 대회 결과 소식</p><em>운영 중</em></a></li>
       <li><span><h3>멤버스 앱 구조</h3><p>매장·대회·랭킹·회원·알림을 묶는 구조</p><em class="dev">개발 중</em></span></li>
     </ul>

@@ -867,3 +867,28 @@ h1,h2,h3,p,li,dd,dt,span,strong,em,b,summary,label,a,button{word-break:keep-all;
   .sth{max-height:160px}
   .banner{height:300px}
 }
+
+/* ══ [기능 QA 반영] 라이브 클릭 검증에서 나온 것 ══ */
+
+/* 관측1 · 가로 트랙에 조작 단서가 없었다 — 스크롤바를 숨겼고 화살표도 없어
+   일반 마우스 사용자는 Shift+휠 말고는 조작 방법을 알 수 없었다. PC 전용 사이트라 버튼을 붙인다. */
+.posterwrap{position:relative}
+.pnav{position:absolute;top:50%;transform:translateY(-50%);z-index:5;
+  width:56px;height:56px;border-radius:50%;border:1px solid var(--line2);
+  background:rgba(4,17,11,.86);color:var(--gold2);font-size:26px;line-height:1;cursor:pointer;
+  transition:background var(--d1) var(--e),border-color var(--d1) var(--e)}
+.pnav:hover{background:rgba(4,17,11,.98);border-color:var(--gold)}
+.pnav.prev{left:22px}
+.pnav.next{right:22px}
+.pnav[disabled]{opacity:.28;cursor:default}
+
+/* 관측3 · 커스텀 포커스 링이 없어 브라우저 기본에 의존했다 — 브랜드 골드로 명시 */
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
+summary:focus-visible,[tabindex]:focus-visible{
+  outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+@media (max-width:900px){
+  .pnav{width:42px;height:42px;font-size:20px}
+  .pnav.prev{left:6px}
+  .pnav.next{right:6px}
+}

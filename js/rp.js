@@ -133,4 +133,55 @@
     });
     draw();
   })();
+
+  /* 관측1 · 가로 트랙 좌우 버튼 */
+  (function () {
+    var tr = document.querySelector('.poster[data-track]');
+    if (!tr) return;
+    var btns = [].slice.call(document.querySelectorAll('[data-pnav]'));
+    function step() { var f = tr.querySelector('figure'); return f ? f.getBoundingClientRect().width + 20 : 340; }
+    function sync() {
+      var max = tr.scrollWidth - tr.clientWidth;
+      btns.forEach(function (b) {
+        var d = Number(b.getAttribute('data-pnav'));
+        b.disabled = (d < 0 && tr.scrollLeft <= 82) || (d > 0 && tr.scrollLeft >= max - 2);
+      });
+    }
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        tr.scrollBy({ left: Number(b.getAttribute('data-pnav')) * step(), behavior: 'smooth' });
+      });
+    });
+    tr.addEventListener('scroll', sync, { passive: true });
+    setTimeout(sync, 300);
+  })();
+
+  /* 관측2 · 모바일 메뉴가 바깥 클릭·ESC 로 닫히지 않았다 */
+  (function () {
+    var sheet = document.querySelector('[data-sheet]');
+    var burger = document.querySelector('[data-menu]');
+    if (!sheet || !burger) return;
+    function close() {
+      if (!sheet.hasAttribute('data-open')) return;
+      sheet.removeAttribute('data-open'); sheet.hidden = true;
+      burger.setAttribute('aria-expanded', 'false');
+    }
+    document.addEventListener('click', function (e) {
+      if (!sheet.hasAttribute('data-open')) return;
+      if (sheet.contains(e.target) || burger.contains(e.target)) return;
+      close();
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  })();
+
+  /* 관측4 · FAQ 가 여러 개 동시에 열렸다 — 아코디언 표준대로 한 번에 하나만 */
+  (function () {
+    var list = [].slice.call(document.querySelectorAll('.faq details'));
+    list.forEach(function (d) {
+      d.addEventListener('toggle', function () {
+        if (!d.open) return;
+        list.forEach(function (o) { if (o !== d && o.open) o.open = false; });
+      });
+    });
+  })();
 })();
