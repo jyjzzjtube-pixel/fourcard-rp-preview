@@ -46,11 +46,11 @@
   }
 
   /* 진입 모션 */
-  var targets = document.querySelectorAll('.head, .card, .net-card, .panel, .shot, .revisit-list li, .full-list li, .matrix li, .stats li, .contact-form');
+  var targets = document.querySelectorAll('.t1, .t2, .ic, .cc, .sc, .rbox, .rg, .sup-c, .sup-img, .pnl, .poster figure, .g5 li, .steps li, .apps li, .faq');
   if (!window.IntersectionObserver || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     Array.prototype.forEach.call(targets, function (el) { el.classList.add('on'); });
   } else {
-    Array.prototype.forEach.call(targets, function (el) { el.classList.add('reveal'); });
+    Array.prototype.forEach.call(targets, function (el) { el.classList.add('rv'); });
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) {
@@ -65,7 +65,7 @@
   /* 상담 폼 — 메일 클라이언트로 넘긴다 (서버 없음) */
   function bind(form, statusSel) {
     if (!form) return;
-    var status = form.parentElement.querySelector(statusSel) || form.querySelector(statusSel);
+    var status = document.querySelector(statusSel);
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var d = new FormData(form);
@@ -95,6 +95,5 @@
       if (status) status.textContent = '메일 앱이 열리지 않으면 010-9954-8399로 전화 주세요.';
     });
   }
-  bind(document.getElementById('inq'), '.bar-status');
-  bind(document.getElementById('inq2'), '.form-status');
+  bind(document.getElementById('inq'), '.dock-s');
 })();
