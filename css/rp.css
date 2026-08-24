@@ -150,7 +150,7 @@ ul,ol{list-style:none}
 .sup-c p{margin-top:12px;font-size:16px;line-height:1.7;color:var(--ink2)}
 
 /* ══ 세로 포스터 슬라이더 ══ */
-.poster{margin-top:56px;display:flex;gap:20px;overflow-x:auto;padding-bottom:16px;
+.poster{margin-top:56px;display:flex;align-items:center;gap:20px;overflow-x:auto;padding-bottom:16px;
   scroll-snap-type:x mandatory;scrollbar-width:none;
   padding-inline:max(24px,calc((100vw - var(--wrap))/2))}
 .poster::-webkit-scrollbar{display:none}
@@ -433,7 +433,10 @@ ul,ol{list-style:none}
   .dock-in{width:calc(100% - 24px);display:grid;gap:6px;padding:10px 0 8px;min-height:0}
   .dock-t{display:none}
   .dock-f{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-  .dock-f label span{display:none}
+  /* :not(.ag) 필수 — 없으면 동의 문구 라벨의 span 까지 display:none 이 되어
+     모바일 상담바에서 '(필수) 개인정보처리방침에 동의합니다'가 통째로 사라졌다.
+     체크박스와 '보기'만 남아 있었다. 크롭 캡처를 눈으로 보고 찾았다. */
+  .dock-f > label:not(.ag) span{display:none}
   .dock-f input{height:46px;font-size:16px}
   .dock-a{grid-column:1/-1;padding:0;justify-content:center;gap:5px}
   .ag span{font-size:12px}
@@ -454,4 +457,173 @@ ul,ol{list-style:none}
   *,*::before,*::after{animation-duration:0s!important;animation-delay:0s!important;
     transition-duration:0s!important;transition-delay:0s!important}
   .rv{opacity:1!important;transform:none!important}
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   [실측 일치] runnerpub.com 1440px 계산값에 수치를 그대로 맞춘다
+   측정 도구 tools/geo.py · 원본 analysis_rp/geo_rp.json
+
+   러너펍 실측                                  → 적용
+   히어로 h1        60/700 lh72 @x320           → 동일 (컨테이너 기준 240px 들여쓰기)
+   히어로 부제      32/500 @x320                → 동일
+   내비 항목        22/700 · 148px · 피치 158    → 동일
+   지역 헤더 박스   332x59 · pad 12/20 · r8 · 28/700 → 동일(색만 포카드 그린)
+   지점명           24/700 lh28.8 · 셀 166px 2열 → 동일
+   카드 제목        28/700                       → 동일
+   카드 본문        18/500                       → 동일
+   단계 번호        40/700                       → 동일
+   상담바           fixed · h153 · bg단색         → 동일
+   입력칸           340x63 r12 흰색 16/400        → 동일
+   상담 버튼        340x63 r12 16/600             → 동일(색만 골드)
+   상담바 제목      36/600                        → 동일
+   3x3 카드         폭 413 · pad 40 · 아이콘 64    → 동일
+   3카드 그리드     419x419 r17                   → 동일
+   물품 2카드       폭 634 · 아이콘 64             → 동일
+   입지 5단계       썸네일 200x133 · 피치 250      → 동일
+   개설 절차        배지 100x100 · 피치 384x285    → 동일
+   푸터 로고        183x60                        → 동일
+
+   ⚠ 따라가지 않은 것 2건 (러너펍 쪽 결함)
+   · body 폭 1500 (뷰포트 1440) → 가로 스크롤이 생긴다. 1280 중앙정렬로 둔다.
+   · 푸터 하단 여백 408px → 빈 화면이다. 60px 로 둔다.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ⚠ 이 블록은 파일 끝에 있어 모바일 미디어쿼리보다 뒤다. 감싸지 않으면
+   데스크톱 값(60px h1 등)이 모바일까지 덮어써 390px 문서가 13,214 → 22,411 로
+   튀었다(실측). 그래서 min-width:901px 안에서만 적용한다. */
+@media (min-width: 901px) {
+  /* 내비 */
+  .nav{gap:10px;margin-left:27px}
+  .nav a{width:148px;height:110px;display:grid;place-items:center;padding:0;font-size:22px;font-weight:700}
+  .nav a::after{bottom:26px;left:20px;right:20px;height:3px}
+
+  /* 히어로 */
+  .hero-in{padding-left:240px}
+  .hero h1{font-size:60px;font-weight:700;line-height:72px;letter-spacing:0}
+  .hero-t{margin-top:14px;font-size:32px;font-weight:500;line-height:1.2}
+  .hero-d{margin-top:96px;font-size:24px;font-weight:500;line-height:1.5}
+
+  /* 섹션 제목 계열 */
+  .t1{font-size:40px;font-weight:700;line-height:1.2}
+  .t2{margin-top:16px;font-size:28px;font-weight:500;line-height:1.35}
+
+  /* 지역 — 3열 · 헤더 박스 332x59 · 지점명 24/700 2열 */
+  .regions{margin-top:52px;grid-template-columns:repeat(3,minmax(0,1fr));gap:38px 20px}
+  .rg-h{height:59px;display:grid;place-items:center;padding:12px 20px;border-radius:8px;
+    font-size:28px;font-weight:700;border:0;background:var(--green)}
+  .rg ul{margin-top:20px;gap:10px 0}
+  .rg li{font-size:24px;font-weight:700;line-height:28.8px}
+
+  /* 카드 제목 28/700 · 본문 18/500 · 아이콘 64 */
+  .ic{padding:40px}
+  .em{font-size:52px}
+  .ic h3{margin-top:20px;font-size:28px;font-weight:700;line-height:1.2}
+  .ic p{margin-top:14px;font-size:18px;font-weight:500;line-height:1.5}
+  .strip .ic{padding:34px 28px}
+  .strip h3{font-size:28px}
+  .g2.wide .ic{padding:40px}
+
+  /* 본사 지원 — 번호 40/700 회색 · 제목 28/700 · 본문 18/500 */
+  .sup-c b{font-size:40px;font-weight:700;color:#BEBEBE}
+  .sup-c h3{margin-top:20px;font-size:28px;font-weight:700}
+  .sup-c p{margin-top:14px;font-size:18px;font-weight:500;line-height:1.5}
+
+  /* 재방문 박스 */
+  .rbox h3{font-size:28px;font-weight:700}
+  .rbox p{margin-top:12px;font-size:18px;font-weight:500;line-height:1.5}
+  .rbox.hi li{font-size:18px;font-weight:500}
+
+  /* 창업비용 카드 */
+  .cc{padding:40px}
+  .cc h3{font-size:28px;font-weight:700}
+  .num{margin-top:18px;font-size:40px;font-weight:700}
+  .cc li{font-size:18px;font-weight:500;padding:13px 0}
+  .cc li b{font-weight:700}
+
+  /* 매출 카드 */
+  .sale .sc{padding:40px}
+  .sc span{font-size:18px;font-weight:500}
+  .sc b{margin-top:14px;font-size:36px;font-weight:700}
+
+  /* 입지 5단계 — 피치 250 · 제목 28/700 */
+  .g5{margin-top:52px;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px}
+  .g5 li{padding:34px 18px}
+  .g5 b{width:64px;height:64px;border-radius:16px;font-size:28px}
+  .g5 h3{margin-top:20px;font-size:22px;font-weight:700;line-height:1.25}
+  .g5 p{margin-top:12px;font-size:16px;font-weight:500;line-height:1.5}
+
+  /* 개설 절차 — 배지 100x100 · 가로 피치 384 · 세로 피치 285 · 제목 28/700 */
+  .chain{margin-top:16px;font-size:24px;font-weight:500}
+  .steps{margin-top:56px;max-width:1191px;margin-inline:auto}
+  .steps ol{gap:85px 42px}
+  .steps b{width:100px;height:100px;border-radius:20px;font-size:40px;font-weight:700}
+  .steps h3{margin-top:24px;font-size:28px;font-weight:700}
+  .steps p{margin-top:12px;font-size:18px;font-weight:500;line-height:1.5}
+
+  /* 대회·플랫폼 카드 */
+  .apps li>a,.apps li>span{padding:40px 28px}
+  .apps h3{font-size:28px;font-weight:700}
+  .apps p{margin-top:12px;font-size:18px;font-weight:500;line-height:1.5}
+
+  /* 세로 포스터 — 러너펍 실측: 중앙 카드 500x889 / 좌우 320x569, 세로 가운데 정렬.
+     ⚠ align-items 기본값 stretch 때문에 작은 카드가 889px 로 늘어나고
+     캡션이 사진 밖 검은 영역에 떠 있었다(크롭 캡처로 확인). height 를 못 박는다. */
+  .poster figure{flex:0 0 320px;height:569px}
+  .poster figure:nth-child(2){flex:0 0 500px;height:889px}
+  /* ⚠ picture 는 display:inline 이 기본이라 height:100% 가 먹지 않아
+     사진이 통째로 사라지고 배지와 지점명만 남았다(크롭 캡처로 확인). block 으로 바꾼다. */
+  .poster picture{display:block;width:100%;height:100%}
+  .poster img{width:100%;height:100%;object-fit:cover;aspect-ratio:auto}
+  .poster strong{font-size:48px;font-weight:700}
+  .poster span{font-size:16px;font-weight:600}
+
+  /* 마무리 패널 */
+  .pnl{font-size:24px;font-weight:500}
+  .pnl.split b{font-size:18px}
+  .pnl.split span{font-size:20px}
+
+  /* FAQ */
+  .faq summary{font-size:24px;font-weight:700;padding:30px 8px}
+  .faq p{font-size:18px;font-weight:500;line-height:1.7;padding-bottom:30px}
+
+  /* 푸터 — 로고 183x60 · 본문 12/400 */
+  .ft{padding-block:58px 60px}
+  .ft .lg img{width:56px;height:56px}
+  .ft .lg b{font-size:21px}
+  .ft-t p{font-size:12px;font-weight:400;line-height:2.1}
+  .ft-t .cp{margin-top:20px;font-size:12px}
+
+  /* 하단 고정 상담바 — 실측 그대로
+     러너펍 배치: 제목 x56(226w) · 입력 340x63 x322 · 입력 340x63 x683 ·
+     동의문구는 버튼 '위'(y787) · 버튼 340x63 x1047(y808).
+     한 줄 flex 로 늘어놓았더니 총폭이 1400을 넘어 동의문구와 버튼이 잘렸다(실측).
+     3열 그리드 + 3열째를 동의/버튼 2행으로 쌓아 러너펍 배치와 같게 만든다. */
+  .dock-in{min-height:153px;gap:0}
+  /* 러너펍 제목은 '러너펍 가맹문의' 226px. 포카드는 글자가 길어 36px 이면 339px 가 되어
+     오른쪽 버튼이 화면 밖으로 61px 밀렸다(실측). 28px 로 낮춰 총폭을 맞춘다. */
+  .dock-t{font-size:28px;font-weight:600;line-height:1.2}
+  /* 340px 고정 3열은 1280px 화면에서 오른쪽이 잘렸다(실측 x1379 > 뷰포트 1280).
+     러너펍 수치를 상한으로 두고 좁아지면 함께 줄어들게 한다. */
+  .dock-f{display:grid;grid-template-columns:repeat(3,minmax(0,340px));gap:6px 21px;
+    justify-content:end;align-items:end;padding-left:24px}
+  .dock-f label{flex:none;grid-row:2;min-width:0}
+  .dock-f label span{font-size:16px;font-weight:600}
+  /* :not([type=checkbox]) 필수 — 이게 없으면 동의 체크박스까지 width:100% 가 걸려
+     18px 짜리가 293px 로 늘어나고 문구가 화면 밖(x1380~1652)으로 밀려 잘렸다.
+     좌표 검사에는 안 잡혔고 크롭 캡처를 눈으로 보고 찾았다. */
+  .dock-f input:not([type="checkbox"]){width:100%;max-width:340px;height:63px;
+    border-radius:12px;font-size:16px;font-weight:400}
+  .dock-a .ag input[type="checkbox"]{width:18px;min-width:18px;height:18px;border-radius:3px}
+  /* 동의문구 — 눈으로 보니 체크박스만 남고 '보기'와 '(필수) 개인정보처...'가
+     오른쪽 끝에서 서로 겹쳐 잘려 있었다. 좌표 측정은 '넘침 없음'이었다. 측정만 믿으면 안 된다.
+     원인: 기반 규칙의 `.ag{min-width:0!important;flex:0 0 auto!important}` 때문에
+     340px 칸 안에서 라벨이 0폭으로 찌그러지고 글자가 밖으로 흘렀다.
+     해결: 동의줄을 폼 전체 폭(1~3열)에 두고 오른쪽 정렬, 찌그러짐 해제. */
+  .dock-a{grid-column:1 / 4;grid-row:1;justify-self:end;padding:0;
+    display:flex;align-items:center;gap:6px;white-space:nowrap}
+  .dock-a .ag{flex:0 1 auto!important;min-width:auto!important}
+  .dock-a .ag span{font-size:16px;font-weight:600}
+  .dock-a .more{flex:0 0 auto;font-size:16px}
+  .go{grid-column:3;grid-row:2;flex:none;width:100%;max-width:340px;height:63px;border-radius:12px;
+    font-size:16px;font-weight:600}
 }
