@@ -764,3 +764,14 @@ ol.pnl.flow3 em{font-style:normal;font-size:16px;font-weight:500;color:var(--ink
   .sup-img figcaption strong{font-size:15px}
   .sup-img figcaption span{margin-top:5px;font-size:12px;line-height:1.5}
 }
+
+/* 모바일 정사각 3카드 — grid-row:1/3 + stretch 때문에 사진이 카드 높이만큼
+   세로로 늘어나 정사각이 깨지고 제목·본문이 흩어져 보였다(390 캡처로 확인).
+   사진 칸을 120x120 으로 못 박고 위쪽 정렬한다. */
+@media (max-width:900px){
+  .sq3 li{grid-template-columns:120px minmax(0,1fr);align-items:start;gap:0 14px}
+  .sq3 figure{grid-row:1/3;align-self:start;width:120px;height:120px;flex:0 0 120px}
+  .sq3 img{width:120px;height:120px;aspect-ratio:1/1}
+  .sq3 h3{align-self:start}
+  .sq3 p{align-self:start}
+}
