@@ -46,7 +46,9 @@
   }
 
   /* 진입 모션 */
-  var targets = document.querySelectorAll('.t1, .t2, .ic, .cc, .sc, .rbox, .rg, .sup-c, .sup-img, .pnl, .poster figure, .g5 li, .steps li, .apps li, .faq');
+  /* 러너펍 실측: 진입 애니메이션은 DIV opacity 0.5s 10개뿐이다(전체 모션 33개 요소·3종).
+     내 것은 87개에 걸려 있어 3.6배였다. 러너펍처럼 섹션 제목에만 건다. */
+  var targets = document.querySelectorAll('.t1');
   if (!window.IntersectionObserver || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     Array.prototype.forEach.call(targets, function (el) { el.classList.add('on'); });
   } else {

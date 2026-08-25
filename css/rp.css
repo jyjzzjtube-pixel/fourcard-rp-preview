@@ -1466,3 +1466,15 @@ summary:focus-visible,[tabindex]:focus-visible{
   .ft .lg{justify-content:center}
   .ic p b{display:block;margin-top:6px}
 }
+
+/* ══ 모션 총량 러너펍 정렬 ══
+   러너펍 실측 33개 요소 3종(all .25s ×10 · IMG transform .3s ×10 · DIV opacity .5s ×10)
+   포카드 119개였다. 진입 애니메이션 대상을 제목으로 줄이고(JS), 나머지를 러너펍 값에 맞춘다. */
+.image-reveal img,.crop-target,.hero-media img,.branch-thumb img,
+.duo-img img,.shot img,.poster img,.sq3 img,.rev-img img,.sup-img img{
+  transition-duration:300ms}                       /* 러너펍 IMG transform 0.3s */
+/* 러너펍 카드는 호버 시 변화가 0 이다(transition:all 0s · border/bg/transform 불변) */
+.ic:hover,.cc:hover,.sc:hover,.rbox:hover,.sup-c:hover,.g5 li:hover,.net-card:hover{
+  transform:none;border-color:var(--line)}
+/* 호버 변화가 없으므로 transition 선언 자체를 지운다 — 러너펍 카드는 transition:all 0s 다 */
+.ic,.cc,.sc,.rbox,.sup-c,.g5 li,.net-card{transition:none}
