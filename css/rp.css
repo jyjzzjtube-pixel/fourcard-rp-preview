@@ -1630,3 +1630,40 @@ footer a[href^="tel:"]::after,footer a[href^="mailto:"]::after{
    러너펍에 없는 컨트롤이 더 있어서다 — 그건 전이를 지운다고 줄지 않는다. */
 a:hover,button:hover,summary:hover,.ag:hover{transform:none}
 a,button,summary{transition-property:color,background-color,border-color,opacity}
+
+/* ══ 1051~1180 헤더 넘침 ══
+   전환점을 1051 로 옮기자 이 구간이 새로 데스크톱이 되었는데,
+   헤더 좌패딩 150 + 로고 189 + 내비 780 + 우패딩 40 = 1159 로 뷰포트를 넘겨
+   마지막 내비 항목('자주 묻는 질문')이 화면 밖으로 잘렸다.
+   러너펍은 이 구간을 가로 스크롤로 흘려보내지만 내 하드락은 가로 넘침 0 이다.
+   내비 폰트·간격은 라운드8에서 러너펍과 일치 판정된 값이라 건드리지 않고
+   컨테이너 좌패딩만 뷰포트에 맞춰 줄인다(1180 이상에서는 원래 150 그대로). */
+@media (min-width:1051px) and (max-width:1180px){
+  .hd-in{padding-left:clamp(20px,calc(100vw - 1030px),150px)}
+}
+
+/* ══ 1051~1279 데스크톱 · 캡처로 잡은 결함 2건 ══
+   수치 검사(넘침·겹침)는 통과했는데 눈으로 보니 깨져 있던 것들이다.
+
+   ① 배지가 공개 매출 설명을 가렸다. is-hide 로 opacity .30 을 줘도 요소가 위에 있어
+      elementFromPoint 가 배지를 잡는다(1051·1200 에서 '가려짐=True'). 공개 매출은
+      이 페이지의 핵심 정보라 가려지면 안 된다. 좁은 데스크톱에서 더 옅게 하고
+      클릭도 통과시킨다. 1280 이상은 라운드8에서 가려짐 0 으로 확인된 상태라 그대로 둔다.
+   ② 금액이 카드 폭을 넘겨 '원'만 다음 줄에 홀로 떨어졌다. 폭에 맞춰 크기를 줄인다. */
+.fixcard.is-hide{pointer-events:none}
+@media (min-width:1051px) and (max-width:1279px){
+  .fixcard.is-hide{opacity:.10}
+  .sc b{font-size:clamp(26px,2.7vw,36px);white-space:nowrap}
+}
+/* 고정바 라벨 박스가 그리드 칸 전체(203~332px)를 차지해 우측 동의문과 겹쳤다.
+   1051px 에서 '연락처(휴대폰)' 끝(777)이 동의문 시작(690)을 넘어 체크박스가 라벨을 덮었다.
+   앞선 진단은 라벨과 '입력칸'만 비교해 이걸 놓쳤다 — 글자 폭만 쓰게 한다. */
+@media (min-width:1051px){
+  .dock-f > label:not(.hp) > span{width:max-content;max-width:100%}
+}
+/* 1051~1099 는 라벨을 글자폭으로 줄여도 체크박스와 15px 겹친다.
+   가장 좁은 데스크톱 구간에서만 동의문을 짧은 문구로 바꾼다(축약이지 삭제가 아니다). */
+@media (min-width:1051px) and (max-width:1099px){
+  .ag .ag-long{display:none}
+  .ag .ag-short{display:inline}
+}
