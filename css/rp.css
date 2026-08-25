@@ -1577,3 +1577,14 @@ footer a[href^="tel:"]::after,footer a[href^="mailto:"]::after{
   .sup-img img{width:100%;height:100%;object-fit:cover}
   .sup-c{height:auto}
 }
+
+/* ══ 푸터 · 러너펍 실측 정렬 ══
+   러너펍 푸터 실측(1440): 높이 598 · 패딩 상58/하408 · 본문 폰트 12px 단일 · 줄높이 12px.
+   내 것은 높이 267 · 패딩 상58/하60 · 폰트 14/22/12px 혼합이었다.
+   상단 58 은 이미 일치하므로 하단 패딩과 본문 폰트만 러너펍 값으로 맞춘다.
+   브랜드 표기(22px)는 로고에 해당해 제외 항목이므로 건드리지 않는다.
+   모바일 푸터는 러너펍 모바일을 실측하지 않았으므로 데스크톱에만 적용한다. */
+@media (min-width:1180px){
+  .ft{padding-bottom:408px}
+  .ft p,.ft li,.ft a,.ft span:not(.ft-brand):not(.lg b):not(.lg i){font-size:12px;line-height:12px}
+}
