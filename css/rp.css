@@ -311,7 +311,7 @@ ul,ol{list-style:none}
   .nav{gap:32px}
 }
 /* ══════════ ≤1180 ══════════ */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .wrap{width:calc(100% - 48px)}
   .nav{gap:22px}
   .nav a{font-size:15px}
@@ -325,7 +325,7 @@ ul,ol{list-style:none}
   .dock-t{font-size:20px}
 }
 /* ══════════ ≤900 (모바일) ══════════ */
-@media (max-width:1179px){
+@media (max-width:1050px){
   :root{--hd:64px;--dock:auto}
   body{padding-bottom:150px}
   .wrap{width:calc(100% - 32px)}
@@ -496,8 +496,8 @@ ul,ol{list-style:none}
 
 /* ⚠ 이 블록은 파일 끝에 있어 모바일 미디어쿼리보다 뒤다. 감싸지 않으면
    데스크톱 값(60px h1 등)이 모바일까지 덮어써 390px 문서가 13,214 → 22,411 로
-   튀었다(실측). 그래서 min-width:1180px 안에서만 적용한다. */
-@media (min-width:1180px) {
+   튀었다(실측). 그래서 min-width:1051px 안에서만 적용한다. */
+@media (min-width:1051px) {
   /* 내비 */
   .nav{gap:10px;margin-left:27px}
   .nav a{width:148px;height:110px;display:grid;place-items:center;padding:0;font-size:22px;font-weight:700}
@@ -655,7 +655,7 @@ ul,ol{list-style:none}
 .sth{width:100%;max-width:200px;height:auto;aspect-ratio:200/133;object-fit:cover;
   border-radius:10px;margin-bottom:16px}
 
-@media (max-width:1179px){
+@media (max-width:1050px){
   .sq3{margin-top:26px;grid-template-columns:1fr;gap:12px}
   .sq3 li{grid-template-columns:120px minmax(0,1fr);justify-items:start;
     align-items:center;gap:0 14px;padding:12px;border:1px solid var(--line);border-radius:14px;
@@ -685,7 +685,7 @@ ol.pnl.flow3 em{font-style:normal;font-size:16px;font-weight:500;color:var(--ink
 .rev{align-items:start}
 .rev-img{max-height:640px}
 
-@media (max-width:1179px){
+@media (max-width:1050px){
   ol.pnl.flow3,ul.pnl.flow3{grid-template-columns:1fr;gap:12px;padding:16px}
   ol.pnl.flow3 span{width:34px;height:34px;font-size:15px}
   ol.pnl.flow3 strong{font-size:16px}
@@ -738,15 +738,15 @@ ol.pnl.flow3 em{font-style:normal;font-size:16px;font-weight:500;color:var(--ink
 @media (min-width:1201px) and (max-width:1499px){ .fixcard{right:26px;width:150px;height:190px} .fixcard img{width:98px;height:98px} }
 
 /* P4-14 · 헤더 로고 좌여백(러너펍 150px) · 활성 밑줄을 헤더 하단선에 붙이고 폭을 넓힌다 */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .hd-in{width:min(1500px,calc(100% - 0px));padding-inline:150px 40px}
   .nav a::after{bottom:0;left:0;right:0;height:3px}
 }
 
 /* P4-15 · 상담바 동의문과 라벨 baseline 34px 어긋남 */
-@media (min-width:1180px){ .dock-a{align-self:end;padding-bottom:6px} }
+@media (min-width:1051px){ .dock-a{align-self:end;padding-bottom:6px} }
 
-@media (max-width:1179px){
+@media (max-width:1050px){
   .sec .kick,.full .kick{margin-bottom:8px;font-size:12px;letter-spacing:.14em}
   .ctaline{margin-top:20px}
   .pill{height:48px;padding:0 26px;font-size:15px}
@@ -761,13 +761,13 @@ ol.pnl.flow3 em{font-style:normal;font-size:16px;font-weight:500;color:var(--ink
 /* ⚠ 정정: 검수의 '좌 578 : 우 698' 에서 우 698 은 2칸 합계였다. 좌측 1칸(574px)은
    우측 1칸(333px)의 1.72배다. 0.9fr 로 넣어 반대로 좁혔던 것을 바로잡는다.
    러너펍 실측: 섹션 x110 w1280 · 좌측 IMG 574x688 @x114 */
-@media (min-width:1180px){ .sup{grid-template-columns:1.72fr repeat(2,minmax(0,1fr))} }
+@media (min-width:1051px){ .sup{grid-template-columns:1.72fr repeat(2,minmax(0,1fr))} }
 .sup-img{position:relative}
 .sup-img figcaption{position:absolute;inset:auto 0 0;padding:26px 24px;text-align:left;
   background:linear-gradient(180deg,transparent,rgba(4,17,11,.94))}
 .sup-img figcaption strong{display:block;font-size:22px;font-weight:700}
 .sup-img figcaption span{display:block;margin-top:8px;font-size:15px;line-height:1.55;color:var(--ink2)}
-@media (max-width:1179px){
+@media (max-width:1050px){
   .sup-img figcaption{padding:14px}
   .sup-img figcaption strong{font-size:15px}
   .sup-img figcaption span{margin-top:5px;font-size:12px;line-height:1.5}
@@ -776,7 +776,7 @@ ol.pnl.flow3 em{font-style:normal;font-size:16px;font-weight:500;color:var(--ink
 /* 모바일 정사각 3카드 — grid-row:1/3 + stretch 때문에 사진이 카드 높이만큼
    세로로 늘어나 정사각이 깨지고 제목·본문이 흩어져 보였다(390 캡처로 확인).
    사진 칸을 120x120 으로 못 박고 위쪽 정렬한다. */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .sq3 li{grid-template-columns:120px minmax(0,1fr);align-items:start;gap:0 14px}
   .sq3 figure{grid-row:1/3;align-self:start;width:120px;height:120px;flex:0 0 120px}
   .sq3 img{width:120px;height:120px;aspect-ratio:1/1}
@@ -788,7 +788,7 @@ ol.pnl.flow3 em{font-style:normal;font-size:16px;font-weight:500;color:var(--ink
    3x3 아이콘 52→64 · 물품 아이콘 52→64
    절차 가로피치 411→384 (피치=(폭+gap)/3 → 폭 1110 + gap 42)
    절차 세로피치 320→285 (행높이 + 세로 gap) */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .ic .em{font-size:64px;line-height:1}
   .steps{max-width:1110px}
   .steps ol{gap:50px 42px}
@@ -824,17 +824,17 @@ h1,h2,h3,p,li,dd,dt,span,strong,em,b,summary,label,a,button{word-break:keep-all;
 
 /* P2-6 · 우하단 플로팅 배지가 3열 카드 우측 칸을 가렸다(컨테이너 1359 밖 1415까지 나감) */
 @media (min-width:1500px){ .fixcard{right:calc((100vw - 1280px)/2 - 190px)} }
-@media (min-width:1180px) and (max-width:1499px){ .fixcard{right:8px;width:118px;height:150px} .fixcard img{width:78px;height:78px} }
-@media (min-width:1180px) and (max-width:1179px){ .fixcard{right:6px;width:96px;height:122px} .fixcard img{width:62px;height:62px} }
+@media (min-width:1051px) and (max-width:1499px){ .fixcard{right:8px;width:118px;height:150px} .fixcard img{width:78px;height:78px} }
+/* (제거) min>max 라 처음부터 매치될 수 없던 죽은 규칙이었다 — 원본이 901>900 이었다 */
 
 /* P2-7 · 주석문과 다음 섹션 사이 220~250px 공백 */
 .foot{margin-bottom:0}
 .sec:has(.foot:last-child){padding-bottom:64px}
-@media (max-width:1179px){ .sec:has(.foot:last-child){padding-bottom:34px} }
+@media (max-width:1050px){ .sec:has(.foot:last-child){padding-bottom:34px} }
 
 /* P1-4 · 대회 3카드 — 모바일이 가로형이라 데스크톱(세로형)과 리듬이 달랐다.
    러너펍은 정사각 사진 카드로 리듬을 만든다. 모바일도 같은 세로 카드로 통일한다. */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .sq3{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .sq3 li{display:grid;grid-template-columns:1fr;justify-items:center;gap:0;
     padding:0;border:0;background:none}
@@ -845,17 +845,17 @@ h1,h2,h3,p,li,dd,dt,span,strong,em,b,summary,label,a,button{word-break:keep-all;
 }
 
 /* P2-8 · 모바일 슬라이더 좌우 peek 대칭 */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .poster{padding-inline:16px;scroll-padding-inline:16px}
   .poster figure:last-child{margin-right:16px}
 }
 
 /* P2-8b · 매장현황 마지막 줄(경남·충남)이 3열 중 1열만 차서 우측이 통째로 비었다 */
-@media (min-width:1180px){ .regions{grid-auto-rows:min-content} }
+@media (min-width:1051px){ .regions{grid-auto-rows:min-content} }
 
 /* P1-5 · 입지 5단계가 '단계'가 아니라 '목록'으로 읽혔다 — 흐름선과 번호 마커를 얹는다 */
 .g5{position:relative}
-@media (min-width:1180px){
+@media (min-width:1051px){
   .g5::before{content:"";position:absolute;left:10%;right:10%;top:96px;height:2px;
     background:repeating-linear-gradient(90deg,rgba(255,255,255,.28) 0 10px,transparent 10px 20px);z-index:0}
   .g5 li{position:relative;z-index:1}
@@ -864,7 +864,7 @@ h1,h2,h3,p,li,dd,dt,span,strong,em,b,summary,label,a,button{word-break:keep-all;
 /* 641~900 에서 문서가 +926px 길어지는 것을 추적했더니 support/tournament/site/revisit
    네 섹션이었고, 전부 aspect-ratio 이미지가 폭에 비례해 커진 결과였다(역전 아님).
    다만 태블릿에서 정사각 카드가 과하게 커지므로 상한만 둔다. */
-@media (min-width:640px) and (max-width:1179px){
+@media (min-width:640px) and (max-width:1050px){
   .sq3 img{max-height:280px;object-fit:cover}
   .sup-img{max-height:320px}
   .sup-img img{height:100%;object-fit:cover}
@@ -892,7 +892,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 summary:focus-visible,[tabindex]:focus-visible{
   outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
 
-@media (max-width:1179px){
+@media (max-width:1050px){
   .pnav{width:42px;height:42px;font-size:20px}
   .pnav.prev{left:6px}
   .pnav.next{right:6px}
@@ -903,7 +903,7 @@ summary:focus-visible,[tabindex]:focus-visible{
    러너펍 전수 실측 결과 영문 라벨은 딱 1곳뿐이고(STANDARDIZED SYSTEM) 그것도 48px/700 대형이다.
    → 13곳 제거하고 1곳만 러너펍과 같은 대형으로 둔다. 검수 의견도 실측으로 검증해야 한다. */
 .kick.big{font-size:48px;font-weight:700;letter-spacing:0;color:var(--gold);margin-bottom:10px}
-@media (max-width:1179px){ .kick.big{font-size:24px;margin-bottom:6px} }
+@media (max-width:1050px){ .kick.big{font-size:24px;margin-bottom:6px} }
 
 /* ══════════════════════════════════════════════════════════════════════
    [복제도 라운드] 타이포 종수 30 → 러너펍 18 계열로 통합
@@ -911,7 +911,7 @@ summary:focus-visible,[tabindex]:focus-visible{
                 22/700 16/600 48/700 18/400 14/500 20/500 36/600 60/700 32/500 16/500
    근접값을 러너펍이 실제로 쓰는 조합으로 스냅한다. 크기 위계는 유지된다.
    ══════════════════════════════════════════════════════════════════════ */
-@media (min-width:1180px){
+@media (min-width:1051px){
   /* 13px 계열 3종(13/400·13/700·15/400) → 14/500 하나로 */
   .foot,.cf,.sc em,.apps em,.sup-img figcaption span,.ft-t p,.ft-t .cp,.dock-p p{
     font-size:14px;font-weight:500}
@@ -956,12 +956,12 @@ summary:focus-visible,[tabindex]:focus-visible{
 
 /* P1-5 · H2 위계 역전 — 러너펍 H2 48/700 자간 normal, 내 것 40/700 자간 -0.8px 였다.
    러너펍은 H2(48) ≥ H1(60의 렌더 44) 로 섹션 제목이 히어로만큼 강하다. */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .t1{font-size:48px;letter-spacing:normal;line-height:1.2}
 }
 
 /* P1-6 · 자간 — 러너펍 내비 -1px, 내 것 -0.16px 라 메뉴 폭이 19% 넓었다(87 vs 73px) */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .nav a{letter-spacing:-1px}
   .t2,.ic p,.sup-c p,.rbox p,.sq3 p,.steps p,.apps p,.cc li,.g5 p{letter-spacing:-0.5px}
 }
@@ -978,7 +978,7 @@ summary:focus-visible,[tabindex]:focus-visible{
 .hd{height:110px;will-change:auto;transition:background-color var(--d2) var(--e)}
 .hd-in{height:110px;align-items:center}
 .lg img{width:56px;height:56px;flex:0 0 56px}
-@media (min-width:1180px){
+@media (min-width:1051px){
   .nav a{height:110px}
   .nav a::after{bottom:0;height:2px}
 }
@@ -997,7 +997,7 @@ summary:focus-visible,[tabindex]:focus-visible{
    상담신청 버튼이 화면 밖으로 65px 나갔다(실측 fieldBottom 965 > barBottom 900).
    러너펍 실측 구조: 1행 = 라벨 + 동의문(y777~795) · 2행 = 입력 + 버튼(y808~871) ·
    필드 밑 여백 29px · 바 높이 153px. 원래 2행 구조가 맞았다. */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .dock-in{padding-inline:26px 21px;padding-block:0;min-height:153px}
   .dock-f{padding-left:26px;align-items:end;grid-template-rows:auto auto;gap:6px 21px;padding-bottom:0}
   .dock-a{grid-row:1;grid-column:1 / 4;justify-self:end;align-self:end;padding:0}
@@ -1006,13 +1006,13 @@ summary:focus-visible,[tabindex]:focus-visible{
 }
 
 /* P1-7 · FAQ 행 피치 99~100px → 러너펍 59px */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .faq summary{padding:16px 8px;font-size:22px}
   .faq p{padding:0 8px 20px}
 }
 
 /* P2-8 · 세로 리듬 — eyebrow→H2 44px(러너펍 19px), H2→서브 31px(22px) */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .kick.big{margin-bottom:4px}
   .t1{margin-bottom:0}
   .t2{margin-top:10px}
@@ -1021,7 +1021,7 @@ summary:focus-visible,[tabindex]:focus-visible{
 
 /* P2-9 · 푸터 — 구분선 1px(러너펍 3px), 로고→정보 103px(42px), 행피치 29px(20px) */
 .ft{border-top-width:3px}
-@media (min-width:1180px){
+@media (min-width:1051px){
   .ft-in{grid-template-columns:200px minmax(0,1fr);gap:42px}
   .ft-t p{line-height:1.5}
 }
@@ -1033,12 +1033,12 @@ summary:focus-visible,[tabindex]:focus-visible{
 
 /* P2-11 · 입지 5단계 — 점선 연결선(y330)과 번호 배지(y421~483)가 122px 어긋나
    선이 배지와 이어지지 않았다. 배지 중심선으로 내린다. */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .g5::before{top:auto;bottom:calc(100% - 452px)}
 }
 
 /* P2-12 · 모바일 */
-@media (max-width:1179px){
+@media (max-width:1050px){
   /* 캡션 baseline 14px 어긋남 — 사진 하단 기준 상단 마진 통일 */
   .sq3 li{align-content:start}
   .sq3 h3{margin-top:18px;min-height:0}
@@ -1047,7 +1047,7 @@ summary:focus-visible,[tabindex]:focus-visible{
 }
 
 /* ══ 라운드2 실측 대조에서 남은 3건 ══ */
-@media (min-width:1180px){
+@media (min-width:1051px){
   /* 필드 밑 여백 → 러너펍 29px */
   .dock-in{padding-bottom:29px;padding-top:0}
   .dock-f{padding-bottom:0}
@@ -1078,7 +1078,7 @@ summary:focus-visible,[tabindex]:focus-visible{
 /* P0-3 · 고정 문의바가 여전히 3행이었다(동의행 y754 / 라벨행 y786 / 입력행 y814).
    러너펍은 2행: 라벨+동의 y777~795 동일선 · 입력+버튼 y808~870.
    label 을 display:contents 로 풀어 span 은 1행, input 은 2행에 직접 배치한다. */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .dock-f{grid-template-rows:auto auto;align-items:end;gap:13px 21px}
   .dock-f > label:not(.hp){display:contents}
   .dock-f > label:not(.hp) > span{grid-row:1;align-self:end;font-size:16px;font-weight:600}
@@ -1090,36 +1090,36 @@ summary:focus-visible,[tabindex]:focus-visible{
 
 /* P1-5 · 입지 5단계 연결선이 아예 안 그려졌다(밝기 17~37 = 배경 수준).
    실측: 카드 상단 → 배지 중심 216px. 그 높이에 2px 선을 깐다. */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .g5::before{top:216px;bottom:auto;left:120px;right:120px;height:2px;
     background:rgba(255,255,255,.34)}
 }
 
 /* P1-8 · 제목블록 → 콘텐츠 간격 64px (러너펍 46px) */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .g3,.g2,.regions,.sup,.poster,.rev,.costs,.sale,.g5,.steps,.faq,.matrix,.apps,.sq3{margin-top:46px}
 }
 
 /* P2-11 · FAQ 셰브론 인셋 15 → 30px */
-@media (min-width:1180px){ .faq summary{padding-right:30px} }
+@media (min-width:1051px){ .faq summary{padding-right:30px} }
 
 /* P2-12 · 페이지네이션 지름 40 → 32px · 간격 14 → 8px */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .faqpg{gap:8px}
   .faqpg button{width:32px;height:32px;font-size:14px}
 }
 
 /* P2-13 · 내비 3번째 간격만 74px (다른 곳 48~49px) — 고정폭 148 을 내용폭으로 바꾼다 */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .nav{gap:48px}
   .nav a{width:auto;padding-inline:0}
 }
 
 /* P2-14 · 캐러셀 화살표가 컨테이너 밖(x27·x1367)이라 좁은 폭에서 잘린다 */
-@media (min-width:1180px){ .pnav.prev{left:100px} .pnav.next{right:100px} }
+@media (min-width:1051px){ .pnav.prev{left:100px} .pnav.next{right:100px} }
 
 /* P0-4 · 모바일 고정바 하단 여백 4~8px — iOS 홈 인디케이터와 충돌 */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .dock-in{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
   .dock{padding-bottom:env(safe-area-inset-bottom,0px)}
 }
@@ -1138,7 +1138,7 @@ summary:focus-visible,[tabindex]:focus-visible{
 
 /* MAJOR-3 · 입지 연결선이 카드 5분할 테두리를 관통해 격자처럼 보였다.
    러너펍은 테두리 단일 컨테이너 1개(x159~1341) 안에 아이콘 5개 + 관통선이다. */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .g5{border:1px solid var(--line);border-radius:16px;padding:34px 24px;gap:0}
   .g5 li{border:0;background:none;padding:0 12px}
   .g5 li:hover{border-color:transparent}
@@ -1149,14 +1149,14 @@ summary:focus-visible,[tabindex]:focus-visible{
 }
 
 /* 남은 격차 · 헤더 높이 115 → 러너펍 104 */
-@media (min-width:1180px){
+@media (min-width:1051px){
   :root{--hd:104px}
   .hd,.hd-in{height:104px}
   .nav a{height:104px}
 }
 
 /* 남은 격차 · 내비 — 언더라인 폭 87 → 러너펍 148 · 시작 x413 → 360 · 피치 158 균등 */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .hd-in{gap:12px}
   .nav{gap:10px;margin-left:12px}
   .nav a{width:148px;padding-inline:0}
@@ -1167,7 +1167,7 @@ summary:focus-visible,[tabindex]:focus-visible{
 @media (min-width:1200px){ .fixcard{bottom:204px} }
 
 /* 남은 격차 · 고정바 내부 여백 34/25 → 러너펍 30/30 · 입력 813 → 809 */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .dock-in{padding-top:30px;padding-bottom:30px}
   .dock-f{gap:11px 21px}
   .dock-f input{height:61px}
@@ -1175,12 +1175,12 @@ summary:focus-visible,[tabindex]:focus-visible{
 }
 
 /* 남은 격차 · 제목블록 → 콘텐츠 50~54 → 러너펍 45~46 */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .g3,.g2,.regions,.sup,.poster,.rev,.costs,.sale,.g5,.steps,.faq,.matrix,.apps,.sq3{margin-top:42px}
 }
 
 /* 남은 격차 · FAQ 질문 좌측 인셋 9 → 러너펍 21 · 셰브론 인셋 29 → 23 */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .faq summary{padding-left:21px;padding-right:23px}
   .faq p{padding-left:21px;padding-right:23px}
 }
@@ -1190,7 +1190,7 @@ summary:focus-visible,[tabindex]:focus-visible{
 .faqpg button.on{background:var(--gold);color:#07160F}
 
 /* MINOR · 모바일 고아줄 6곳 — 데스크톱 <br> 이 모바일에 그대로 남아 마지막 어절만 떨어졌다 */
-@media (max-width:1179px){
+@media (max-width:1050px){
   /* 강제개행이 카드 본문에서도 고아줄을 만들었다(m_01 4곳·m_10 3곳).
      모바일에서는 <br> 전체를 접는다. HTML 쪽에 <br> 앞 공백을 넣어 단어가 붙지 않게 했다. */
   .hero-d br,.t2 br,.ic p br,.sup-c p br,.steps p br,.g5 p br,.sq3 p br,.rbox p br,
@@ -1200,7 +1200,7 @@ summary:focus-visible,[tabindex]:focus-visible{
 }
 
 /* 라운드4 잔여 2건 — 내비시작 365→360 · 카드↔바 여유 43→51 */
-@media (min-width:1180px){ .hd-in{gap:7px} }
+@media (min-width:1051px){ .hd-in{gap:7px} }
 @media (min-width:1200px){ .fixcard{bottom:212px} }
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -1209,7 +1209,7 @@ summary:focus-visible,[tabindex]:focus-visible{
                 버튼 81x38 x293 · 측면 고정배지 85x79 @x293 y647 · 문서 7,616
    따라가지 않는 것: 본문 8px(하드락 12px) · 터치 타깃 38px(하한 44px)
    ══════════════════════════════════════════════════════════════════════ */
-@media (max-width:1179px){
+@media (max-width:1050px){
   /* ⚠ 라운드3에서 넣은 .hd{height:110px} 가 미디어쿼리 없이 모바일까지 덮었다.
      러너펍 모바일 헤더는 60px 다. */
   :root{--hd:60px}
@@ -1242,7 +1242,7 @@ summary:focus-visible,[tabindex]:focus-visible{
 
 /* 모바일 고정바 — 러너펍은 '제목 + 동의문'이 한 줄, 그 아래 [이름][연락처][신청] 이다.
    내 것은 제목이 따로 한 줄이라 바가 117px(러너펍 98)였다. 한 줄로 합친다. */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .dock-in{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 8px;align-items:center}
   .dock-t{grid-row:1;grid-column:1;margin-bottom:0;white-space:nowrap}
   .dock-a{grid-row:1;grid-column:2;justify-content:flex-end}
@@ -1253,7 +1253,7 @@ summary:focus-visible,[tabindex]:focus-visible{
 
 /* ⚠ 제목은 .dock-in 의 자식, 동의문은 .dock-f(form) 의 자식이라 서로 다른 그리드에 있었다.
    같은 줄에 놓으려면 form 을 display:contents 로 풀어 한 그리드에 합쳐야 한다. */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .dock-in{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1fr) 92px;
     grid-template-rows:auto auto;gap:7px 6px;align-items:center}
   .dock-t{grid-row:1;grid-column:1;margin:0;white-space:nowrap;font-size:13px}
@@ -1268,7 +1268,7 @@ summary:focus-visible,[tabindex]:focus-visible{
 
 /* 모바일 고정바 — 제목 'FOURCARD 가맹문의'(12자)가 러너펍 '러너펍 가맹문의'(7자)보다 길어
    동의문과 겹치고 연락처 칸이 잘렸다(캡처로 확인). 모바일에서는 브랜드명을 접는다. */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .dock-t .br-only{display:none}
   .dock-in{grid-template-columns:auto minmax(0,1fr) minmax(0,1fr) 88px;gap:7px 5px}
   .dock-t{font-size:12px}
@@ -1293,7 +1293,7 @@ summary:focus-visible,[tabindex]:focus-visible{
    페이지네이션: 라운드5 검수 '라운드사각 솔리드' → 실측 35x35 border-radius 50% 원형
    (라운드4에서 검수 말만 믿고 라운드사각으로 바꾼 것을 되돌린다)
    ══════════════════════════════════════════════════════════════════════ */
-@media (min-width:1180px){
+@media (min-width:1051px){
   /* 헤더 110 (실측) */
   :root{--hd:110px}
   .hd,.hd-in{height:110px}
@@ -1314,7 +1314,7 @@ summary:focus-visible,[tabindex]:focus-visible{
 .faqpg button{width:35px;height:35px;border-radius:50%;font-size:15px}
 .faqpg button:not(.on){background:rgba(255,255,255,.16);color:#fff}
 .ag input[type="checkbox"]{border-radius:4px}
-@media (max-width:1179px){ .faqpg button{width:38px;height:38px;font-size:14px} }
+@media (max-width:1050px){ .faqpg button{width:38px;height:38px;font-size:14px} }
 
 /* 체크박스 — 네이티브는 border-radius 가 안 먹는다(accent-color 사용 시).
    러너펍은 라운드사각(반경 ≈4). appearance:none 으로 직접 그리되 체크 표시도 함께 그린다. */
@@ -1329,7 +1329,7 @@ summary:focus-visible,[tabindex]:focus-visible{
 /* ⚠ 하드락 위반 교정 — 모바일 동의문을 11.5px 로 줄여 12px 하한을 깼다(9폭 가드가 잡음).
    글자를 줄이는 대신 문구를 짧은 버전으로 바꿔 12px 를 지킨다. */
 .ag-short{display:none}
-@media (max-width:1179px){
+@media (max-width:1050px){
   .ag-long{display:none}
   .ag-short{display:inline}
   .dock-a .ag span{font-size:12px}
@@ -1349,7 +1349,7 @@ summary:focus-visible,[tabindex]:focus-visible{
   background:#fff;color:#07160F;border:0}
 .faqpg button.on{background:var(--gold);color:#07160F}
 .faqpg button:hover{background:var(--gold2);color:#07160F}
-@media (max-width:1179px){ .faqpg button{width:30px;height:32px;font-size:13px} }
+@media (max-width:1050px){ .faqpg button{width:30px;height:32px;font-size:13px} }
 
 /* P0-2 · 측면 배지가 22프레임 중 8장에서 사라졌다(러너펍 21/21 상시).
    내가 '금액 가림' 때문에 숨겼는데, 숨기는 대신 본문 뒤로 보낸다.
@@ -1364,7 +1364,7 @@ summary:focus-visible,[tabindex]:focus-visible{
 
 /* P0-3 · 모바일 정렬 — 러너펍 모바일은 전 섹션 좌측정렬(거터 20px).
    내 것은 전 섹션 중앙정렬이었다. 정렬 패러다임 자체가 반대였다. */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .wrap{width:calc(100% - 40px)}
   .sec{text-align:left}
   .t1,.t2,.foot,.note,.kick,.kick.big{text-align:left;margin-inline:0}
@@ -1378,43 +1378,43 @@ summary:focus-visible,[tabindex]:focus-visible{
 }
 
 /* P1-4 · 모바일 배지 90x87 정사각 왜곡 → 러너펍 61x81 세로 비율 */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .fixcard{width:62px;height:82px;right:10px;bottom:106px;border-radius:7px}
   .fixcard img{width:40px;height:40px}
 }
 
 /* P1-5 · FAQ 질문 실효 1.32배 · 행 pitch 52 → 59 */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .faq summary{font-size:14px;padding-top:16px;padding-bottom:16px}
   .faq p{font-size:14px}
 }
 
 /* P1-6 · 체크박스 — 데스크톱 반경 2 → 4 · 모바일 24x18 직사각 → 14x14 정사각 */
 .ag input[type="checkbox"]{border-radius:4px;border-width:2px}
-@media (max-width:1179px){
+@media (max-width:1050px){
   .ag input[type="checkbox"]{width:14px;height:14px;min-width:14px;flex:0 0 14px;border-radius:3px}
   .ag input[type="checkbox"]:checked::after{left:3px;top:0;width:4px;height:8px;border-width:0 2px 2px 0}
 }
 
 /* P2-8 · 모바일 입력·버튼 필 형상 (러너펍) */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .dock-f input{border-radius:999px}
   .go{border-radius:999px}
 }
 
 /* P2-10 · 고정바 top 746 → 747 · 모바일 높이 91 → 98 */
-@media (min-width:1180px){ .dock-in{min-height:152px} }
-@media (max-width:1179px){ .dock-in{padding-top:13px;padding-bottom:calc(13px + env(safe-area-inset-bottom,0px))} }
+@media (min-width:1051px){ .dock-in{min-height:152px} }
+@media (max-width:1050px){ .dock-in{padding-top:13px;padding-bottom:calc(13px + env(safe-area-inset-bottom,0px))} }
 
 /* P2-11 · "테이블·／의자" 토큰 분리 방지 */
 .cc li span,.ic p b{word-break:keep-all;white-space:normal}
 
 /* 라운드6 잔여 2건 — 모바일 거터 16→20(뒤 규칙이 덮고 있었다) · FAQ 행피치 55→59 */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .wrap{width:calc(100% - 40px)!important}
   .dock-in,.dock-s,.dock-p{width:calc(100% - 40px)}
 }
-@media (min-width:1180px){
+@media (min-width:1051px){
   .faq summary{padding-top:18px;padding-bottom:18px}
 }
 
@@ -1425,13 +1425,13 @@ summary:focus-visible,[tabindex]:focus-visible{
 /* E-1 · 모바일 체크박스 미이행 — 14x14 를 넣었는데 24x18 그대로였다.
    원인: .dock-f input{padding:0 10px} 이 체크박스에도 걸려 border-box 폭을 밀어올렸다. */
 .ag input[type="checkbox"]{padding:0!important;box-sizing:border-box}
-@media (max-width:1179px){
+@media (max-width:1050px){
   .ag input[type="checkbox"]{width:14px!important;height:14px!important;min-width:14px;
     flex:0 0 14px;border-radius:3px;padding:0!important}
 }
 
 /* E-2 · 모바일 히어로만 거터 41px (다른 섹션은 20px) — 러너펍은 전 섹션 20~22 균일 */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .hero-in{padding-left:0;width:calc(100% - 40px)}
   .hero h1{font-size:40px}          /* H1 캡높이 20 → 러너펍 29 (≈40px) */
   .hero-t{font-size:17px}
@@ -1445,7 +1445,7 @@ summary:focus-visible,[tabindex]:focus-visible{
 .fixcard.is-hide{opacity:.30;visibility:visible}
 
 /* E-4 · 모바일 입력·버튼 — 필(r21.5)로 바꾼 것이 러너펍(입력 r≈12 / 버튼 r≈9)에서 멀어졌다 */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .dock-f input{border-radius:12px;height:44px}
   .go{border-radius:9px;height:44px}
   /* 이름:연락처 폭 158:97 → 러너펍 100:100 등분 */
@@ -1457,16 +1457,16 @@ summary:focus-visible,[tabindex]:focus-visible{
 }
 
 /* E-5 · 모바일 페이지네이션 좌측 → 러너펍 중앙정렬 · 30x32 → 32x32 */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .faqpg{justify-content:center}
   .faqpg button{width:32px;height:32px}
 }
 
 /* E-6 · 모바일 배지 우측여백 11 → 러너펍 23.5 */
-@media (max-width:1179px){ .fixcard{right:22px} }
+@media (max-width:1050px){ .fixcard{right:22px} }
 
 /* E-8 · 모바일 푸터 중앙정렬(러너펍) · m_14 금액 줄바꿈 */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .ft-in,.ft-legal,.ft-t p{text-align:center}
   .ft .lg{justify-content:center}
   .ic p b{display:block;margin-top:6px}
@@ -1490,7 +1490,7 @@ summary:focus-visible,[tabindex]:focus-visible{
    → 보이는 사각형은 러너펍 값 그대로 두고, 히트영역만 의사요소로 넓혀 둘 다 만족시킨다.
    페이지네이션 간격이 8px 뿐이라 가로는 40까지만 넓힌다(더 넓히면 옆 버튼과 겹쳐 오작동). */
 .skip{min-height:44px;display:flex;align-items:center}
-[data-faqpg] button,[data-pnav],[data-menu],.lg{position:relative}
+[data-faqpg] button,[data-menu],.lg{position:relative}
 [data-faqpg] button::after{content:"";position:absolute;top:-6px;bottom:-6px;left:-4px;right:-4px}
 [data-pnav]::after,[data-menu]::after{content:"";position:absolute;inset:-6px}
 .lg::after{content:"";position:absolute;left:0;right:0;top:-4px;bottom:-4px}
@@ -1508,7 +1508,7 @@ footer a[href^="tel:"]::after,footer a[href^="mailto:"]::after{
    (우정렬 2종은 사진 위 오버레이 캡션이라 카드가 아니다.)
    앞서 블록 거터 20px 를 맞추면서 카드 '내부'까지 좌로 돌린 것이 격차였다.
    섹션 제목·본문의 좌정렬(거터 20)은 러너펍과 같으므로 그대로 둔다. */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .ic,.sq3 li,.g5 li,.steps li,.apps li{justify-items:center;text-align:center}
   .cc,.sc,.rbox,.sup-c{text-align:center}
   .sq3 h3,.sq3 p,.ic h3,.ic p,.cc h3,.cc p,.sc h3,.sc p,.rbox h3,.rbox p,
@@ -1521,7 +1521,7 @@ footer a[href^="tel:"]::after,footer a[href^="mailto:"]::after{
    내 것은 타이틀이 2행 좌측(x20)으로 내려가 1행 좌측 156px 가 비어 있었다.
    앞 블록(.dock-t{grid-row:2})이 원래 의도한 grid-row:1 을 덮고 있었다 — 러너펍 배치로 되돌린다.
    2행 입력이 x72 부터 시작하는 것은 러너펍(이름:연락처 100:100 등분)과 이미 일치하므로 건드리지 않는다. */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .dock-t{grid-row:1;grid-column:1;align-self:center}
   .dock-a{grid-row:1;grid-column:2 / -1;justify-self:end;justify-content:flex-end}
 }
@@ -1545,18 +1545,18 @@ footer a[href^="tel:"]::after,footer a[href^="mailto:"]::after{
   .go{grid-row:2;grid-column:3;width:100%}
 }
 /* 제목 박스가 1fr 열 전체(93~113px)를 차지해 동의문 박스와 겹쳤다. 글자 폭만 쓰게 한다. */
-@media (max-width:1179px){ .dock-t{width:max-content;max-width:100%} }
+@media (max-width:1050px){ .dock-t{width:max-content;max-width:100%} }
 /* 캐러셀 좌우 버튼 · 푸터 연락처 — 히트영역 44 확보
    pnav 는 히트 가로가 34 로 잘렸다(주변 요소가 ::after 를 덮음). 모바일에선 버튼 자체를 44 로 둔다.
    푸터 연락처는 320px 에서 위아래 줄이 가까워 히트가 24 로 잘렸다 — 줄간격만 넓힌다(글자 크기 유지). */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .pnav{width:44px;height:44px;z-index:8}
   .ft a[href^="tel:"],.ft a[href^="mailto:"],footer a[href^="tel:"],footer a[href^="mailto:"]{
     display:inline-block;line-height:2.6}
 }
 /* pnav 히트가 36 에서 더 안 늘어 접근을 바꾼다 — 요소 크기 자체를 48 로 둔다(원형이라 수평 잉크는 그대로).
    푸터 연락처는 위아래 줄이 서로 히트영역을 잘라먹어 33 이었다 — 줄간격을 더 넓힌다. */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .pnav{width:48px;height:48px}
   .ft a[href^="tel:"],.ft a[href^="mailto:"],footer a[href^="tel:"],footer a[href^="mailto:"]{line-height:3.4}
 }
@@ -1571,7 +1571,7 @@ footer a[href^="tel:"]::after,footer a[href^="mailto:"]::after{
 /* 하한을 두면 그 아래 폭(639)에 결함이 남고, 낮추면 모바일에서 사진이 과해진다.
    고정 높이를 폭 비례(clamp)로 바꿔 하한 없이 1179 까지 한 규칙으로 덮는다.
    390→197(기존 그대로) · 1024→328 · 1179 이상은 340 상한. */
-@media (max-width:1179px){
+@media (max-width:1050px){
   .sup{grid-auto-rows:auto}
   .sup-img{grid-column:1 / -1;width:100%;aspect-ratio:auto;height:clamp(197px,32vw,340px)}
   .sup-img img{width:100%;height:100%;object-fit:cover}
@@ -1584,7 +1584,49 @@ footer a[href^="tel:"]::after,footer a[href^="mailto:"]::after{
    상단 58 은 이미 일치하므로 하단 패딩과 본문 폰트만 러너펍 값으로 맞춘다.
    브랜드 표기(22px)는 로고에 해당해 제외 항목이므로 건드리지 않는다.
    모바일 푸터는 러너펍 모바일을 실측하지 않았으므로 데스크톱에만 적용한다. */
-@media (min-width:1180px){
+@media (min-width:1051px){
   .ft{padding-bottom:408px}
   .ft p,.ft li,.ft a,.ft span:not(.ft-brand):not(.lg b):not(.lg i){font-size:12px;line-height:12px}
 }
+
+/* ══ 정보 삭제 복구 · 모바일 고정바 브랜드명 ══
+   .dock-t .br-only{display:none} 이 모바일 고정바에서 'FOURCARD' 를 지우고 있었다.
+   러너펍은 모바일에서도 '러너펍 가맹문의' 를 그대로 둔다 — 브랜드명은 지우지 않는다.
+   좁은 폭에서 1행이 넘치지 않도록 동의문만 단계적으로 짧게 쓴다(문구 전환이지 삭제가 아니다). */
+@media (max-width:1050px){ .dock-t .br-only{display:inline} }
+
+/* ══ 좁은 폭(≤389) 고정바 3행 ══
+   브랜드명을 되살리자 제목이 길어져 320/360 에서 동의문과 27/7px 겹쳤다.
+   글자를 줄이거나(12px 하한 위반) 정보를 지우는 대신 행을 나눈다.
+   1행 제목 · 2행 동의문 · 3행 [이름][연락처][신청]. 정보·기능 모두 유지된다. */
+@media (max-width:389px){
+  .dock-in{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 84px;
+    grid-template-rows:auto auto auto;gap:5px 6px}
+  .dock-t{grid-row:1;grid-column:1 / -1;justify-self:start;white-space:nowrap}
+  .dock-a{grid-row:2;grid-column:1 / -1;justify-self:start;justify-content:flex-start}
+  .dock-f > label:not(.hp):first-of-type > input{grid-row:3;grid-column:1}
+  .dock-f > label:not(.hp):nth-of-type(2) > input{grid-row:3;grid-column:2}
+  .go{grid-row:3;grid-column:3;width:100%}
+}
+
+/* ══ 고정 배지 · 러너펍 실측 통일 ══
+   러너펍 실측: 1051~1500 전 구간 170x215 · 우여백 80 으로 완전 동일(모바일만 85x79).
+   중간 크기가 아예 없다. 내 것은 1051~1199 에 118x150·우여백8 이라는 러너펍에 없는
+   밴드가 있어 1050→1051 과 1199→1200 두 곳에서 불연속이었다(폭 +56 / +52).
+   세로 위치(top)는 라운드8 실측에서 y495 로 이미 일치하므로 건드리지 않는다. */
+@media (min-width:1051px){
+  .fixcard{width:170px;height:215px;right:80px}
+  .fixcard img{width:112px;height:112px}
+}
+/* 배지 세로 위치가 1051~1199 는 top:50% 기준(343), 1200+ 는 bottom 기준(495)으로 갈렸다.
+   러너펍은 전 구간 495 로 동일하다 — 넓은 쪽 기준으로 통일한다. */
+@media (min-width:1051px) and (max-width:1199px){
+  /* bottom:212 이면 뷰포트 900 에서 top 473 이 된다 — 러너펍 495 에 맞춰 190 으로 */
+  .fixcard{top:auto;bottom:190px;transform:none}
+}
+/* 러너펍 호버는 위치가 움직이지 않는다(카드 transform:none 실측).
+   내 링크·버튼에 남아 있던 transform 호버를 걷어내 러너펍과 같은 '제자리 호버'로 만든다.
+   요소 수 자체(51 vs 러너펍 34)는 내 쪽에 FAQ 페이지네이션·캐러셀 버튼 등
+   러너펍에 없는 컨트롤이 더 있어서다 — 그건 전이를 지운다고 줄지 않는다. */
+a:hover,button:hover,summary:hover,.ag:hover{transform:none}
+a,button,summary{transition-property:color,background-color,border-color,opacity}
