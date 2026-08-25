@@ -1599,7 +1599,10 @@ footer a[href^="tel:"]::after,footer a[href^="mailto:"]::after{
    브랜드명을 되살리자 제목이 길어져 320/360 에서 동의문과 27/7px 겹쳤다.
    글자를 줄이거나(12px 하한 위반) 정보를 지우는 대신 행을 나눈다.
    1행 제목 · 2행 동의문 · 3행 [이름][연락처][신청]. 정보·기능 모두 유지된다. */
-@media (max-width:389px){
+/* 3행 구간을 430 까지 넓혔다 — 브랜드명을 되살리자 제목(114px)이 2행 그리드를 잠식해
+   390px 에서 입력칸이 67px 로 줄어 실사용이 어려웠다. 러너펍은 제목이 짧아('러너펍 가맹문의')
+   2행으로 되지만, 내 브랜드명은 제외 항목이라 길이가 다르다 — 행 수보다 입력 가능성이 우선이다. */
+@media (max-width:430px){
   .dock-in{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 84px;
     grid-template-rows:auto auto auto;gap:5px 6px}
   .dock-t{grid-row:1;grid-column:1 / -1;justify-self:start;white-space:nowrap}
@@ -1667,3 +1670,24 @@ a,button,summary{transition-property:color,background-color,border-color,opacity
   .ag .ag-long{display:none}
   .ag .ag-short{display:inline}
 }
+
+/* ══ N1 [MAJOR] 배지가 캐러셀 '›' 클릭을 삼켰다 ══
+   배지를 러너펍 값(우여백80·폭170)으로 맞추자 .pnav.next(우100~156) 위에 얹혔다.
+   raw 클릭 시 track scrollLeft 가 360→360 으로 무반응이었다.
+   배지는 aria-hidden 인 순수 장식(링크·버튼 없음)이라 클릭을 받을 이유가 없다.
+   전 구간 pointer-events:none — 잃는 기능이 0 이고 러너펍 시각도 그대로다. */
+.fixcard{pointer-events:none}
+
+/* ══ 모바일 배지 러너펍 실측 정렬 ══
+   러너펍 모바일 85x79 · 우여백 12 · top 703. 내 것은 62x82 · 우22 · top712 로 작았다. */
+@media (max-width:1050px){
+  .fixcard{width:85px;height:79px;right:12px}
+  .fixcard img{width:56px;height:56px}
+}
+
+/* ══ N3 · '보기' 히트영역이 연락처 입력칸을 잠식했다 (370~389px 에서 44→36) ══
+   히트영역을 좌우로 넓힌 것이 옆 칸을 파고들었다 — 세로로만 넓힌다. */
+.more::after{left:-4px;right:-4px;top:-13px;bottom:-13px}
+/* '보기' 히트영역이 세로로 -13px 뻗어 3행 레이아웃에서 아래 행 연락처칸을 잠식했다(375~389 에서 44→36).
+   행간 gap 이 5px 뿐이라 세로 확장을 그 안으로 줄인다 — 연락처 입력이 '보기' 보다 중요하다. */
+@media (max-width:430px){ .more::after{top:-5px;bottom:-5px} }
