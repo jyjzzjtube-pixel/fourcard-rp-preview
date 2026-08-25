@@ -198,4 +198,25 @@
     }
     setTimeout(center, 500);
   })();
+
+  /* P0-2 · 금액·핵심 수치가 있는 섹션에서는 우측 플로팅 카드를 숨긴다.
+     실측: 금액 우단 x1319 가 카드 x1189~1358 안에 완전히 들어가 값이 안 읽혔다. */
+  (function () {
+    var card = document.querySelector('.fixcard');
+    if (!card) return;
+    var zones = ['#cost', '#sales', '#site'].map(function (s) { return document.querySelector(s); })
+      .filter(Boolean);
+    if (!zones.length) return;
+    function sync() {
+      var vh = window.innerHeight;
+      var hit = zones.some(function (z) {
+        var b = z.getBoundingClientRect();
+        return b.top < vh * 0.85 && b.bottom > vh * 0.15;
+      });
+      card.classList.toggle('is-hide', hit);
+    }
+    window.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+  })();
 })();

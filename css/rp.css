@@ -1052,3 +1052,73 @@ summary:focus-visible,[tabindex]:focus-visible{
   /* 캐러셀 활성 카드가 중심에서 110px 좌측 이탈 — 스냅을 center 로 바꾼다 */
   .poster figure{scroll-snap-align:center}
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   [복제도 라운드3] 픽셀 검수 지적 처리
+   ⚠ 라운드2에서 내가 "금액 가림 해소"라고 보고한 것은 틀렸다.
+     카드 크기·우여백만 재고 실제 금액 좌표와 대조하지 않았다.
+     실측: 금액 우단 x1319, 플로팅 카드 x1189~1358 → 완전 포함(가림 지속).
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* P0-1 · 플로팅 카드가 고정바에 107px(53%) 영구 절단 (y647~849, 바 상단 742)
+   러너펍 실측 y495~709 · 바 747 → 바 위 38px 여유. bottom 51 → 191px */
+@media (min-width:1200px){
+  .fixcard{bottom:191px}
+}
+/* P0-2 · 금액이 카드에 가려지는 섹션에서는 카드를 숨긴다(JS 가 is-hide 를 토글).
+   러너펍도 카드가 본문을 가리지만, 포카드는 '금액 공개'가 핵심 가치라 정보 손실을 허용할 수 없다. */
+.fixcard{transition:opacity var(--d2) var(--e),visibility var(--d2) var(--e)}
+.fixcard.is-hide{opacity:0;visibility:hidden}
+
+/* P0-3 · 고정 문의바가 여전히 3행이었다(동의행 y754 / 라벨행 y786 / 입력행 y814).
+   러너펍은 2행: 라벨+동의 y777~795 동일선 · 입력+버튼 y808~870.
+   label 을 display:contents 로 풀어 span 은 1행, input 은 2행에 직접 배치한다. */
+@media (min-width:901px){
+  .dock-f{grid-template-rows:auto auto;align-items:end;gap:13px 21px}
+  .dock-f > label:not(.hp){display:contents}
+  .dock-f > label:not(.hp) > span{grid-row:1;align-self:end;font-size:16px;font-weight:600}
+  .dock-f > label:not(.hp) > input{grid-row:2}
+  .dock-a{grid-row:1;grid-column:3;justify-self:end;align-self:end}
+  .go{grid-row:2;grid-column:3}
+  .dock-in{padding-top:29px;padding-bottom:30px}
+}
+
+/* P1-5 · 입지 5단계 연결선이 아예 안 그려졌다(밝기 17~37 = 배경 수준).
+   실측: 카드 상단 → 배지 중심 216px. 그 높이에 2px 선을 깐다. */
+@media (min-width:1181px){
+  .g5::before{top:216px;bottom:auto;left:120px;right:120px;height:2px;
+    background:rgba(255,255,255,.34)}
+}
+
+/* P1-8 · 제목블록 → 콘텐츠 간격 64px (러너펍 46px) */
+@media (min-width:901px){
+  .g3,.g2,.regions,.sup,.poster,.rev,.costs,.sale,.g5,.steps,.faq,.matrix,.apps,.sq3{margin-top:46px}
+}
+
+/* P2-11 · FAQ 셰브론 인셋 15 → 30px */
+@media (min-width:901px){ .faq summary{padding-right:30px} }
+
+/* P2-12 · 페이지네이션 지름 40 → 32px · 간격 14 → 8px */
+@media (min-width:901px){
+  .faqpg{gap:8px}
+  .faqpg button{width:32px;height:32px;font-size:14px}
+}
+
+/* P2-13 · 내비 3번째 간격만 74px (다른 곳 48~49px) — 고정폭 148 을 내용폭으로 바꾼다 */
+@media (min-width:901px){
+  .nav{gap:48px}
+  .nav a{width:auto;padding-inline:0}
+}
+
+/* P2-14 · 캐러셀 화살표가 컨테이너 밖(x27·x1367)이라 좁은 폭에서 잘린다 */
+@media (min-width:901px){ .pnav.prev{left:100px} .pnav.next{right:100px} }
+
+/* P0-4 · 모바일 고정바 하단 여백 4~8px — iOS 홈 인디케이터와 충돌 */
+@media (max-width:900px){
+  .dock-in{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+  .dock{padding-bottom:env(safe-area-inset-bottom,0px)}
+}
+
+/* P2-15 · 모바일 푸터 고아줄 — "정보공개서 등록번호 : 20211907" 이 갈라졌다 */
+.ft-t p{word-break:keep-all}
+.ft-t .nb{white-space:nowrap}
