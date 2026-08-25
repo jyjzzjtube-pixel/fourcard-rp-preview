@@ -224,4 +224,30 @@
     window.addEventListener('resize', sync);
     sync();
   })();
+
+  /* 캐러셀 활성(확대) 카드를 스크롤 위치에 따라 갱신한다.
+     전에는 CSS 가 2번째 카드를 영구 확대해서, 화살표로 넘겨도 확대 카드가 그대로였고
+     1280px 에서 그 카드가 좌측 60px 잘린 채 남았다(중앙엔 일반 카드). */
+  (function () {
+    var tr = document.querySelector('.poster[data-track]');
+    if (!tr) return;
+    var figs = [].slice.call(tr.querySelectorAll('figure'));
+    if (figs.length < 2) return;
+    var raf = 0;
+    function sync() {
+      var mid = tr.scrollLeft + tr.clientWidth / 2, best = null, bd = Infinity;
+      figs.forEach(function (f) {
+        var d = Math.abs(f.offsetLeft + f.offsetWidth / 2 - mid);
+        if (d < bd) { bd = d; best = f; }
+      });
+      figs.forEach(function (f) { f.classList.toggle('is-active', f === best); });
+    }
+    tr.addEventListener('scroll', function () {
+      if (raf) return;
+      raf = requestAnimationFrame(function () { raf = 0; sync(); });
+    }, { passive: true });
+    window.addEventListener('resize', sync);
+    figs[1].classList.add('is-active');   /* 초기값 — 로드 직후 중앙에 놓이는 카드 */
+    setTimeout(sync, 700);
+  })();
 })();

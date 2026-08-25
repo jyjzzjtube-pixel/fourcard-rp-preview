@@ -575,7 +575,7 @@ ul,ol{list-style:none}
      ⚠ align-items 기본값 stretch 때문에 작은 카드가 889px 로 늘어나고
      캡션이 사진 밖 검은 영역에 떠 있었다(크롭 캡처로 확인). height 를 못 박는다. */
   .poster figure{flex:0 0 320px;height:569px}
-  .poster figure:nth-child(2){flex:0 0 500px;height:889px}
+  .poster figure.is-active{flex:0 0 500px;height:889px}   /* 고정 2번째가 아니라 '지금 중앙' 카드를 키운다 */
   /* ⚠ picture 는 display:inline 이 기본이라 height:100% 가 먹지 않아
      사진이 통째로 사라지고 배지와 지점명만 남았다(크롭 캡처로 확인). block 으로 바꾼다. */
   .poster picture{display:block;width:100%;height:100%}
@@ -1708,7 +1708,52 @@ a,button,summary{transition-property:color,background-color,border-color,opacity
 /* 832행 `.sec:has(.foot:last-child){padding-bottom:64px}` 가 특이도(0,2,1)로 통일 규칙을 이겨
    각주로 끝나는 섹션만 간격이 64 로 꺼졌다. 러너펍은 예외 없는 단일 리듬이라 예외를 없앤다.
    동시에 패딩을 175 로 올려 섹션 간 여백을 러너펍 중앙값 265 에 맞춘다. */
+/* [정정] 러너펍 섹션 간격을 265 로 잰 것이 틀렸다. 내 띠 검출이 '폭 88% 이상' 규칙 탓에
+   폭 83% 짜리 띠(진행단계 섹션)를 놓쳐 두 간격이 합산됐다.
+   러너펍 정밀 실측: 간격 [203,200,203,200,262,260,396,206,199,159,200,160] 중앙값 201.5.
+   패딩 175(=중앙값 236)는 과했다. 140 으로 낮춰 201 에 맞춘다(패딩 1px = 간격 1px 로 실측됨). */
 @media (min-width:1051px){
-  .sec,.sec.tight,.sec.pad{padding-block:175px}
-  .sec:has(.foot:last-child){padding-bottom:175px}
+  .sec,.sec.tight,.sec.pad{padding-block:140px}
+  .sec:has(.foot:last-child){padding-bottom:140px}
+}
+
+/* ══ 세로 리듬 최종 정렬 (러너펍 정밀 실측 기준) ══
+   러너펍  데스크톱 중앙값 201.5 · 모바일 중앙값 93
+   포카드  데스크톱 217(패딩140) · 모바일 65(패딩48)
+   패딩 1px = 간격 1px 로 실측되므로 데스크톱 -12, 모바일 +28 한다.
+   모바일이 러너펍보다 오히려 빽빽했던 것은 데스크톱만 손댔기 때문이다. */
+@media (min-width:1051px){
+  .sec,.sec.tight,.sec.pad{padding-block:128px}
+  .sec:has(.foot:last-child){padding-bottom:128px}
+}
+@media (max-width:1050px){
+  /* 모바일은 패딩 1px 당 간격이 약 2px 움직인다(양쪽 패딩이 다 걸리는 띠가 많다).
+     76 → 119(러너펍 93 대비 +26) 였으므로 13 을 되돌린다. */
+  .sec,.sec.tight,.sec.pad{padding-block:63px}
+  .sec:has(.foot:last-child){padding-bottom:63px}
+}
+
+/* ══ 낮은 뷰포트에서 모바일 메뉴 마지막 링크가 화면 밖 ══
+   .sheet 가 높이 553px 고정 + overflow-y:visible 이라 내부 스크롤이 없고,
+   부모 .hd 가 fixed 라 본문 스크롤로도 따라오지 않았다(320x568 에서 '자주 묻는 질문' bottom 594).
+   화면 높이에 맞춰 줄이고 넘치면 시트 안에서 스크롤하게 한다. */
+[data-sheet]{max-height:calc(100vh - var(--hd,60px));overflow-y:auto;-webkit-overflow-scrolling:touch}
+
+/* 모바일 세로 리듬 미세 보정 — 63 에서 중앙값 106(러너펍 93, +13) 이었다 */
+@media (max-width:1050px){
+  .sec,.sec.tight,.sec.pad{padding-block:57px}
+  .sec:has(.foot:last-child){padding-bottom:57px}
+}
+
+/* ══ 캐러셀 카드가 뷰포트를 넘겨 지점명이 안 보였다 ══
+   확대 카드 889px + 트랙 905px 가 뷰포트 800 을 넘겨, 카드 하단의 지역 배지·지점명이
+   화면 밖으로 밀리고 좌우 카드 이름도 고정바에 잘렸다.
+   내 검사는 트랙 기준 '가로 노출'만 봐서 이걸 놓쳤다 — 캡처로 발견했다.
+   높이를 뷰포트에 묶어 어떤 화면에서도 지점명이 보이게 한다(가로 비율·폭은 그대로). */
+@media (min-width:1051px){
+  /* vh 로 묶는 것으로는 부족했다 — 헤더(110)와 고정바(153)를 빼면 실제 가용 높이는
+     100vh - 263 이다(800 화면에서 537). 트랙이 608 이라 어디에 놓아도 캡션이 걸렸다.
+     가용 높이에서 여백을 더 빼 카드 높이를 정한다(원래 비율 889:569 유지). */
+  .poster figure{height:min(569px,calc(100vh - 380px))}
+  .poster figure.is-active{height:min(889px,calc(100vh - 290px))}
 }
