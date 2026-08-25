@@ -1770,3 +1770,9 @@ a,button,summary{transition-property:color,background-color,border-color,opacity
 /* 러너펍 radius 전수 실측: 카드 20px · 입력 12px · 버튼 12px · 기타 8px.
    포카드는 카드가 14/16/17px 로 섞여 있었다 — 20px 로 통일한다. */
 .ic,.cc,.sc,.rbox,.sup-c,.g5 li,.steps li,.apps li,.sq3 li,.pnl,.net-card,.poster figure{border-radius:20px}
+/* 러너펍 아이콘 실측: 64x64 투명 배경 컬러 PNG 8종(/images/return/1~8.png).
+   포카드는 60x60 단색 선형이라 시각 밀도가 낮았다 — 같은 규격·같은 밀도로 올린다.
+   러너펍 파일은 쓰지 않고 포카드 브랜드 색(골드·그린·아이보리)으로 새로 그렸다. */
+.em{width:64px;height:64px;color:inherit}
+.em svg{width:64px;height:64px}
+@media (max-width:1050px){ .em,.em svg{width:52px;height:52px} }
