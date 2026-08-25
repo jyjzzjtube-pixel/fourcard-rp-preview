@@ -202,4 +202,24 @@
   /* ⚠ 폐기 — 배지를 숨겼더니 22프레임 중 8장에서 사라져 러너펍(21/21 상시)과 어긋났다.
      숨기는 대신 CSS 에서 배지를 본문 뒤로 보내(z-index) 금액을 보호한다. */
 
+
+  /* E-3 · 금액이 배지에 걸리는 구간에서만 배지를 옅게 물린다(숨기지 않는다).
+     '뒤로 보내기'는 카드 사이 틈으로 흰 슬래브를 만들어 폐기했다. */
+  (function () {
+    var card = document.querySelector('.fixcard');
+    if (!card) return;
+    var zones = ['#cost', '#sales'].map(function (s) { return document.querySelector(s); }).filter(Boolean);
+    if (!zones.length) return;
+    function sync() {
+      var vh = window.innerHeight;
+      var hit = zones.some(function (z) {
+        var b = z.getBoundingClientRect();
+        return b.top < vh * 0.8 && b.bottom > vh * 0.2;
+      });
+      card.classList.toggle('is-hide', hit);
+    }
+    window.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+  })();
 })();
