@@ -103,7 +103,7 @@
     var pg = document.querySelector('[data-faqpg]');
     if (!box || !pg) return;
     var items = [].slice.call(box.querySelectorAll('details'));
-    var per = 3;
+    var per = 4;   /* 러너펍은 페이지당 8행. 항목이 8개라 4행 2페이지로 둔다(장치 유지) */
     var pages = Math.max(1, Math.ceil(items.length / per));
     var cur = 1;
     function draw() {
@@ -204,7 +204,7 @@
   (function () {
     var card = document.querySelector('.fixcard');
     if (!card) return;
-    var zones = ['#cost', '#sales', '#site'].map(function (s) { return document.querySelector(s); })
+    var zones = ['#cost', '#sales', '#site', '#locations'].map(function (s) { return document.querySelector(s); })
       .filter(Boolean);
     if (!zones.length) return;
     function sync() {

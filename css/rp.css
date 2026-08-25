@@ -1122,3 +1122,75 @@ summary:focus-visible,[tabindex]:focus-visible{
 /* P2-15 · 모바일 푸터 고아줄 — "정보공개서 등록번호 : 20211907" 이 갈라졌다 */
 .ft-t p{word-break:keep-all}
 .ft-t .nb{white-space:nowrap}
+
+/* ══════════════════════════════════════════════════════════════════════
+   [복제도 라운드4] 픽셀 검수 — 복제도 83.4% 판정, MAJOR 3건 신규
+   ⚠ 라운드3에서 내가 '달성'이라고 보고한 수치는 스크롤0 상태만 잰 값이었다.
+     검수가 스크롤 후 상태로 재니 바 여백 30/30 → 34/25, 제목간격 46 → 50~54 였다.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* MAJOR-2 · 캐러셀 우측 화살표가 플로팅 카드에 100% 가려 조작 불가였다 (JS 에 #locations 추가) */
+
+/* MAJOR-3 · 입지 연결선이 카드 5분할 테두리를 관통해 격자처럼 보였다.
+   러너펍은 테두리 단일 컨테이너 1개(x159~1341) 안에 아이콘 5개 + 관통선이다. */
+@media (min-width:1181px){
+  .g5{border:1px solid var(--line);border-radius:16px;padding:34px 24px;gap:0}
+  .g5 li{border:0;background:none;padding:0 12px}
+  .g5 li:hover{border-color:transparent}
+  .g5::before{left:150px;right:150px}
+  /* 배지 64 솔리드 라운드사각 → 러너펍 34px 아웃라인 원 */
+  .g5 b{width:34px;height:34px;border-radius:50%;background:none;
+    border:2px solid var(--gold);color:var(--gold2);font-size:15px;font-weight:700}
+}
+
+/* 남은 격차 · 헤더 높이 115 → 러너펍 104 */
+@media (min-width:901px){
+  :root{--hd:104px}
+  .hd,.hd-in{height:104px}
+  .nav a{height:104px}
+}
+
+/* 남은 격차 · 내비 — 언더라인 폭 87 → 러너펍 148 · 시작 x413 → 360 · 피치 158 균등 */
+@media (min-width:901px){
+  .hd-in{gap:12px}
+  .nav{gap:10px;margin-left:12px}
+  .nav a{width:148px;padding-inline:0}
+  .nav a::after{left:0;right:0}
+}
+
+/* 남은 격차 · 플로팅 카드 y512~714 → 러너펍 495~696 (바까지 여유 30 → 51) */
+@media (min-width:1200px){ .fixcard{bottom:204px} }
+
+/* 남은 격차 · 고정바 내부 여백 34/25 → 러너펍 30/30 · 입력 813 → 809 */
+@media (min-width:901px){
+  .dock-in{padding-top:30px;padding-bottom:30px}
+  .dock-f{gap:11px 21px}
+  .dock-f input{height:61px}
+  .go{height:61px}
+}
+
+/* 남은 격차 · 제목블록 → 콘텐츠 50~54 → 러너펍 45~46 */
+@media (min-width:901px){
+  .g3,.g2,.regions,.sup,.poster,.rev,.costs,.sale,.g5,.steps,.faq,.matrix,.apps,.sq3{margin-top:42px}
+}
+
+/* 남은 격차 · FAQ 질문 좌측 인셋 9 → 러너펍 21 · 셰브론 인셋 29 → 23 */
+@media (min-width:901px){
+  .faq summary{padding-left:21px;padding-right:23px}
+  .faq p{padding-left:21px;padding-right:23px}
+}
+
+/* 남은 격차 · 페이지네이션 원형 아웃라인 → 러너펍 라운드사각 솔리드 */
+.faqpg button{border-radius:8px;background:rgba(255,255,255,.10);border-color:transparent}
+.faqpg button.on{background:var(--gold);color:#07160F}
+
+/* MINOR · 모바일 고아줄 6곳 — 데스크톱 <br> 이 모바일에 그대로 남아 마지막 어절만 떨어졌다 */
+@media (max-width:900px){
+  .hero-d br,.t2 br{display:none}
+  .hero-d,.t2,.pnl{text-wrap:pretty}
+  .chain{word-break:keep-all}
+}
+
+/* 라운드4 잔여 2건 — 내비시작 365→360 · 카드↔바 여유 43→51 */
+@media (min-width:901px){ .hd-in{gap:7px} }
+@media (min-width:1200px){ .fixcard{bottom:212px} }
