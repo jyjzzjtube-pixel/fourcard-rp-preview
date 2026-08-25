@@ -1691,3 +1691,24 @@ a,button,summary{transition-property:color,background-color,border-color,opacity
 /* '보기' 히트영역이 세로로 -13px 뻗어 3행 레이아웃에서 아래 행 연락처칸을 잠식했다(375~389 에서 44→36).
    행간 gap 이 5px 뿐이라 세로 확장을 그 안으로 줄인다 — 연락처 입력이 '보기' 보다 중요하다. */
 @media (max-width:430px){ .more::after{top:-5px;bottom:-5px} }
+
+/* ══ 세로 리듬 · 러너펍 실측 정렬 (검수 MAJOR) ══
+   콘텐츠 기준 섹션 간 여백 실측(1440):
+     러너펍 [199,203,229,260,262,269,270,359,447,589] → 중앙값 265
+     포카드 [64,64,77,100,100,100,100,116,135,161,164×5,229,235] → 중앙값 135
+   내 페이지가 러너펍 절반 밀도로 빽빽했다. 섹션 상하 패딩을 130 으로 올려
+   섹션 간 여백을 260 으로 만든다(러너펍 265 근사). 모바일(48)은 그대로 둔다. */
+@media (min-width:1051px){ .sec{padding-block:130px} }
+/* 일부 .sec 의 하단 패딩이 64, .sec.tight 의 상단이 0 이라 간격이 64~77 로 꺼졌다.
+   러너펍은 예외 없는 단일 리듬(160)이다 — 데스크톱에서 예외를 없애고 130 으로 통일한다.
+   (.sec.tight 는 특이도가 높아 따로 명시해야 덮인다) */
+@media (min-width:1051px){
+  .sec,.sec.tight,.sec.pad{padding-block:130px}
+}
+/* 832행 `.sec:has(.foot:last-child){padding-bottom:64px}` 가 특이도(0,2,1)로 통일 규칙을 이겨
+   각주로 끝나는 섹션만 간격이 64 로 꺼졌다. 러너펍은 예외 없는 단일 리듬이라 예외를 없앤다.
+   동시에 패딩을 175 로 올려 섹션 간 여백을 러너펍 중앙값 265 에 맞춘다. */
+@media (min-width:1051px){
+  .sec,.sec.tight,.sec.pad{padding-block:175px}
+  .sec:has(.foot:last-child){padding-bottom:175px}
+}
