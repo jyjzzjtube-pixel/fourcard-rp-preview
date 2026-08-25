@@ -1776,3 +1776,11 @@ a,button,summary{transition-property:color,background-color,border-color,opacity
 .em{width:64px;height:64px;color:inherit}
 .em svg{width:64px;height:64px}
 @media (max-width:1050px){ .em,.em svg{width:52px;height:52px} }
+
+/* ══ 아이콘 = 3D 렌더 PNG (러너펍 규격 64x64 투명) ══
+   러너펍은 /images/return/1~8.png 로 64x64 컬러 아이콘을 쓴다.
+   내가 손으로 그린 SVG 는 입체감이 안 나와 형태만 겨우 읽히는 수준이었다.
+   포카드 전용 3D 아이콘 16종을 한 장(4x4)으로 생성해 칸별로 잘라 128px 로 저장했다
+   (64px 표시 · 레티나 2배 대응). 파일: assets/icons/*.png */
+img.em{width:64px;height:64px;object-fit:contain;display:block}
+@media (max-width:1050px){ img.em{width:52px;height:52px} }
