@@ -864,7 +864,7 @@ h1,h2,h3,p,li,dd,dt,span,strong,em,b,summary,label,a,button{word-break:keep-all;
 /* 641~900 에서 문서가 +926px 길어지는 것을 추적했더니 support/tournament/site/revisit
    네 섹션이었고, 전부 aspect-ratio 이미지가 폭에 비례해 커진 결과였다(역전 아님).
    다만 태블릿에서 정사각 카드가 과하게 커지므로 상한만 둔다. */
-@media (min-width:641px) and (max-width:1179px){
+@media (min-width:640px) and (max-width:1179px){
   .sq3 img{max-height:280px;object-fit:cover}
   .sup-img{max-height:320px}
   .sup-img img{height:100%;object-fit:cover}
@@ -1559,4 +1559,21 @@ footer a[href^="tel:"]::after,footer a[href^="mailto:"]::after{
 @media (max-width:1179px){
   .pnav{width:48px;height:48px}
   .ft a[href^="tel:"],.ft a[href^="mailto:"],footer a[href^="tel:"],footer a[href^="mailto:"]{line-height:3.4}
+}
+
+/* ══ 901~1179 구간 · 본사 지원 그리드 ══
+   브레이크포인트를 러너펍(1180)으로 옮기면서 이 구간이 모바일형으로 넘어왔는데,
+   .sup 는 행 높이를 균등 배분한다. 1024 에서 그 높이(320)에 사진이 aspect-ratio 16/9 로 묶여
+   폭이 569 로 줄어 두 칸(1004)을 못 채우고 우측이 비었고, 카드 4장은 그 행 높이에 끌려 늘어났다.
+   사진은 전폭·고정 높이로 떼어내고, 카드 높이는 사진과 분리한다. */
+/* 768·900 에도 같은 증상이 있었다(사진 우측공백 159~291 · 카드 빈공간 195~215).
+   내 첫 수정이 901 부터라 안 닿았다 — 2열이 되는 641 부터 적용한다. */
+/* 하한을 두면 그 아래 폭(639)에 결함이 남고, 낮추면 모바일에서 사진이 과해진다.
+   고정 높이를 폭 비례(clamp)로 바꿔 하한 없이 1179 까지 한 규칙으로 덮는다.
+   390→197(기존 그대로) · 1024→328 · 1179 이상은 340 상한. */
+@media (max-width:1179px){
+  .sup{grid-auto-rows:auto}
+  .sup-img{grid-column:1 / -1;width:100%;aspect-ratio:auto;height:clamp(197px,32vw,340px)}
+  .sup-img img{width:100%;height:100%;object-fit:cover}
+  .sup-c{height:auto}
 }
