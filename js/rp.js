@@ -199,24 +199,7 @@
     setTimeout(center, 500);
   })();
 
-  /* P0-2 · 금액·핵심 수치가 있는 섹션에서는 우측 플로팅 카드를 숨긴다.
-     실측: 금액 우단 x1319 가 카드 x1189~1358 안에 완전히 들어가 값이 안 읽혔다. */
-  (function () {
-    var card = document.querySelector('.fixcard');
-    if (!card) return;
-    var zones = ['#cost', '#sales', '#site', '#locations'].map(function (s) { return document.querySelector(s); })
-      .filter(Boolean);
-    if (!zones.length) return;
-    function sync() {
-      var vh = window.innerHeight;
-      var hit = zones.some(function (z) {
-        var b = z.getBoundingClientRect();
-        return b.top < vh * 0.85 && b.bottom > vh * 0.15;
-      });
-      card.classList.toggle('is-hide', hit);
-    }
-    window.addEventListener('scroll', sync, { passive: true });
-    window.addEventListener('resize', sync);
-    sync();
-  })();
+  /* ⚠ 폐기 — 배지를 숨겼더니 22프레임 중 8장에서 사라져 러너펍(21/21 상시)과 어긋났다.
+     숨기는 대신 CSS 에서 배지를 본문 뒤로 보내(z-index) 금액을 보호한다. */
+
 })();

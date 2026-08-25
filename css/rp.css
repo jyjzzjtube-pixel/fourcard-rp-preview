@@ -1330,3 +1330,85 @@ summary:focus-visible,[tabindex]:focus-visible{
   .dock-a .ag span{font-size:12px}
   .dock-a .more{font-size:12px}
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   [라운드6] 데스크톱 87% / 모바일 76% 미수렴 판정 — 지적 처리
+   ⚠ 내 측정 오류 정정: '페이지네이션 35x35 원형'이라고 잰 것은 러너펍의
+     입지 5단계 배지(DIV.number 35x35 r50%)였다. 진짜 FAQ 페이지네이션은
+     DIV.sc-e9f7e03a-2 32x32 r4px 솔리드다. 검수가 옳았다.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* P0-1 · 페이지네이션 32x32 · 반경 4px · 솔리드 (러너펍 실측) */
+.faqpg{gap:8px}
+.faqpg button{width:32px;height:32px;border-radius:4px;font-size:14px;
+  background:#fff;color:#07160F;border:0}
+.faqpg button.on{background:var(--gold);color:#07160F}
+.faqpg button:hover{background:var(--gold2);color:#07160F}
+@media (max-width:900px){ .faqpg button{width:30px;height:32px;font-size:13px} }
+
+/* P0-2 · 측면 배지가 22프레임 중 8장에서 사라졌다(러너펍 21/21 상시).
+   내가 '금액 가림' 때문에 숨겼는데, 숨기는 대신 본문 뒤로 보낸다.
+   → 배지는 항상 있고, 카드·글자가 그 위에 그려져 금액이 읽힌다. */
+.fixcard{z-index:1}
+.fixcard.is-hide{opacity:1;visibility:visible}      /* 숨김 규칙 무력화 */
+.sec > .wrap,.full-in,.hero-in{position:relative;z-index:3}
+.ic,.cc,.sc,.rbox,.sup-c,.apps li>a,.apps li>span,.net-card,.g5,.faq details,.pnl{
+  background-color:#0C2418}                          /* 반투명 카드를 불투명으로 — 배지 비침 방지 */
+.rbox.hi{background-color:#111f16}
+.cc.hi{background-color:#0E2A1B}
+
+/* P0-3 · 모바일 정렬 — 러너펍 모바일은 전 섹션 좌측정렬(거터 20px).
+   내 것은 전 섹션 중앙정렬이었다. 정렬 패러다임 자체가 반대였다. */
+@media (max-width:900px){
+  .wrap{width:calc(100% - 40px)}
+  .sec{text-align:left}
+  .t1,.t2,.foot,.note,.kick,.kick.big{text-align:left;margin-inline:0}
+  .head.center,.note.center,.foot{text-align:left}
+  .ic,.sq3 li,.g5 li,.steps li{justify-items:start;text-align:left}
+  .sq3 h3,.sq3 p{text-align:left}
+  .pnl,.pnl.center{text-align:left}
+  .full-in{text-align:left}
+  .faqpg{justify-content:flex-start}
+  .ctaline{text-align:left}
+}
+
+/* P1-4 · 모바일 배지 90x87 정사각 왜곡 → 러너펍 61x81 세로 비율 */
+@media (max-width:900px){
+  .fixcard{width:62px;height:82px;right:10px;bottom:106px;border-radius:7px}
+  .fixcard img{width:40px;height:40px}
+}
+
+/* P1-5 · FAQ 질문 실효 1.32배 · 행 pitch 52 → 59 */
+@media (min-width:901px){
+  .faq summary{font-size:14px;padding-top:16px;padding-bottom:16px}
+  .faq p{font-size:14px}
+}
+
+/* P1-6 · 체크박스 — 데스크톱 반경 2 → 4 · 모바일 24x18 직사각 → 14x14 정사각 */
+.ag input[type="checkbox"]{border-radius:4px;border-width:2px}
+@media (max-width:900px){
+  .ag input[type="checkbox"]{width:14px;height:14px;min-width:14px;flex:0 0 14px;border-radius:3px}
+  .ag input[type="checkbox"]:checked::after{left:3px;top:0;width:4px;height:8px;border-width:0 2px 2px 0}
+}
+
+/* P2-8 · 모바일 입력·버튼 필 형상 (러너펍) */
+@media (max-width:900px){
+  .dock-f input{border-radius:999px}
+  .go{border-radius:999px}
+}
+
+/* P2-10 · 고정바 top 746 → 747 · 모바일 높이 91 → 98 */
+@media (min-width:901px){ .dock-in{min-height:152px} }
+@media (max-width:900px){ .dock-in{padding-top:13px;padding-bottom:calc(13px + env(safe-area-inset-bottom,0px))} }
+
+/* P2-11 · "테이블·／의자" 토큰 분리 방지 */
+.cc li span,.ic p b{word-break:keep-all;white-space:normal}
+
+/* 라운드6 잔여 2건 — 모바일 거터 16→20(뒤 규칙이 덮고 있었다) · FAQ 행피치 55→59 */
+@media (max-width:900px){
+  .wrap{width:calc(100% - 40px)!important}
+  .dock-in,.dock-s,.dock-p{width:calc(100% - 40px)}
+}
+@media (min-width:901px){
+  .faq summary{padding-top:18px;padding-bottom:18px}
+}
