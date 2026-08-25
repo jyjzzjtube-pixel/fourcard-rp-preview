@@ -111,7 +111,7 @@ ul,ol{list-style:none}
 
 /* 얇은 테두리 카드 = 러너펍 기본 카드 */
 .ic,.cc,.sc,.rbox,.sup-c,.g5 li,.apps li>a,.apps li>span{
-  border:1px solid var(--line);border-radius:14px;background:rgba(4,21,15,.55)}
+  border:1px solid var(--line);border-radius:20px;background:rgba(4,21,15,.55)}
 
 /* ══ 지역 블록 ══ */
 .regions{margin-top:56px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px 24px;align-items:start}
@@ -146,7 +146,7 @@ ul,ol{list-style:none}
 /* ══ 본사 지원 (사진 + 01~04) ══ */
 .sup{margin-top:56px;display:grid;grid-template-columns:1.2fr repeat(2,minmax(0,1fr));gap:20px;
   grid-auto-rows:1fr}
-.sup-img{grid-row:span 2;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.sup-img{grid-row:span 2;border-radius:20px;overflow:hidden;border:1px solid var(--line)}
 .sup-img img{width:100%;height:100%;object-fit:cover;transition:transform var(--d3) var(--e)}
 .sup-img:hover img{transform:scale(1.04)}
 .sup-c{padding:32px 26px;text-align:left;transition:border-color var(--d2) var(--e)}
@@ -160,7 +160,7 @@ ul,ol{list-style:none}
   scroll-snap-type:x mandatory;scrollbar-width:none;
   padding-inline:max(24px,calc((100vw - var(--wrap))/2))}
 .poster::-webkit-scrollbar{display:none}
-.poster figure{position:relative;flex:0 0 340px;scroll-snap-align:start;border-radius:14px;overflow:hidden}
+.poster figure{position:relative;flex:0 0 340px;scroll-snap-align:start;border-radius:20px;overflow:hidden}
 .poster img{width:100%;aspect-ratio:9/16;object-fit:cover;transition:transform var(--d3) var(--e)}
 .poster figure:hover img{transform:scale(1.05)}
 .poster figcaption{position:absolute;inset:auto 0 0;padding:0 0 42px;text-align:center;
@@ -218,7 +218,7 @@ ul,ol{list-style:none}
 .g5{margin-top:56px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
 .g5 li{padding:30px 20px;transition:border-color var(--d2) var(--e)}
 .g5 li:hover{border-color:var(--line2)}
-.g5 b{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:14px;
+.g5 b{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:20px;
   background:linear-gradient(150deg,var(--gold),#8A6E15);color:#07160F;font-size:22px;font-weight:800}
 .g5 h3{margin-top:18px;font-size:19px;font-weight:700}
 .g5 p{margin-top:10px;font-size:15px;line-height:1.65;color:var(--ink2)}
@@ -416,7 +416,7 @@ ul,ol{list-style:none}
   .steps{margin-top:26px}
   .steps ol{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 10px}
   .steps li:nth-child(4),.steps li:nth-child(5),.steps li:nth-child(6){grid-column:auto;grid-row:auto}
-  .steps b{width:52px;height:52px;border-radius:14px;font-size:20px}
+  .steps b{width:52px;height:52px;border-radius:20px;font-size:20px}
   .steps h3{margin-top:12px;font-size:15px}
   .steps p{margin-top:7px;font-size:13px;line-height:1.55}
 
@@ -658,7 +658,7 @@ ul,ol{list-style:none}
 @media (max-width:1050px){
   .sq3{margin-top:26px;grid-template-columns:1fr;gap:12px}
   .sq3 li{grid-template-columns:120px minmax(0,1fr);justify-items:start;
-    align-items:center;gap:0 14px;padding:12px;border:1px solid var(--line);border-radius:14px;
+    align-items:center;gap:0 14px;padding:12px;border:1px solid var(--line);border-radius:20px;
     background:rgba(4,21,15,.55)}
   .sq3 figure{grid-row:1/3;border-radius:10px}
   .sq3 h3{margin-top:0;font-size:16px}
@@ -1757,3 +1757,16 @@ a,button,summary{transition-property:color,background-color,border-color,opacity
   .poster figure{height:min(569px,calc(100vh - 380px))}
   .poster figure.is-active{height:min(889px,calc(100vh - 290px))}
 }
+
+/* ══ 아이콘·배경 — 러너펍 실측 반영 ══
+   ① 러너펍은 컬러 이모지를 쓰지 않고 단색 선형(스트로크) 아이콘을 쓴다.
+      포카드가 쓰던 이모지 13개를 같은 성격의 선형 SVG 로 바꾸고 브랜드 골드 단색으로 칠한다.
+   ② 러너펍 14섹션 중 배경 사진은 '실무 교육' 1개뿐(전면)이고 나머지 13개는 전부 단색이다.
+      포카드는 흐린 배경 사진(opacity .10 / .045)을 2곳에 더 깔고 있었다 — 러너펍대로 단색으로. */
+.em{display:inline-flex;align-items:center;justify-content:center;color:var(--gold)}
+.em svg{width:1em;height:1em;display:block}
+.bgimg.dim{display:none}
+#process .bgimg{display:none}
+/* 러너펍 radius 전수 실측: 카드 20px · 입력 12px · 버튼 12px · 기타 8px.
+   포카드는 카드가 14/16/17px 로 섞여 있었다 — 20px 로 통일한다. */
+.ic,.cc,.sc,.rbox,.sup-c,.g5 li,.steps li,.apps li,.sq3 li,.pnl,.net-card,.poster figure{border-radius:20px}
