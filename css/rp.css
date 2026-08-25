@@ -1186,7 +1186,10 @@ summary:focus-visible,[tabindex]:focus-visible{
 
 /* MINOR · 모바일 고아줄 6곳 — 데스크톱 <br> 이 모바일에 그대로 남아 마지막 어절만 떨어졌다 */
 @media (max-width:900px){
-  .hero-d br,.t2 br{display:none}
+  /* 강제개행이 카드 본문에서도 고아줄을 만들었다(m_01 4곳·m_10 3곳).
+     모바일에서는 <br> 전체를 접는다. HTML 쪽에 <br> 앞 공백을 넣어 단어가 붙지 않게 했다. */
+  .hero-d br,.t2 br,.ic p br,.sup-c p br,.steps p br,.g5 p br,.sq3 p br,.rbox p br,
+  .apps p br,.cc .cf br,.foot br{display:none}
   .hero-d,.t2,.pnl{text-wrap:pretty}
   .chain{word-break:keep-all}
 }
@@ -1277,4 +1280,53 @@ summary:focus-visible,[tabindex]:focus-visible{
   .dock-f > label:not(.hp):first-of-type > input{grid-column:1}
   .dock-f > label:not(.hp):nth-of-type(2) > input{grid-column:2}
   .go{grid-column:3}
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   [라운드5 후속] 검수 두 쪽의 값이 엇갈려 내가 직접 러너펍을 실측했다.
+   헤더: 라운드4 검수 104 · 라운드5 검수 113 → 실측 110
+   페이지네이션: 라운드5 검수 '라운드사각 솔리드' → 실측 35x35 border-radius 50% 원형
+   (라운드4에서 검수 말만 믿고 라운드사각으로 바꾼 것을 되돌린다)
+   ══════════════════════════════════════════════════════════════════════ */
+@media (min-width:901px){
+  /* 헤더 110 (실측) */
+  :root{--hd:110px}
+  .hd,.hd-in{height:110px}
+  .nav a{height:110px}
+  /* 고정바 top 747 · 높이 153 (실측) — 내 것 739/161 이었다 */
+  .dock-in{min-height:153px;padding-top:26px;padding-bottom:26px}
+  .dock-f{gap:9px 21px}
+  .dock-f input,.go{height:61px}
+  /* FAQ 질문 22px → 러너펍 글리프 12px 급(≈18px) */
+  .faq summary{font-size:18px}
+}
+/* 측면 배지 y495 · 170x215 (실측) — 내 것 y486 · 170x202 */
+@media (min-width:1200px){
+  .fixcard{height:215px;bottom:190px}
+  .fixcard img{width:118px;height:118px}
+}
+/* 페이지네이션 35x35 원형 (실측) · 체크박스 라운딩 4px */
+.faqpg button{width:35px;height:35px;border-radius:50%;font-size:15px}
+.faqpg button:not(.on){background:rgba(255,255,255,.16);color:#fff}
+.ag input[type="checkbox"]{border-radius:4px}
+@media (max-width:900px){ .faqpg button{width:38px;height:38px;font-size:14px} }
+
+/* 체크박스 — 네이티브는 border-radius 가 안 먹는다(accent-color 사용 시).
+   러너펍은 라운드사각(반경 ≈4). appearance:none 으로 직접 그리되 체크 표시도 함께 그린다. */
+.ag input[type="checkbox"]{appearance:none;-webkit-appearance:none;
+  width:18px;height:18px;min-width:18px;border:2px solid rgba(255,255,255,.55);
+  border-radius:4px;background:#fff;cursor:pointer;position:relative;flex:0 0 18px}
+.ag input[type="checkbox"]:checked{background:var(--gold);border-color:var(--gold)}
+.ag input[type="checkbox"]:checked::after{content:"";position:absolute;left:4px;top:0;
+  width:5px;height:10px;border:solid #07160F;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.ag input[type="checkbox"]:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* ⚠ 하드락 위반 교정 — 모바일 동의문을 11.5px 로 줄여 12px 하한을 깼다(9폭 가드가 잡음).
+   글자를 줄이는 대신 문구를 짧은 버전으로 바꿔 12px 를 지킨다. */
+.ag-short{display:none}
+@media (max-width:900px){
+  .ag-long{display:none}
+  .ag-short{display:inline}
+  .dock-a .ag span{font-size:12px}
+  .dock-a .more{font-size:12px}
 }
