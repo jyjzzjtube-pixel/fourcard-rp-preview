@@ -184,4 +184,18 @@
       });
     });
   })();
+
+  /* 캐러셀 활성(2번째) 카드를 컨테이너 중앙에 정착시킨다 — 러너펍은 활성카드가 정중앙이다 */
+  (function () {
+    var tr = document.querySelector('.poster[data-track]');
+    if (!tr || window.innerWidth < 1200) return;
+    var figs = tr.querySelectorAll('figure');
+    if (figs.length < 2) return;
+    function center() {
+      var a = figs[1];
+      var want = a.offsetLeft + a.offsetWidth / 2 - tr.clientWidth / 2;
+      tr.scrollLeft = Math.max(0, want);
+    }
+    setTimeout(center, 500);
+  })();
 })();
