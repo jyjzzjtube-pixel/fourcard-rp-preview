@@ -2141,3 +2141,15 @@ body{background:var(--bg)}
   .st3-h{font-size:13px;margin-bottom:2px}
   .st3-box .st3{margin-top:12px}
 }
+
+/* ══ 공급 3스텝 모바일 가로 배치 — 러너펍 박스 350x110 (01→02→03 한 줄) ══
+   내가 모바일에서 세로로 쌓아 566px 이 됐다. 러너펍처럼 가로 3열로 눕힌다.
+   글자는 러너펍 모바일 기준(제목 12px · 본문 8px)을 따른다. */
+@media (max-width:1050px){
+  .st3{flex-direction:row!important;justify-content:space-between;gap:6px;margin:12px 0 0}
+  .st3 li{width:auto;flex:1 1 0;padding:0;text-align:center}
+  .st3 li + li::before,.st3 li + li::after{display:none}
+  .st3-n{width:44px;height:44px;font-size:15px;margin:0 auto 6px;border-width:1.5px}
+  .st3 h3{font-size:11px;line-height:1.2;margin:0 0 2px}
+  .st3 p{font-size:8px;line-height:1.2}
+}
