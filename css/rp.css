@@ -2127,3 +2127,17 @@ body{background:var(--bg)}
    포카드는 중앙이라 아코디언(좌측 시작)과 축이 어긋났다. 데스크톱·모바일 모두 좌측으로. */
 #faq{text-align:left}
 #faq .t1,#faq .t2{text-align:left;margin-inline:0}
+
+/* ══ 공급 절차·입지 타임라인 박스 — 러너펍 실측(배경 rgba(18,18,18,.7) · radius 8) ══
+   러너펍은 이 두 장치를 각각 박스 안에 묶어 섹션에서 떼어낸다. 포카드는 박스 없이 흩어져 있었다.
+   포카드 톤에 맞춰 그린 계열 배경으로 같은 구조를 만든다. */
+.st3-box,.filt-box{background:rgba(14,42,30,.62);border:1px solid rgba(122,196,160,.16);
+  border-radius:8px;padding:26px 24px;margin-top:32px}
+.st3-h{margin:0 0 6px;text-align:center;font-size:17px;font-weight:700;color:var(--gold2)}
+.st3-box .st3{margin-top:20px}
+.filt-box{padding:30px 24px}
+@media (max-width:1050px){
+  .st3-box,.filt-box{padding:14px 12px;margin-top:18px;border-radius:8px}
+  .st3-h{font-size:13px;margin-bottom:2px}
+  .st3-box .st3{margin-top:12px}
+}
