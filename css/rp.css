@@ -1922,3 +1922,22 @@ body{background:var(--bg)}
   .g5.filt{grid-template-columns:repeat(5,minmax(0,1fr));column-gap:14px;width:100%}
   .g5.filt li img,.g5.filt li .sth{width:100%;height:auto;aspect-ratio:200/133}
 }
+
+/* ══ 입지 간격 50 — 컨테이너를 제대로 맞춘다 ══
+   앞서 '컨테이너를 넓히면 다른 값이 깨진다'며 38 로 두었는데 그건 회피였다.
+   러너펍은 섹션마다 폭이 다르다: 카드 섹션 1280(413x3+20x2), 입지 섹션 1200(200x5+50x4).
+   포카드 카드 섹션은 이미 1280 이라 건드릴 필요가 없고, 입지 그리드만 1200 으로 넓히면 된다.
+   .wrap 좌우 패딩(24씩)에 막혀 1152 였으므로 그만큼 밖으로 빼낸다. */
+/* calc(100%+48px) 는 반응형이라 1200→30 · 1280→50 · 1440→70 으로 벌어졌다.
+   러너펍은 1200 고정이라 폭이 커져도 간격 50 이 유지된다 — 고정으로 바꾼다.
+   1200~1279 는 .wrap(1152)이 1200 을 못 담아 패딩 밖으로 빼는 방식을 유지한다. */
+@media (min-width:1280px){
+  .g5.filt{width:1200px;max-width:none;margin-inline:auto}
+}
+@media (min-width:1200px) and (max-width:1279px){
+  .g5.filt{width:calc(100% + 48px);max-width:none;margin-inline:-24px}
+}
+/* 그리드 폭을 1200 으로 맞췄는데도 간격이 38 이었다.
+   .g5.filt 에 좌우 패딩 24px 가 있어 border-box 기준 콘텐츠 박스가 1152 였던 것이다
+   (li 시작 x=145 = 그리드 좌측 120 + 패딩 24). 패딩을 걷으면 1000 + 50x4 = 1200 이 맞는다. */
+@media (min-width:1280px){ .g5.filt{padding-inline:0} }
