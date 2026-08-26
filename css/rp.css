@@ -2122,3 +2122,8 @@ body{background:var(--bg)}
   #platform .pnl.center{margin-top:16px}
   #platform .pnl.center p{font-size:13px;line-height:1.45}
 }
+
+/* ══ FAQ 제목 좌측 정렬 — 러너펍은 FAQ 머리글이 좌측이다 ══
+   포카드는 중앙이라 아코디언(좌측 시작)과 축이 어긋났다. 데스크톱·모바일 모두 좌측으로. */
+#faq{text-align:left}
+#faq .t1,#faq .t2{text-align:left;margin-inline:0}
