@@ -1784,3 +1784,34 @@ a,button,summary{transition-property:color,background-color,border-color,opacity
    (64px 표시 · 레티나 2배 대응). 파일: assets/icons/*.png */
 img.em{width:64px;height:64px;object-fit:contain;display:block}
 @media (max-width:1050px){ img.em{width:52px;height:52px} }
+
+/* ══ 전 구간 좌우 대조(24장)에서 잡은 것 ══
+
+   ① 푸터가 뭉쳐 보였다. 러너펍 줄간격 실측 [-12,8,8,-12,8,-12,48] — 마지막 저작권 줄 앞이 48px 다.
+      포카드는 [0,-10,-4,-16,-7,-9] 로 저작권 줄이 본문에 붙어 있었다. */
+/* [정정] line-height 1.9 는 과했다(푸터 561→661, 러너펍 598 초과).
+      러너펍 실측은 줄높이 12px(=1.0) 로 타이트하고, 줄 사이 간격 8px, 저작권 줄 앞만 48px 다. */
+.ft-t p{line-height:1;margin:0 0 8px}
+.ft-t .cp{margin-top:48px;margin-bottom:0;line-height:1.55}
+
+/* ② 본사 지원 좌측 사진이 천장만 보였다.
+      프레임 573x546(1.05) 에 원본 1400x1050(1.33) 을 cover 로 넣고 중앙 기준이라
+      가로가 잘리고 세로 상단(천장)이 화면을 차지했다. 시선을 아래(테이블·공간)로 내린다. */
+.sup-img img{object-position:50% 62%}
+
+/* ③ 배지가 개설 절차 카드 텍스트를 덮었다(04 가맹 계약).
+      금액 구간(#cost·#sales)에만 옅게 처리하고 있었다 — 카드가 촘촘한 구간을 추가한다. */
+
+/* ④ 전면 사진 배너에 텍스트 오버레이 — 러너펍은 전면 사진에 항상 제목·부제를 얹는다.
+      이 배너만 텍스트가 0 이라 러너펍에 없는 '순수 장식 사진' 이 되어 있었다. */
+.banner{position:relative}
+.banner-in{position:absolute;inset:auto 0 0;padding:0 0 56px;text-align:center;z-index:2}
+.banner-in .t1{margin:0 0 12px}
+.banner-in .foot{margin:0;max-width:760px;margin-inline:auto}
+.banner::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(7,22,15,0) 38%,rgba(7,22,15,.72) 100%)}
+.banner picture,.banner img{position:relative;z-index:0}
+
+/* ⑤ 지역 블록 지점명 행간격 — 러너펍 71 · 포카드 79 였다(폭 332·열간격 166 은 이미 일치) */
+/* 러너펍 지역 셀 실측: 24px · line-height 28.8(=1.2). 포카드는 36(=1.5) 이라 행간격이 8px 넓었다. */
+.rg ul li{line-height:1.2;margin-bottom:0}

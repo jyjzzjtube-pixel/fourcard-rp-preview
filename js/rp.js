@@ -210,7 +210,9 @@
   (function () {
     var card = document.querySelector('.fixcard');
     if (!card) return;
-    var zones = ['#cost', '#sales'].map(function (s) { return document.querySelector(s); }).filter(Boolean);
+    /* 전 구간 대조에서 배지가 개설 절차 04 카드 텍스트를 덮는 것을 확인했다.
+       카드가 촘촘해 배지와 겹치는 구간을 함께 넣는다. */
+    var zones = ['#cost', '#sales', '#process', '#supply'].map(function (s) { return document.querySelector(s); }).filter(Boolean);
     if (!zones.length) return;
     function sync() {
       var vh = window.innerHeight;
