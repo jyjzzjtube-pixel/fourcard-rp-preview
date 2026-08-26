@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>FOURCARD 가맹 상담 접수 관리</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
+  <style>
+    :root {
+      --ink: #171a18;
+      --ink-soft: #5e6661;
+      --green: #07563b;
+      --green-deep: #063d2d;
+      --gold: #bd9849;
+      --line: #d8ddd9;
+      --paper-soft: #f5f7f4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper-soft);
+      color: var(--ink);
+      font-family: "Pretendard Variable", Pretendard, -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px 24px;
+      padding: 20px 32px;
+      background: linear-gradient(135deg, #07583c 0%, var(--green-deep) 100%);
+      color: #fff;
+    }
+    .bar h1 { margin: 0; font-size: 20px; font-weight: 650; }
+    .bar .count { margin-left: auto; color: rgba(255,255,255,0.82); font-size: 14px; }
+    .bar button {
+      height: 40px;
+      padding: 0 16px;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 4px;
+      background: transparent;
+      color: #fff;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 650;
+      cursor: pointer;
+    }
+    .bar button:hover { background: rgba(255,255,255,0.12); }
+    main { padding: 32px; }
+    .gate {
+      max-width: 380px;
+      margin: 12vh auto;
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .gate h2 { margin: 0 0 8px; font-size: 20px; font-weight: 650; }
+    .gate p { margin: 0 0 24px; color: var(--ink-soft); font-size: 14px; }
+    .gate input {
+      width: 100%;
+      height: 48px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      font: inherit;
+    }
+    .gate input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+    .gate button {
+      width: 100%;
+      height: 48px;
+      margin-top: 12px;
+      border: 0;
+      border-radius: 4px;
+      background: linear-gradient(135deg, #0a6a49 0%, var(--green) 46%, var(--green-deep) 100%);
+      color: #fff;
+      font: inherit;
+      font-weight: 650;
+      cursor: pointer;
+    }
+    .msg { margin-top: 14px; color: #b63a34; font-size: 14px; min-height: 22px; }
+    .wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+    table { width: 100%; border-collapse: collapse; min-width: 880px; }
+    th, td { padding: 14px 16px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: #eef2ee; color: var(--ink-soft); font-size: 12px; font-weight: 700; letter-spacing: 0.03em; white-space: nowrap; }
+    td { font-size: 14px; }
+    td.no { font-family: Georgia, serif; color: var(--green); white-space: nowrap; }
+    td.when { color: var(--ink-soft); white-space: nowrap; }
+    td.name { font-weight: 650; white-space: nowrap; }
+    td.msg-cell { max-width: 420px; white-space: pre-wrap; }
+    a.tel { color: var(--green); font-weight: 650; }
+    .chip {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: #e7efe9;
+      color: var(--green-deep);
+      font-size: 12px;
+      font-weight: 650;
+      white-space: nowrap;
+    }
+    .empty { padding: 56px 24px; color: var(--ink-soft); text-align: center; }
+    .setup { max-width: 720px; margin: 0 auto; padding: 28px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+    .setup h2 { margin: 0 0 12px; font-size: 20px; }
+    .setup ol { margin: 0; padding-left: 22px; color: var(--ink-soft); font-size: 14px; }
+    .setup li { margin-bottom: 10px; }
+    .setup code { padding: 2px 6px; border-radius: 4px; background: #eef2ee; color: var(--green-deep); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <section class="gate" id="gate">
+    <h2>가맹 상담 접수 관리</h2>
+    <p>담당자 비밀번호를 입력하세요.</p>
+    <input id="pw" type="password" autocomplete="current-password" placeholder="비밀번호" aria-label="담당자 비밀번호">
+    <button id="enter" type="button">열기</button>
+    <p class="msg" id="msg" role="status"></p>
+  </section>
+
+  <div id="app" hidden>
+    <div class="bar">
+      <h1>가맹 상담 접수</h1>
+      <span class="count" id="count"></span>
+      <button id="reload" type="button">새로고침</button>
+      <button id="csv" type="button">CSV 내려받기</button>
+    </div>
+    <main>
+      <div class="wrap" id="wrap"></div>
+    </main>
+  </div>
+
+  <script>
+    const $ = (s) => document.querySelector(s);
+    const gate = $("#gate"), app = $("#app"), msg = $("#msg");
+    let pw = "", items = [];
+
+    const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const when = (iso) => {
+      if (!iso) return "-";
+      const m = String(iso).match(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+      return m ? `${m[2]}.${m[3]} ${m[4]}:${m[5]}` : iso;
+    };
+    const digits = (s) => String(s ?? "").replace(/[^0-9+]/g, "");
+
+    const render = () => {
+      $("#count").textContent = `총 ${items.length}건`;
+      if (!items.length) {
+        $("#wrap").innerHTML = '<p class="empty">접수된 상담이 없습니다.</p>';
+        return;
+      }
+      $("#wrap").innerHTML = `
+        <table>
+          <thead><tr>
+            <th>접수번호</th><th>접수시각</th><th>성함</th><th>연락처</th><th>희망 지역</th><th>문의 내용</th><th>상태</th>
+          </tr></thead>
+          <tbody>${items.map((r) => `
+            <tr>
+              <td class="no">${esc(r.receipt)}</td>
+              <td class="when">${esc(when(r.receivedAt))}</td>
+              <td class="name">${esc(r.name)}</td>
+              <td><a class="tel" href="tel:${esc(digits(r.phone))}">${esc(r.phone)}</a></td>
+              <td>${esc(r.region) || "-"}</td>
+              <td class="msg-cell">${esc(r.message) || "-"}</td>
+              <td><span class="chip">${esc(r.status) || "신규"}</span></td>
+            </tr>`).join("")}
+          </tbody>
+        </table>`;
+    };
+
+    const showSetup = () => {
+      gate.hidden = true; app.hidden = false;
+      $("#count").textContent = "저장소 미설정";
+      $("#wrap").outerHTML = `
+        <div class="setup">
+          <h2>저장소 설정이 필요합니다</h2>
+          <ol>
+            <li>GitHub에 비공개 저장소를 만듭니다 (예: <code>fourcard-inquiries</code>)</li>
+            <li>그 저장소만 접근 가능한 <code>Fine-grained</code> 토큰을 발급합니다 (권한: Contents 읽기·쓰기)</li>
+            <li>Vercel 프로젝트 환경변수에 <code>INQUIRY_REPO</code>(owner/name), <code>INQUIRY_TOKEN</code>, <code>ADMIN_PASSWORD</code>를 넣고 재배포합니다</li>
+          </ol>
+        </div>`;
+    };
+
+    const load = async () => {
+      msg.textContent = "";
+      let r;
+      try {
+        r = await fetch("/api/inquiries", { headers: { "x-admin-password": pw } });
+      } catch {
+        msg.textContent = "네트워크 오류입니다. 다시 시도해 주세요.";
+        return false;
+      }
+      if (r.status === 401) { msg.textContent = "비밀번호가 맞지 않습니다."; return false; }
+      if (r.status === 503) { showSetup(); return true; }
+      if (!r.ok) { msg.textContent = `조회에 실패했습니다 (${r.status}).`; return false; }
+      const data = await r.json();
+      items = Array.isArray(data.items) ? data.items : [];
+      gate.hidden = true; app.hidden = false;
+      render();
+      return true;
+    };
+
+    $("#enter").addEventListener("click", async () => {
+      pw = $("#pw").value;
+      if (!pw) { msg.textContent = "비밀번호를 입력하세요."; return; }
+      await load();
+    });
+    $("#pw").addEventListener("keydown", (e) => { if (e.key === "Enter") $("#enter").click(); });
+    $("#reload").addEventListener("click", load);
+
+    $("#csv").addEventListener("click", () => {
+      const head = ["접수번호", "접수시각", "성함", "연락처", "희망지역", "문의내용", "상태"];
+      const cell = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+      const rows = items.map((r) => [r.receipt, r.receivedAt, r.name, r.phone, r.region, r.message, r.status].map(cell).join(","));
+      // 엑셀 한글 깨짐 방지용 BOM
+      const blob = new Blob(["﻿" + [head.map(cell).join(","), ...rows].join("\r\n")], { type: "text/csv;charset=utf-8" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = `fourcard_inquiries_${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+  </script>
+</body>
+</html>

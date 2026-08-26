@@ -1,2 +1,6 @@
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /admin
+Disallow: /admin.html
+
+Sitemap: https://fourcard-franchise.vercel.app/sitemap.xml
