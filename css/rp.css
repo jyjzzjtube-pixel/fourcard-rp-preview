@@ -1970,3 +1970,23 @@ body{background:var(--bg)}
   .ic b,.steps li b,.sq3 li b,.g5 li b,.cc b{font-size:16px;line-height:1.1}
   img.em{width:24px;height:24px}
 }
+
+/* ══ 모바일 고정바 2행 — 러너펍 98 (포카드 3행 136) ══
+   브랜드명이 길어(FOURCARD 가맹문의 114px vs 러너펍 75px) 입력칸이 좁아지는 걸 피하려고
+   3행으로 나눴는데, 러너펍은 2행이다. 복제가 기준이므로 2행으로 되돌린다.
+   러너펍 실측: 제목 x81 · 체크박스 x175 · 이름 x81 w100 · 연락처 x185 w100 · 버튼 x293 w81 */
+/* 4열(auto 1fr 1fr 84)로 2행을 만들면 제목이 col1 을 114 로 고정해
+   2행 이름이 152~199, 연락처가 32~79 로 찌그러지고 좁은 폭에서 겹침 60 이 났다.
+   폼을 자체 3열 그리드로 떼어내면 제목 폭에 끌려가지 않는다.
+   361px 미만은 제목+동의문이 한 줄에 못 들어가므로 3행을 유지한다(러너펍 기준폭은 390). */
+@media (min-width:361px) and (max-width:430px){
+  .dock-in{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;gap:7px 0}
+  .dock-t{grid-row:1;grid-column:1;justify-self:start;align-self:center;white-space:nowrap;width:max-content}
+  .dock-a{grid-row:1;grid-column:1;justify-self:end;justify-content:flex-end}
+  .dock-f{display:grid;grid-row:2;grid-column:1;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) 84px;gap:6px}
+  .dock-f > label:not(.hp){display:contents}
+  .dock-f > label:not(.hp):first-of-type > input{grid-row:1;grid-column:1}
+  .dock-f > label:not(.hp):nth-of-type(2) > input{grid-row:1;grid-column:2}
+  .go{grid-row:1;grid-column:3;width:100%}
+}
