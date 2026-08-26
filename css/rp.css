@@ -2060,3 +2060,11 @@ body{background:var(--bg)}
 @media (max-width:1050px){
   .oneline{margin:20px auto 0;max-width:350px;padding:12px 10px;font-size:14px;border-radius:8px}
 }
+
+/* ══ 재방문 섹션 모바일 순서 — 러너펍은 큰 비주얼이 카드 '위' 다 ══
+   포카드는 카드(y 5895) 뒤에 이미지(y 6255)가 와서 순서가 반대였다. */
+@media (max-width:1050px){
+  .rev{display:flex;flex-direction:column}
+  .rev > .rev-r,.rev > figure,.rev > picture,.rev .rev-img{order:-1;margin-bottom:16px}
+  .rev > .rev-l{order:1}
+}
