@@ -1882,3 +1882,43 @@ body{background:var(--bg)}
     line-height:1.45;margin:0}
   .ic .num,.steps .num,.sq3 li b,.g5 li b{margin-bottom:2px}
 }
+
+/* ══ 데스크톱 잔여 격차 정밀 정렬 (러너펍 실측 기준) ══
+   입지 이미지 200x133 은 이미 일치. 간격·글자 크기·로고 폭·카드 높이만 남았다. */
+@media (min-width:1051px){
+  /* gap 만 늘리면 칸이 좁아져 이미지가 182 로 줄었다(200 유지가 먼저다).
+     러너펍은 200x133 다섯 장이 1200 폭에 놓여 남는 200 이 네 간격에 50 씩 간다. */
+  /* 간격 58 이 나온 건 이 그리드 폭이 1232 라서다(러너펍 1200: 200x5 + 50x4).
+     전체 컨테이너를 건드리면 모든 섹션이 흔들리므로 이 그리드만 1200 으로 묶는다. */
+  .g5.filt{grid-template-columns:repeat(5,200px);justify-content:space-between;gap:0;
+    max-width:1200px;margin-inline:auto}
+  .g5.filt li img,.g5.filt li .sth{width:200px;height:133px;object-fit:cover}
+  .hd .lg img{width:48px;height:48px}       /* 로고 끝 333 — 337 에서 4px 더 */
+  .g5.filt li b{font-size:18px}            /* 번호 18px (포카드 15) */
+  .g5.filt li h3{font-size:28px}           /* 라벨 28px (포카드 22) */
+  .hd .lg{gap:4px}
+  /* padding:43px 은 .sup-img 를 가용높이 초과시키고 카드에 빈공간 98 을 만들었다.
+     높이 6px 을 얻자고 회귀 3건을 만드는 건 손해라 40 으로 되돌린다. */
+}
+/* 로고를 줄이자 내비가 8px 딸려 왔다(로고끝 333 ✔ · 내비시작 352, 러너펍 360).
+   러너펍은 로고끝~내비시작 간격이 27px 다 — 그 간격을 명시한다.
+   입지 그리드는 max-width 로는 1152 에 그쳐(부모 패딩) 간격이 38 이 됐다 — 폭을 못박는다. */
+@media (min-width:1051px){
+  .hd nav,.hd-in nav{margin-left:27px}
+  /* width:1200px 고정은 데스크톱 하한(1051)에서 가로넘침 4건을 냈다.
+     간격 50 은 러너펍 컨테이너 1200 기준인데 내 컨테이너는 1152 라 38 이 한계다.
+     컨테이너를 넓히면 카드 413·배지 우여백 80 등 이미 맞은 값들이 깨진다 — 넘침 제거를 택한다. */
+  .g5.filt{width:min(1200px,100%)}
+}
+/* li 패딩 0 12px 가 피치를 238(200+38)로 만들어 간격이 50 이 안 나왔다 — 패딩을 걷는다.
+   내비는 margin 27 을 줬더니 367 이 됐다(목표 360) — 7px 되돌린다. */
+@media (min-width:1051px){
+  .g5.filt li{padding:0}
+  .hd nav,.hd-in nav{margin-left:20px}
+}
+/* repeat(5,200px) 고정 칸이 1051~1199 구간에서 넘쳤다(컨테이너만 줄여선 안 됨).
+   러너펍 실측값 200x133 은 1200 이상에서만 유지하고, 좁은 데스크톱은 비율만 지킨다. */
+@media (min-width:1051px) and (max-width:1199px){
+  .g5.filt{grid-template-columns:repeat(5,minmax(0,1fr));column-gap:14px;width:100%}
+  .g5.filt li img,.g5.filt li .sth{width:100%;height:auto;aspect-ratio:200/133}
+}
