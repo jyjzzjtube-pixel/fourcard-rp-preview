@@ -1841,3 +1841,25 @@ img.em{width:64px;height:64px;object-fit:contain;display:block}
 }
 /* 2열 와이드 카드에서 아이콘만 좌측 정렬이라 제목·본문(중앙)과 어긋났다 */
 .g2.wide .ic img.em{margin-inline:auto}
+
+/* ══ 페이지 톤 복원 — 배경이 너무 검게 죽었다 ══
+   러너펍 구조를 맞추며 흐린 배경 사진(opacity .10)을 전부 걷어냈더니
+   body 한 색(#07160F = R7 G22 B15)만 남아 그린 기미가 사라졌다.
+   배경색은 톤앤매너라 포카드 것이어야 하는데 내가 러너펍 쪽으로 끌고 갔다.
+   구조(섹션 단색)는 러너펍 그대로 두고, 색만 포카드 딥그린으로 되살린다. */
+:root{
+  --bg:#0A2318;              /* R10 G35 B24 — 브랜드 그린(#0A6A49) 계열의 최심도 */
+  --bg-2:#0C2B1D;            /* 교차 섹션용 한 단계 밝은 톤 */
+  --bg-deep:#071A11;         /* 히어로·푸터처럼 가라앉혀야 하는 곳 */
+}
+body{background:var(--bg)}
+
+/* 평평한 단색이 아니라 아주 은은한 세로 그라데이션을 준다.
+   사진 없이도 화면이 죽지 않게 하는 최소한의 깊이다(러너펍의 단색 구조는 유지). */
+.sec{background:linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 52%,var(--bg) 100%)}
+.sec:nth-of-type(even){background:linear-gradient(180deg,var(--bg-2) 0%,var(--bg) 55%,var(--bg-2) 100%)}
+
+/* 카드가 배경에 묻히지 않게 한 단계 띄운다 */
+.ic,.cc,.sc,.rbox,.sup-c,.g5 li,.steps li,.apps li,.sq3 li,.pnl,.net-card{
+  background:rgba(18,54,38,.52);border-color:rgba(122,196,160,.16)}
+.rg{background:rgba(18,54,38,.34)}
