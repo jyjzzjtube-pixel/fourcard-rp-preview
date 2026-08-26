@@ -1808,8 +1808,10 @@ img.em{width:64px;height:64px;object-fit:contain;display:block}
 .banner-in{position:absolute;inset:auto 0 0;padding:0 0 56px;text-align:center;z-index:2}
 .banner-in .t1{margin:0 0 12px}
 .banner-in .foot{margin:0;max-width:760px;margin-inline:auto}
+/* 부제가 사진 밝은 부분과 겹쳐 묻혔다 — 그라데이션을 위로 더 끌어올리고 짙게 한다 */
 .banner::after{content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg,rgba(7,22,15,0) 38%,rgba(7,22,15,.72) 100%)}
+  background:linear-gradient(180deg,rgba(7,22,15,0) 14%,rgba(7,22,15,.55) 48%,rgba(7,22,15,.88) 100%)}
+.banner-in .foot{color:#D8E4DC}
 .banner picture,.banner img{position:relative;z-index:0}
 
 /* ⑤ 지역 블록 지점명 행간격 — 러너펍 71 · 포카드 79 였다(폭 332·열간격 166 은 이미 일치) */
