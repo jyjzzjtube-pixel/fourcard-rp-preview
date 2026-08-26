@@ -1817,3 +1817,27 @@ img.em{width:64px;height:64px;object-fit:contain;display:block}
 /* ⑤ 지역 블록 지점명 행간격 — 러너펍 71 · 포카드 79 였다(폭 332·열간격 166 은 이미 일치) */
 /* 러너펍 지역 셀 실측: 24px · line-height 28.8(=1.2). 포카드는 36(=1.5) 이라 행간격이 8px 넓었다. */
 .rg ul li{line-height:1.2;margin-bottom:0}
+
+/* ══ 공급 절차 원형 번호 3스텝 — 러너펍 실측(원 100x100 · 스텝 간격 284px · 화살표 연결) ══
+   포카드는 같은 내용을 a/b/c 문단으로만 두고 있어 러너펍의 장치가 통째로 없었다. */
+.st3{display:flex;justify-content:center;align-items:flex-start;gap:0;
+  list-style:none;margin:44px 0 0;padding:0;position:relative}
+.st3 li{width:284px;text-align:center;position:relative;padding:0 12px}
+.st3 li + li::before{content:"";position:absolute;left:-32px;top:46px;width:64px;height:2px;
+  background:linear-gradient(90deg,rgba(201,162,39,.25),rgba(201,162,39,.75))}
+.st3 li + li::after{content:"";position:absolute;left:24px;top:41px;
+  border:6px solid transparent;border-left-color:rgba(201,162,39,.75)}
+.st3-n{display:flex;align-items:center;justify-content:center;
+  width:100px;height:100px;margin:0 auto 18px;border-radius:50%;
+  border:2px solid rgba(201,162,39,.55);background:rgba(201,162,39,.08);
+  font-size:30px;font-weight:700;color:var(--gold2);letter-spacing:.02em}
+.st3 h3{margin:0 0 8px;font-size:19px;font-weight:700}
+.st3 p{margin:0;font-size:15px;line-height:1.6;color:var(--muted,#9FB3A8)}
+@media (max-width:1050px){
+  .st3{flex-direction:column;align-items:center;gap:26px;margin-top:32px}
+  .st3 li{width:100%;max-width:340px;padding:0}
+  .st3 li + li::before,.st3 li + li::after{display:none}
+  .st3-n{width:76px;height:76px;font-size:24px;margin-bottom:12px}
+}
+/* 2열 와이드 카드에서 아이콘만 좌측 정렬이라 제목·본문(중앙)과 어긋났다 */
+.g2.wide .ic img.em{margin-inline:auto}
