@@ -2092,3 +2092,24 @@ body{background:var(--bg)}
   .g2.wide .ic p{font-size:8px;line-height:1.25}
   .g2.wide .ic p b{font-size:9px;display:inline-block;margin-top:2px}
 }
+
+/* ══ 모바일 남은 1열 그리드 → 2열 (러너펍은 모바일도 카드 2열) ══
+   sup(본사 지원)·rev-l(재방문)·flow3·split 이 1열이라 세로가 길어졌다.
+   창업 비용 표(g3.costs)는 금액을 읽어야 하므로 1열로 남긴다. */
+@media (max-width:1050px){
+  .sup{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .sup .sup-img{grid-column:1 / -1}
+  .rev-l{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+  .rev-l .rbox.hi{grid-column:1 / -1}
+  .pnl.flow3{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .pnl.split{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .rev-l .rbox,.pnl.flow3 > *,.pnl.split > *{padding:12px 10px}
+  .rev-l .rbox h3,.pnl.flow3 h3,.pnl.split h3{font-size:12px;line-height:1.2;margin:0 0 3px}
+  .rev-l .rbox p,.pnl.flow3 p,.pnl.split p{font-size:8px;line-height:1.25}
+}
+/* .sup / .pnl.flow3 이 앞 규칙에 덮여 1열로 남았다 — 섹션을 포함한 더 구체적인 셀렉터로 못박는다. */
+@media (max-width:1050px){
+  #support .sup{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px}
+  #support .sup .sup-img{grid-column:1 / -1!important}
+  .sec .pnl.flow3{grid-template-columns:repeat(2,minmax(0,1fr))!important;display:grid!important;gap:12px}
+}
