@@ -680,7 +680,7 @@ ol.pnl.flow3 span{width:44px;height:44px;display:grid;place-items:center;border-
 ol.pnl.flow3 strong{font-size:20px;font-weight:700;color:var(--ink)}
 ol.pnl.flow3 em{font-style:normal;font-size:16px;font-weight:500;color:var(--ink2)}
 
-#revisit .bgimg{display:none}
+#revisit .bgimg{display:block}   /* 매장 사진 복원 — 그린 오버레이가 톤을 잡아준다 */
 #revisit::before{display:none}
 .rev{align-items:start}
 .rev-img{max-height:640px}
@@ -1765,8 +1765,9 @@ a,button,summary{transition-property:color,background-color,border-color,opacity
       포카드는 흐린 배경 사진(opacity .10 / .045)을 2곳에 더 깔고 있었다 — 러너펍대로 단색으로. */
 .em{display:inline-flex;align-items:center;justify-content:center;color:var(--gold)}
 .em svg{width:1em;height:1em;display:block}
-.bgimg.dim{display:none}
-#process .bgimg{display:none}
+/* [복원] 러너펍 단색 구조를 맞추려고 흐린 매장 사진을 전부 걷었더니 화면이 평평해졌다.
+   매장 이미지와 톤앤매너는 둘 다 포카드 몫이므로 되살린다.
+   대신 사진 위에 브랜드 그린을 얹어 톤이 흩어지지 않게 한다. */
 /* 러너펍 radius 전수 실측: 카드 20px · 입력 12px · 버튼 12px · 기타 8px.
    포카드는 카드가 14/16/17px 로 섞여 있었다 — 20px 로 통일한다. */
 .ic,.cc,.sc,.rbox,.sup-c,.g5 li,.steps li,.apps li,.sq3 li,.pnl,.net-card,.poster figure{border-radius:20px}
@@ -2035,3 +2036,18 @@ body{background:var(--bg)}
   .more{min-height:0;padding:0 4px}
   .more::after{top:-5px;bottom:-5px;left:-6px;right:-6px}
 }
+
+/* ══ 매장 사진 배경 + 그린 톤 조화 ══
+   사진은 은은히 비치게 두고(채도를 낮춰 초록 계열로 눕힌다),
+   그 위에 브랜드 그린 그라데이션을 덮어 섹션 전체 톤을 하나로 묶는다.
+   본문은 오버레이 위(z-index 2)에 두어 가독성을 지킨다. */
+.bgimg.dim{display:block}
+.bgimg.dim img{opacity:.22;filter:saturate(.62) hue-rotate(-8deg) brightness(.92)}
+.sec:has(.bgimg.dim){position:relative;isolation:isolate}
+.sec:has(.bgimg.dim)::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(10,35,24,.42), rgba(10,35,24,.86) 72%),
+    linear-gradient(180deg, rgba(10,35,24,.80) 0%, rgba(12,43,29,.58) 46%, rgba(10,35,24,.88) 100%)}
+.sec:has(.bgimg.dim) > .wrap{position:relative;z-index:2}
+#process .bgimg{display:block}
+#process .bgimg img{opacity:.16}
