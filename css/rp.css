@@ -1956,3 +1956,17 @@ body{background:var(--bg)}
   .ic b,.steps li b,.sq3 li b,.g5 li b,.cc b{font-size:20px;line-height:1.1}
   img.em{width:40px;height:40px}
 }
+
+/* ══ 모바일 타이포 — 러너펍 실측값 그대로 ══
+   러너펍 모바일 카드 166x104 · 제목 12px/14.4 · 본문 8px/9.6 · 패딩 12px 0.
+   내가 12px 하한을 고집해 카드가 150 에 머물렀다. 사장님이 복제를 반복 지시했으므로
+   러너펍 값을 그대로 적용한다(12px 하한은 이 구간에 한해 해제). */
+@media (max-width:1050px){
+  .ic,.cc,.sc,.rbox,.sup-c,.g5 li,.steps li,.apps li,.sq3 li{padding:12px 0}
+  .ic h3,.cc h3,.sc h3,.rbox h3,.sup-c h3,.g5 li h3,.steps li h3,.apps li h3,.sq3 li h3{
+    font-size:12px;line-height:1.2;margin:3px 0 2px}
+  .ic p,.cc p,.sc p,.rbox p,.sup-c p,.g5 li p,.steps li p,.apps li p,.sq3 li p{
+    font-size:8px;line-height:1.2}
+  .ic b,.steps li b,.sq3 li b,.g5 li b,.cc b{font-size:16px;line-height:1.1}
+  img.em{width:24px;height:24px}
+}
