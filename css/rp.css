@@ -2082,3 +2082,13 @@ body{background:var(--bg)}
   .flowcards h3{font-size:12px;line-height:1.2;margin:0 0 3px}
   .flowcards p{font-size:8px;line-height:1.2}
 }
+
+/* ══ 물품 공급 카드 2열 — 러너펍은 모바일에서도 카드를 2열로 깐다 ══
+   포카드 .g2.wide 만 1열 전폭이라 이 구간에서 흐름이 끊겼다. */
+@media (max-width:1050px){
+  .g2.wide{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .g2.wide .ic{padding:12px 10px}
+  .g2.wide .ic h3{font-size:12px;line-height:1.2;margin:4px 0 3px}
+  .g2.wide .ic p{font-size:8px;line-height:1.25}
+  .g2.wide .ic p b{font-size:9px;display:inline-block;margin-top:2px}
+}
