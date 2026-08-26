@@ -1980,13 +1980,58 @@ body{background:var(--bg)}
    폼을 자체 3열 그리드로 떼어내면 제목 폭에 끌려가지 않는다.
    361px 미만은 제목+동의문이 한 줄에 못 들어가므로 3행을 유지한다(러너펍 기준폭은 390). */
 @media (min-width:361px) and (max-width:430px){
-  .dock-in{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;gap:7px 0}
+  /* 1행 동의문이 2행 이름 입력칸과 겹쳐 입력이 클릭되지 않았다(행 gap 7px 로 부족).
+     행 높이를 명시하고 gap 을 늘려 두 행을 확실히 분리한다. */
+  .dock-in{display:grid;grid-template-columns:minmax(0,1fr);
+    grid-template-rows:auto auto;gap:10px 0;align-items:center}
   .dock-t{grid-row:1;grid-column:1;justify-self:start;align-self:center;white-space:nowrap;width:max-content}
-  .dock-a{grid-row:1;grid-column:1;justify-self:end;justify-content:flex-end}
+  .dock-a{grid-row:1;grid-column:1;justify-self:end;justify-content:flex-end;align-self:center}
   .dock-f{display:grid;grid-row:2;grid-column:1;
     grid-template-columns:minmax(0,1fr) minmax(0,1fr) 84px;gap:6px}
   .dock-f > label:not(.hp){display:contents}
   .dock-f > label:not(.hp):first-of-type > input{grid-row:1;grid-column:1}
   .dock-f > label:not(.hp):nth-of-type(2) > input{grid-row:1;grid-column:2}
   .go{grid-row:1;grid-column:3;width:100%}
+}
+/* 2행 구조에서 '보기'의 히트영역(::after)이 아래로 뻗어 2행 이름 입력칸을 덮었다.
+   1행 안쪽으로만 확장한다(위로만). */
+@media (min-width:361px) and (max-width:430px){
+  .more::after{top:-8px;bottom:0;left:-6px;right:-6px}
+  .dock-a{padding-bottom:0}
+}
+/* 행 높이 19px 인데 .dock-a 가 36px(.more 의 min-height)로 뻗어 2행 입력칸을 덮었다.
+   2행 구간에서는 min-height 를 풀고, 터치 영역은 위쪽으로만 확장해 확보한다. */
+@media (min-width:361px) and (max-width:430px){
+  .more{min-height:0;padding:0 4px}
+  .more::after{top:-14px;bottom:-2px;left:-8px;right:-8px}
+  .dock-a{max-height:22px}
+}
+/* .dock-a 박스가 1행 전체 폭을 차지해(텍스트만 우측 정렬) 아래 이름 입력칸 위를 덮었다.
+   elementFromPoint 가 이름칸 중심에서 SPAN.ag-short 를 잡은 게 그 증거다.
+   박스를 내용 폭으로 줄이고 높이를 행 안에 가둔다. */
+@media (min-width:361px) and (max-width:430px){
+  .dock-a{width:max-content;max-width:100%;justify-self:end;align-self:center;
+    max-height:24px;overflow:visible}
+  .dock-a .ag{width:max-content}
+}
+
+/* ══ 모바일 고정바 3행 복귀 (최종) ══
+   러너펍 2행(독 98)을 따라가려고 3번 시도했으나, 브랜드명 길이 차이(114px vs 75px) 탓에
+   1행 동의문 박스가 2행 이름 입력칸을 덮어 '입력칸이 클릭되지 않는' 결함이 계속 남았다
+   (elementFromPoint 가 이름칸 중심에서 SPAN.ag-short 를 잡음, 375/390/414 세 폭).
+   상담 폼이 안 눌리는 건 복제도 38px 보다 큰 손해다 — 결함 0 이던 3행 구조로 되돌린다.
+   독 136 vs 러너펍 98 차이는 그대로 남으며, 이는 브랜드명 길이(제외 항목)에서 파생된 것이다. */
+@media (min-width:361px) and (max-width:430px){
+  .dock-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 84px;
+    grid-template-rows:auto auto auto;gap:5px 6px;align-items:center}
+  .dock-t{grid-row:1;grid-column:1 / -1;justify-self:start;width:max-content;white-space:nowrap}
+  .dock-a{grid-row:2;grid-column:1 / -1;justify-self:start;justify-content:flex-start;
+    width:auto;max-height:none;max-width:100%}
+  .dock-f{display:contents}
+  .dock-f > label:not(.hp){display:contents}
+  .dock-f > label:not(.hp):first-of-type > input{grid-row:3;grid-column:1}
+  .dock-f > label:not(.hp):nth-of-type(2) > input{grid-row:3;grid-column:2}
+  .go{grid-row:3;grid-column:3;width:100%}
+  .more{min-height:0;padding:0 4px}
+  .more::after{top:-5px;bottom:-5px;left:-6px;right:-6px}
 }
