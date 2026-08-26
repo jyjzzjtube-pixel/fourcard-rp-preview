@@ -2153,3 +2153,17 @@ body{background:var(--bg)}
   .st3 h3{font-size:11px;line-height:1.2;margin:0 0 2px}
   .st3 p{font-size:8px;line-height:1.2}
 }
+
+/* ══ 입지 5단계 모바일 한 줄 — 러너펍은 매장 아이콘 5개를 가로 한 줄로 둔다 ══
+   포카드는 5개가 줄바꿈돼 3행(박스 729px)이 됐다. 한 줄로 눕히되
+   라벨이 뭉개지지 않게 박스 안에서만 가로 스크롤한다(페이지 가로넘침 없음). */
+@media (max-width:1050px){
+  .filt-box{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity}
+  .g5.filt{display:flex!important;gap:10px;min-width:max-content;margin:0}
+  .g5.filt li{flex:0 0 118px;width:118px;padding:0;scroll-snap-align:start;text-align:center}
+  .g5.filt li img,.g5.filt li .sth{width:118px;height:79px;object-fit:cover;border-radius:8px}
+  .g5.filt li b{display:block;margin:6px auto 2px;font-size:14px}
+  .g5.filt li h3{font-size:11px;line-height:1.2;margin:0 0 2px}
+  .g5.filt li p{font-size:8px;line-height:1.2}
+}
