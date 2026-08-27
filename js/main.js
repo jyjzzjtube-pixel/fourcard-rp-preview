@@ -55,7 +55,8 @@
   });
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 900) setMenu(false);
+    // 실제로 열려 있을 때만 닫는다. 닫힌 상태에서 setMenu(false)를 부르면 포커스를 메뉴 버튼으로 빼앗는다.
+    if (window.innerWidth > 900 && menuButton.getAttribute("aria-expanded") === "true") setMenu(false);
   });
 
   const updateHeader = () => {
@@ -75,7 +76,7 @@
   // 같은 묶음은 순서대로 흘러들어오게 인덱스를 심는다 (CSS가 --i로 지연을 계산)
   const staggerGroups = [
     ".region-grid", ".system-list", ".principle-items",
-    ".branch-track", ".trust-strip", ".faq-list", ".space-mosaic",
+    ".branch-track", ".trust-strip", ".rp-faq-list", ".space-mosaic",
   ];
   staggerGroups.forEach((sel) => {
     const group = document.querySelectorAll(sel);
@@ -351,7 +352,12 @@
     };
     const startAuto = () => { if (!autoTimer && !reducedMotion) autoTimer = setInterval(advance, 4200); };
     const stopAuto = () => { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } };
-    function pauseAuto() { paused = true; stopAuto(); setTimeout(() => { paused = false; startAuto(); }, 9000); }
+    let resumeTimer = null;
+    function pauseAuto() {
+      paused = true; stopAuto();
+      if (resumeTimer) clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => { paused = false; resumeTimer = null; startAuto(); }, 9000);
+    }
 
     ["pointerdown", "wheel", "touchstart", "keydown"].forEach((ev) =>
       track.addEventListener(ev, pauseAuto, { passive: true })
@@ -519,8 +525,12 @@
 
     // 1순위: 서버에 저장해 담당자가 관리 화면에서 볼 수 있게 한다
     try {
+      // 서버가 응답하지 않을 때 사용자가 무한정 기다리지 않도록 12초에서 끊고 문자·전화 안내로 넘긴다
+      const ac = new AbortController();
+      const abortTimer = setTimeout(() => ac.abort(), 12000);
       const response = await fetch("/api/inquiry", {
         method: "POST",
+        signal: ac.signal,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name,
@@ -531,6 +541,7 @@
           source: "homepage",
         }),
       });
+      clearTimeout(abortTimer);
       const result = await response.json().catch(() => ({}));
 
       if (response.ok && result.ok) {
@@ -583,10 +594,10 @@
     }
   });
 
-  document.querySelectorAll(".faq-list details").forEach((details) => {
+  document.querySelectorAll(".rp-faq-list details").forEach((details) => {
     details.addEventListener("toggle", () => {
       if (!details.open) return;
-      document.querySelectorAll(".faq-list details[open]").forEach((other) => {
+      document.querySelectorAll(".rp-faq-list details[open]").forEach((other) => {
         if (other !== details) other.open = false;
       });
     });
@@ -715,9 +726,11 @@
       const css = `[data-crop-id="${id}"] { --crop-x: ${values.x}%; --crop-y: ${values.y}%; --crop-scale: ${values.scale}; }`;
       try {
         await navigator.clipboard.writeText(css);
-        event.currentTarget.textContent = "복사 완료";
+        // 콜백이 끝나면 event.currentTarget 은 null 이 된다. 미리 잡아둔다.
+        const copyButton = event.currentTarget;
+        copyButton.textContent = "복사 완료";
         window.setTimeout(() => {
-          event.currentTarget.textContent = "CSS 값 복사";
+          copyButton.textContent = "CSS 값 복사";
         }, 1400);
       } catch {
         window.prompt("아래 CSS 값을 복사하세요.", css);
