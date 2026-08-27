@@ -11307,3 +11307,18 @@ section.section-pad,
 #event-support::after { background-image: url("../assets/tex/cards-1200.webp"); opacity: .09; }
 #contact::after       { background-image: url("../assets/tex/glow-1200.webp");  opacity: .14; }
 #locations > *, #supply > *, #faq > *, #contact > *, #event-support > * { position: relative; z-index: 1; }
+
+/* ─────────────────────────────────────────────────────────
+   [정렬] #system 카드 9개가 5열이라 5+4 로 깨져 마지막 줄이 비어 보였다.
+   9 = 3 x 3 이므로 3열로 맞춘다. 카드가 386px 로 넓어져 문구도 덜 눌린다.
+   1280px 미만은 기존대로 가로 스크롤을 유지한다.
+   ───────────────────────────────────────────────────────── */
+@media (min-width: 1280px) {
+  .rp-system-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+  /* 같은 줄 안에서 카드 높이를 맞춘다 */
+  .rp-system-grid > * { height: 100%; }
+  .rp-sys-card { min-height: 0; display: flex; flex-direction: column; }
+}
