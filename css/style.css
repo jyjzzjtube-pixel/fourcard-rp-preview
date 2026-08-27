@@ -10189,3 +10189,20 @@ section.section-pad,
 #supply h2 {
   letter-spacing: normal;
 }
+
+/* ─────────────────────────────────────────────────────────
+   [가독성] 근거·면책 문구의 한 줄이 길다.
+   실측 1180px 기준 revenue-disclaimer 95자/줄 · cost-disclaimer 69자/줄.
+   한글은 한 줄 35~45자가 편하다. 14px 폰트 기준 700px, 18px 기준 800px 로 제한한다.
+   (max-width 만 줄이므로 정렬·여백은 그대로다)
+   ───────────────────────────────────────────────────────── */
+.cost-disclaimer,
+.revenue-disclaimer,
+.supply-note { max-width: 700px; }
+.revenue-gap { max-width: 800px; }
+@media (max-width: 900px) {
+  .cost-disclaimer,
+  .revenue-disclaimer,
+  .supply-note,
+  .revenue-gap { max-width: 100%; }
+}
