@@ -11261,3 +11261,49 @@ section.section-pad,
 #locations img[src*="chilgok-v"]   { object-position: 50% 45%; }
 #locations img[src*="nampo-v"]     { object-position: 50% 35%; }
 #locations img[src*="dongseongro"] { object-position: 50% 45%; }
+
+/* ══════════════════════════════════════════════════════════════
+   [지시 이행] 매장 이미지는 보이되 뒷배경은 살짝 투명하게 · 브랜드 톤과 조화
+   실측: #franchise · #education · #experience 3곳이 filter none / opacity 1 로 아무 처리가 없었다.
+        (#top 은 brightness .82, #tournament 는 .26 으로 이미 처리됨)
+   사진 채도를 그린 쪽으로 눕히고 살짝 투명하게 한 뒤, 그린 그라데이션을 덮어 톤을 하나로 묶는다.
+   ══════════════════════════════════════════════════════════════ */
+/* #education 의 좌측 사진은 배경이 아니라 '매장을 보여주는' 전면 이미지다 —
+   사장님 지시대로 매장 이미지는 선명하게 두고, 뒷배경 역할인 것만 투명하게 한다. */
+#franchise img, #experience img {
+  opacity: .82;
+  filter: saturate(.68) hue-rotate(-6deg) brightness(.86);
+}
+#education img { opacity: 1; filter: saturate(.94) brightness(.98); }
+#franchise, #experience { position: relative; isolation: isolate; }
+#franchise > *, #experience > * { position: relative; z-index: 2; }
+#franchise::after, #experience::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    radial-gradient(115% 75% at 50% 0%, rgba(7,88,60,.20) 0%, rgba(5,26,18,0) 60%),
+    linear-gradient(178deg, rgba(6,34,23,.72) 0%, rgba(5,24,17,.52) 46%, rgba(6,30,21,.80) 100%);
+}
+/* 히어로·대회는 이미 어둡게 처리돼 있어 톤만 그린 쪽으로 맞춘다 */
+#top img { filter: brightness(.82) saturate(.86) hue-rotate(-4deg); }
+#tournament img { filter: brightness(.30) saturate(.62) hue-rotate(-6deg); }
+
+/* ══════════════════════════════════════════════════════════════
+   [지시 이행] 이미지실 자산 배치 — 포카드 전용 배경 텍스처 4종
+   "포카드 이미지실" 프로젝트 안에서 생성 → 4분할 크롭 → 섹션별로 다른 조각을 얹는다.
+   그라데이션만 있던 섹션이 평평해 보이던 것을 은은한 질감으로 채운다(각 7~34KB).
+   ══════════════════════════════════════════════════════════════ */
+#locations::after, #supply::after, #faq::after, #contact::after, #event-support::after {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-repeat: no-repeat; background-size: cover; background-position: center;
+  opacity: .16; mix-blend-mode: screen;
+  /* 정사각 텍스처가 넓은 섹션에서 한쪽에 몰려 사각 경계가 드러났다 —
+     가장자리를 부드럽게 지워 경계 없이 스며들게 한다. */
+  -webkit-mask-image: radial-gradient(120% 85% at 50% 45%, #000 0%, rgba(0,0,0,.72) 46%, transparent 82%);
+  mask-image: radial-gradient(120% 85% at 50% 45%, #000 0%, rgba(0,0,0,.72) 46%, transparent 82%);
+}
+#locations::after     { background-image: url("../assets/tex/glow-1200.webp");  opacity: .16; }
+#supply::after        { background-image: url("../assets/tex/chips-1200.webp"); opacity: .08; }
+#faq::after           { background-image: url("../assets/tex/lines-1200.webp"); opacity: .08; }
+#event-support::after { background-image: url("../assets/tex/cards-1200.webp"); opacity: .09; }
+#contact::after       { background-image: url("../assets/tex/glow-1200.webp");  opacity: .14; }
+#locations > *, #supply > *, #faq > *, #contact > *, #event-support > * { position: relative; z-index: 1; }
