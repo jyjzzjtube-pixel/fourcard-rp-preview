@@ -10206,3 +10206,20 @@ section.section-pad,
   .supply-note,
   .revenue-gap { max-width: 100%; }
 }
+
+/* ─────────────────────────────────────────────────────────
+   [정확성] 모바일에서 창업비용·월 계속가맹금 카드의 보조문구가 display:none 이라
+   **부가세 포함 고지가 첫 화면에서 사라진다.** 첫 화면에 7,870만원·88만원이 크게 뜨는데
+   부가세 여부가 없으면 방문자가 금액을 잘못 이해한다.
+   앞서 같은 이유로 2번째(지점 현황)만 되살렸는데, 나머지 둘도 같은 성격이다.
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-facts li:nth-child(1) small,
+  .hero-facts li:nth-child(3) small {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 1.42;
+    color: rgba(255, 255, 255, .74);
+  }
+}
