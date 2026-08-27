@@ -11354,3 +11354,29 @@ section.section-pad,
   .section-cta { margin-top: 22px; }
   .section-cta .button { width: 100%; justify-content: center; }
 }
+
+/* ─────────────────────────────────────────────────────────
+   [디자인 토큰] 렌더값 실측으로 나온 불일치를 잡는다.
+   측정: 카드 라운드 8px 43개 · 17px 4개 · 10px 2개 → 8px 이 사실상 표준인데
+   support-card 만 17px 로 튀어 같은 위계 카드가 다른 모양이 된다.
+   섹션 내 상담 CTA 는 56px 4개인데 방금 추가한 것만 48px 이라 높이가 갈린다.
+   ───────────────────────────────────────────────────────── */
+:root {
+  --fc-radius-card: 8px;
+  --fc-cta-height: 56px;
+}
+
+/* 카드 라운드 — support-card 를 표준으로 되돌린다 (hero-card 10px 은 장식이라 유지)
+   .support-duo .support-card 가 17px 를 잡고 있어 같은 특이도로 맞춰야 이긴다.
+   17px 는 이미지 컨테이너용 라운드다. support-card 는 이미지 0개짜리 콘텐츠 카드라 8px 가 맞다. */
+.support-duo .support-card { border-radius: var(--fc-radius-card); }
+
+/* [죽은 규칙 교정] 기존 CSS 가 .faq-list details 를 지정하는데 HTML 클래스는 .rp-faq-list 다.
+   선택자가 아무것도 못 잡아 FAQ 아코디언에 카드 라운드가 적용되지 않고 있었다. */
+.rp-faq-list details { border-radius: var(--fc-radius-card); }
+
+/* 섹션 내 상담 CTA 높이를 하나로 */
+.section-cta .button,
+.rp-system-cta,
+.rp-revisit__cta,
+.rp-ops__cta { min-height: var(--fc-cta-height); }
