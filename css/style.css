@@ -11337,3 +11337,20 @@ section.section-pad,
       url(../assets/supportbg-2400.webp) type("image/webp")
     ) center 42% / cover no-repeat;
 }
+
+/* ─────────────────────────────────────────────────────────
+   [전환] 실측: 19섹션 중 12개에 행동버튼이 없었다.
+   특히 #cost·#franchise·#terms·#revenue 핵심 4연속 구간이 전부 CTA 0이라,
+   비용을 확인한 방문자가 상담까지 가려면 15개 섹션을 지나야 했다.
+   가장 의사가 높은 두 지점(#cost 직후·#revenue 직후)에 경로를 연다.
+   ───────────────────────────────────────────────────────── */
+.section-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+.section-cta .button { min-height: 48px; }
+@media (max-width: 640px) {
+  .section-cta { margin-top: 22px; }
+  .section-cta .button { width: 100%; justify-content: center; }
+}
