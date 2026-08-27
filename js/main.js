@@ -459,6 +459,18 @@
     }
 
     const data = new FormData(inquiryForm);
+
+    // 스팸 봇 차단. 화면에 안 보이는 함정 칸이라 사람은 채울 수 없다.
+    // 채워져 있으면 봇이므로 서버로 보내지 않고, 봇에게는 성공한 것처럼 보이게 해 재시도를 막는다.
+    if (String(data.get("company") || "").trim()) {
+      if (formStatus) {
+        formStatus.textContent = "상담 신청이 접수되었습니다.";
+        formStatus.classList.add("is-ready", "is-done");
+      }
+      inquiryForm.reset();
+      return;
+    }
+
     const name = String(data.get("name") || "").trim();
     const phone = String(data.get("phone") || "").trim();
     const region = String(data.get("region") || "").trim();
@@ -516,7 +528,6 @@
           region,
           message,
           privacy: true,
-          company: String(data.get("company") || ""),
           source: "homepage",
         }),
       });
