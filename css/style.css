@@ -11322,3 +11322,18 @@ section.section-pad,
   .rp-system-grid > * { height: 100%; }
   .rp-sys-card { min-height: 0; display: flex; flex-direction: column; }
 }
+
+/* ─────────────────────────────────────────────────────────
+   [톤] #support 만 다른 섹션보다 눈에 띄게 밝았다.
+   실측 픽셀 밝기: #revenue 31 · #education 33 · #support 43.
+   스크림 시작색이 rgba(7,88,60)이라 뒤 매장 사진의 밝은 초록이 그대로 올라왔다.
+   사진은 계속 보이게 두고(사장님 지시) 스크림 색만 내려 딥그린으로 맞춘다.
+   ───────────────────────────────────────────────────────── */
+.support-section {
+  background:
+    linear-gradient(170deg, rgba(5, 62, 43, 0.91) 0%, rgba(4, 44, 32, 0.94) 58%, rgba(3, 30, 22, 0.95) 100%),
+    image-set(
+      url(../assets/supportbg-2400.avif) type("image/avif"),
+      url(../assets/supportbg-2400.webp) type("image/webp")
+    ) center 42% / cover no-repeat;
+}
