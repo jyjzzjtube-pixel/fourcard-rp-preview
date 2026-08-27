@@ -16,7 +16,12 @@
   const ICON_CLOSE = ICON_SVG('<path d="M18 6 6 18"/><path d="m6 6 12 12"/>');
 
   // 메뉴가 열린 동안 배경을 보조기기·탭 이동에서 제외할 대상
-  const backgroundRegions = () => [document.querySelector("#main"), document.querySelector(".site-footer")].filter(Boolean);
+  const backgroundRegions = () => [
+    document.querySelector("#main"),
+    document.querySelector(".site-footer"),
+    document.querySelector(".mobile-actions"),  // 메뉴 뒤에 가려지지만 탭으로 닿던 전화·문의 링크
+    document.querySelector(".sticky-cta"),      // JS로 나중에 생기므로 매번 다시 찾는다
+  ].filter(Boolean);
 
   const setMenu = (open) => {
     if (!menuButton || !mobileMenu) return;
@@ -320,6 +325,8 @@
       const b = document.createElement("button");
       b.type = "button";
       b.setAttribute("aria-label", i + 1 + "번째 묶음 보기");
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-selected", i === 0 ? "true" : "false");
       if (i === 0) b.classList.add("is-on");
       b.addEventListener("click", () => {
         const step = track.scrollWidth / pages;
@@ -334,7 +341,10 @@
     const syncDots = () => {
       const step = track.scrollWidth / pages;
       const idx = Math.min(pages - 1, Math.round(track.scrollLeft / step));
-      dotEls.forEach((d, i) => d.classList.toggle("is-on", i === idx));
+      dotEls.forEach((d, i) => {
+        d.classList.toggle("is-on", i === idx);
+        d.setAttribute("aria-selected", i === idx ? "true" : "false");
+      });
     };
     track.addEventListener("scroll", () => {
       if (track.__t) clearTimeout(track.__t);
@@ -362,6 +372,13 @@
     ["pointerdown", "wheel", "touchstart", "keydown"].forEach((ev) =>
       track.addEventListener(ev, pauseAuto, { passive: true })
     );
+    // 읽는 중에 움직이지 않게 한다. 포커스나 마우스가 안에 있는 동안은 멈춘 상태를 유지한다.
+    const holdAuto = () => { paused = true; stopAuto(); if (resumeTimer) { clearTimeout(resumeTimer); resumeTimer = null; } };
+    const releaseAuto = () => { if (track.matches(":hover") || track.contains(document.activeElement)) return; pauseAuto(); };
+    track.addEventListener("focusin", holdAuto);
+    track.addEventListener("mouseenter", holdAuto);
+    track.addEventListener("focusout", releaseAuto);
+    track.addEventListener("mouseleave", releaseAuto);
     track.addEventListener("mouseenter", stopAuto);
     track.addEventListener("mouseleave", () => { if (!paused) startAuto(); });
 
