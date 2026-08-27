@@ -353,14 +353,6 @@ ul {
   color: var(--ink);
 }
 
-.hero-copy {
-  max-width: 500px;
-  margin-top: 22px;
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.45;
-}
-
 .hero-actions {
   display: flex;
   align-items: center;
@@ -528,13 +520,8 @@ ul {
   grid-template-columns: 1.25fr 0.75fr;
   gap: 120px;
   align-items: end;
-}
-
-/* 위계 규칙: 풀와이드 헤드 = 52px, 2단 좁은칼럼 헤드 = 48px.
-   faq-title은 0.72fr 좁은칼럼이므로 48px 그룹으로 옮겼다 */
-.section-title h2,
-.space-head h2,
-.franchise-head h2 {
+}.section-title h2,
+.franchise-head h2{
   max-width: 760px;
   font-size: 48px;
   font-weight: 700;
@@ -592,88 +579,11 @@ ul {
   to {
     transform: translateX(-50%);
   }
-}
-
-.community-story {
-  display: grid;
-  grid-template-columns: 56% 44%;
-  min-height: 820px;
-  background: var(--paper-mint);
-}
-
-.community-media {
-  min-height: 0;
-  aspect-ratio: 4 / 3;
-  align-self: center;
-  overflow: hidden;
-}
-
-.community-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: var(--crop-x, 50%) var(--crop-y, 50%);
-  transform: scale(var(--crop-scale, 1));
-}
-
-.community-copy {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 100px clamp(48px, 6vw, 110px);
-}
-
-.community-copy h2,
-.system-copy h2,
-.principle-title h2,
-.contact-copy h2,
-.faq-title h2 {
+}.contact-copy h2{
   font-size: 48px;
   font-weight: 700;
   letter-spacing: 0;
   line-height: 1.2;
-}
-
-.community-copy > p {
-  margin-top: 30px;
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.85;
-}
-
-.experience-list {
-  margin-top: 54px;
-  border-top: 1px solid rgba(7, 86, 59, 0.24);
-}
-
-.experience-list > div {
-  display: grid;
-  grid-template-columns: 42px 1fr;
-  gap: 18px;
-  padding: 22px 0;
-  border-bottom: 1px solid rgba(7, 86, 59, 0.24);
-}
-
-.experience-list dt {
-  color: var(--green-bright);
-  font-family: inherit;
-  letter-spacing: 0.02em;
-  font-size: 16px;
-}
-
-.experience-list dd {
-  display: grid;
-  gap: 4px;
-}
-
-.experience-list strong {
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.experience-list span {
-  color: var(--ink-soft);
-  font-size: 14px;
 }
 
 .section-pad {
@@ -814,14 +724,6 @@ ul {
   background: var(--paper-soft);
 }
 
-.branch-lead {
-  max-width: 620px;
-  margin-top: 26px;
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.45;
-}
-
 /* 지역별 매장 수가 1~9개라 균등 4칼럼은 큰 빈 공간을 만들고,
    multi-column은 카드를 쪼갤 수 없어 칼럼 높이가 2.6배까지 벌어졌다.
    3칼럼 + 최다 지역(대구 9개)만 2칼럼 폭으로 펼쳐 행마다 높이를 맞춘다.
@@ -928,16 +830,6 @@ ul {
   font-weight: 700;
 }
 
-.branch-addr {
-  display: block;
-  /* 1칼럼 전환 시 51자까지 늘어남 → 12px 기준 45자 제한 */
-  max-width: 540px;
-  margin-top: 4px;
-  color: var(--ink-soft);
-  font-size: 14px;
-  line-height: 1.55;
-}
-
 .branch-note {
   /* 각주가 전폭으로 늘어나 한 줄 156자가 됐다 → 12px 기준 45자(540px)로 제한 */
   max-width: 540px;
@@ -945,39 +837,6 @@ ul {
   color: var(--ink-soft);
   font-size: 14px;
   line-height: 1.45;
-}
-
-.system-section {
-  padding: var(--sp-section) 0;
-  /* 실제 운영 매장 사진을 딥그린 뒤에 깔아 "운영 시스템"을 실사로 보여준다.
-     오버레이 0.85/0.91 — 흰 텍스트 최악 7.5:1, 골드 4.7:1로 AA 유지하면서 실사가 읽히게 */
-  /* AVIF 우선 + WebP 폴백. 오버레이 아래라 1.5x면 충분 */
-  background:
-    linear-gradient(180deg, rgba(6, 61, 45, 0.85), rgba(4, 43, 32, 0.91)),
-    image-set(
-      url(../assets/systembg-2400.avif) type("image/avif"),
-      url(../assets/systembg-2400.webp) type("image/webp")
-    ) center 30% / cover no-repeat;
-  color: #fff;
-}
-
-.system-grid {
-  display: grid;
-  grid-template-columns: 0.82fr 1.18fr;
-  gap: 120px;
-}
-
-.system-copy {
-  position: sticky;
-  top: 130px;
-  align-self: start;
-}
-
-.system-copy > p {
-  max-width: 480px;
-  margin-top: 30px;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 16px;
 }
 
 .system-list {
@@ -1011,26 +870,9 @@ ul {
   font-size: 18px;
 }
 
-.space-story {
-  background: var(--paper-soft);
-}
-
-.space-head {
-  display: grid;
-  grid-template-columns: 1fr 0.45fr;
-  align-items: end;
-  gap: 80px;
-}
-
 .space-head .kicker {
   grid-column: 1 / -1;
   margin-bottom: 0;
-}
-
-.space-head p:last-child {
-  padding-bottom: 8px;
-  color: var(--ink-soft);
-  font-size: 16px;
 }
 
 .space-mosaic {
@@ -1046,10 +888,6 @@ ul {
   position: relative;
   overflow: hidden;
   background: var(--paper-mint);
-}
-
-.mosaic-main {
-  grid-row: 1 / 3;
 }
 
 .space-mosaic .crop-frame,
@@ -1175,66 +1013,6 @@ ul {
   font-size: 14px;
 }
 
-/* 운영 원칙 실사 : 밝고 정돈된 매장으로 책임 운영 신뢰감 부여 */
-.principle-visual {
-  margin-top: 34px;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.principle-visual img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: var(--crop-x, 50%) var(--crop-y, 50%);
-  transform: scale(var(--crop-scale, 1));
-}
-
-.journey-list {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  margin-top: 76px;
-  padding: 0;
-  border-top: 1px solid var(--ink);
-  list-style: none;
-}
-
-.journey-list li {
-  min-height: 260px;
-  padding: 24px 22px 30px 0;
-  border-right: 1px solid var(--line);
-}
-
-.journey-list li + li {
-  padding-left: 22px;
-}
-
-.journey-list li:last-child {
-  border-right: 0;
-}
-
-.journey-list span {
-  color: var(--green-bright);
-  font-family: inherit;
-  letter-spacing: 0.02em;
-  font-size: 16px;
-}
-
-.journey-list strong {
-  display: block;
-  margin-top: 68px;
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.journey-list p {
-  margin-top: 14px;
-  color: var(--ink-soft);
-  font-size: 14px;
-  line-height: 1.45;
-}
-
 .scope-table {
   margin-top: 54px;
   border-top: 1px solid var(--line);
@@ -1264,18 +1042,6 @@ ul {
   font-size: 14px;
 }
 
-.principle-band {
-  padding: 108px 0;
-  background: var(--paper-mint);
-}
-
-.principle-grid {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 120px;
-  align-items: start;
-}
-
 .principle-items {
   border-top: 1px solid rgba(7, 86, 59, 0.25);
 }
@@ -1300,75 +1066,6 @@ ul {
   margin-top: 18px;
   color: var(--ink-soft);
   font-size: 14px;
-}
-
-.faq-section {
-  background: var(--paper);
-}
-
-.faq-grid {
-  display: grid;
-  grid-template-columns: 0.72fr 1.28fr;
-  gap: 120px;
-}
-
-.faq-title > p:last-child {
-  max-width: 360px;
-  margin-top: 28px;
-  color: var(--ink-soft);
-}
-
-.faq-list {
-  min-width: 0;
-  border-top: 1px solid var(--ink);
-}
-
-.faq-list details {
-  min-width: 0;
-  overflow: hidden;
-  border-bottom: 1px solid var(--line);
-}
-
-.faq-list summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  min-height: 86px;
-  padding-right: 4px;
-  overflow: hidden;
-  list-style: none;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.faq-list summary span {
-  min-width: 0;
-}
-
-.faq-list summary::-webkit-details-marker {
-  display: none;
-}
-
-.faq-list summary svg {
-  flex: 0 0 auto;
-  width: 20px;
-  height: 20px;
-  transition: transform 250ms var(--ease);
-}
-
-.faq-list details[open] summary svg {
-  transform: rotate(45deg);
-}
-
-.faq-list details > p {
-  /* 한 줄 45자 이하로 유지 (15px 기준 약 640px) — 넓은 화면 늘어짐 방지 */
-  max-width: 640px;
-  padding: 0 44px 28px 0;
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.8;
 }
 
 .contact-section {
@@ -1910,12 +1607,6 @@ ul {
   width: 100%;
 }
 
-.crop-toolbar-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 16px;
-}
-
 .crop-toolbar .crop-save {
   border-color: var(--green);
   background: var(--green);
@@ -1978,29 +1669,11 @@ ul {
 
   .desktop-nav {
     gap: 24px;
-  }
-
-  .section-title h2,
-  .space-head h2,
-  .franchise-head h2,
-  .faq-title h2,
-  .community-copy h2,
-  .system-copy h2,
-  .principle-title h2,
-  .contact-copy h2 {
+  }.section-title h2,
+.franchise-head h2,
+.contact-copy h2{
     font-size: 48px;
-  }
-
-  .community-copy {
-    padding-right: 54px;
-    padding-left: 54px;
-  }
-
-  /* 본문 2단그리드는 폭이 줄어도 4개 섹션이 같은 간격을 유지한다 */
-  .intro-grid,
-  .system-grid,
-  .principle-grid,
-  .faq-grid {
+  }.intro-grid{
     gap: 70px;
   }
 
@@ -2010,28 +1683,6 @@ ul {
   .space-mosaic {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
-  }
-
-  .mosaic-main {
-    grid-row: auto;
-    grid-column: 1 / -1;
-    aspect-ratio: 16 / 9;
-  }
-
-  .mosaic-side {
-    aspect-ratio: 3 / 2;
-  }
-
-  .journey-list {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .journey-list li:nth-child(3) {
-    border-right: 0;
-  }
-
-  .journey-list li:nth-child(n + 4) {
-    border-top: 1px solid var(--line);
   }
 }
 
@@ -2099,31 +1750,7 @@ ul {
   .intro-grid {
     grid-template-columns: 1fr;
     gap: 52px;
-  }
-
-  .community-story {
-    grid-template-columns: 1fr;
-  }
-
-  .community-media {
-    min-height: 620px;
-  }
-
-  .community-copy {
-    padding: 90px 44px;
-  }
-
-  .system-grid {
-    grid-template-columns: 1fr;
-    gap: 52px;
-  }
-
-  .system-copy {
-    position: static;
-  }
-
-  .space-head,
-  .franchise-head {
+  }.franchise-head{
     grid-template-columns: 1fr;
     gap: 26px;
   }
@@ -2168,11 +1795,7 @@ ul {
 
   .site-footer {
     padding-bottom: 92px;
-  }
-
-  /* 1열 전환 후 본문이 전폭으로 늘어나 한 줄 47자가 된다 → 45자 이하로 제한 */
-  .intro-copy > p,
-  .community-copy > p {
+  }.intro-copy > p{
     max-width: 640px;
   }
 
@@ -2180,22 +1803,6 @@ ul {
   .space-mosaic {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
-  }
-
-  .mosaic-main {
-    grid-column: 1 / -1;
-    grid-row: 1;
-    aspect-ratio: 16 / 9;
-  }
-
-  .principle-grid {
-    grid-template-columns: 1fr;
-    gap: 52px;
-  }
-
-  .faq-grid {
-    grid-template-columns: 1fr;
-    gap: 52px;
   }
 
   .contact-section {
@@ -2277,12 +1884,6 @@ ul {
     margin-bottom: 16px;
   }
 
-  .hero-copy {
-    max-width: 330px;
-    margin-top: 15px;
-    font-size: 16px;
-  }
-
   .hero-actions {
     align-items: flex-start;
     flex-direction: column;
@@ -2310,16 +1911,9 @@ ul {
 
   .brand-intro {
     padding-top: 80px;
-  }
-
-  .section-title h2,
-  .space-head h2,
-  .franchise-head h2,
-  .faq-title h2,
-  .community-copy h2,
-  .system-copy h2,
-  .principle-title h2,
-  .contact-copy h2 {
+  }.section-title h2,
+.franchise-head h2,
+.contact-copy h2{
     font-size: 28px;
     line-height: 1.23;
   }
@@ -2339,32 +1933,7 @@ ul {
   .marquee span {
     margin-inline: 22px;
     font-size: 18px;
-  }
-
-  .community-media {
-    min-height: 390px;
-  }
-
-  .community-copy {
-    padding: 72px 20px;
-  }
-
-  .community-copy > p {
-    margin-top: 22px;
-    font-size: 16px;
-  }
-
-  .experience-list {
-    margin-top: 38px;
-  }
-
-  .experience-list > div {
-    grid-template-columns: 34px 1fr;
-    gap: 12px;
-  }
-
-  .section-pad,
-  .system-section {
+  }.section-pad{
     padding: 92px 0;
   }
 
@@ -2403,10 +1972,6 @@ ul {
     font-size: 18px;
   }
 
-  .system-grid {
-    gap: 64px;
-  }
-
   .system-list li {
     grid-template-columns: 40px 1fr;
     gap: 14px;
@@ -2424,62 +1989,15 @@ ul {
     margin-top: 48px;
   }
 
-  /* 1열에서도 각 컷을 원본 비율로 (메인 16:9 / 사이드 3:2) */
-  .mosaic-side {
-    aspect-ratio: 3 / 2;
-  }
-
-  .mosaic-main {
-    grid-column: 1;
-  }
-
   .space-mosaic figcaption {
     align-items: flex-start;
     flex-direction: column;
     gap: 4px;
   }
 
-  .journey-list {
-    grid-template-columns: 1fr;
-    margin-top: 48px;
-  }
-
-  .journey-list li,
-  .journey-list li + li {
-    display: grid;
-    grid-template-columns: 36px 92px 1fr;
-    align-items: start;
-    min-height: 0;
-    padding: 24px 0;
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .journey-list li:nth-child(n + 4) {
-    border-top: 0;
-  }
-
-  .journey-list strong,
-  .journey-list p {
-    margin-top: 0;
-  }
-
-  .journey-list strong {
-    font-size: 16px;
-  }
-
   .scope-table > div {
     grid-template-columns: 1fr;
     gap: 8px;
-  }
-
-  .principle-band {
-    padding: 82px 0;
-  }
-
-  .faq-list summary {
-    min-height: 78px;
-    font-size: 16px;
   }
 
   .contact-visual {
@@ -2544,51 +2062,22 @@ ul {
   .image-reveal {
     overflow: hidden;
   }
-}
-
-/* ===================== FOURCARD BRAND GRAPHIC LAYER =====================
-   사진이 없는 섹션에 포카드 브랜드 아이덴티티(실제 로고 기반 그래픽)를
-   워터마크·그라데이션으로 넣어 밋밋함을 제거. 컨셉/컬러 100% 일치.
-   ===================================================================== */
-.brand-intro,
-.system-section,
-.franchise-section,
-.principle-band,
-.faq-section {
+}.brand-intro,
+.franchise-section{
   position: relative;
   overflow: hidden;
-}
-
-.brand-intro > *,
-.system-section > *,
-.franchise-section > *,
-.principle-band > *,
-.faq-section > * {
+}.brand-intro > *,
+.franchise-section > *{
   position: relative;
   z-index: 1;
-}
-
-.brand-intro::before,
-.system-section::before,
-.franchise-section::before,
-.principle-band::before,
-.faq-section::before {
+}.brand-intro::before,
+.franchise-section::before{
   position: absolute;
   z-index: 0;
   background-repeat: no-repeat;
   background-size: contain;
   content: "";
   pointer-events: none;
-}
-
-/* 운영 시스템(딥그린) : 실사 배경을 깔았으므로 골드 엠블럼은 은은하게만 */
-.system-section::before {
-  right: 40px;
-  bottom: -46px;
-  width: 520px;
-  height: 305px;
-  background-image: url(../assets/brand-emblem-gold.png);
-  opacity: 0.10;
 }
 
 /* 브랜드 경험 : 그린 엠블럼 */
@@ -2599,32 +2088,8 @@ ul {
   height: 211px;
   background-image: url(../assets/brand-emblem-green.png);
   opacity: 0.09;
-}
-
-/* 운영 원칙(민트) : 그린 엠블럼 */
-.principle-band::before {
-  top: 18px;
-  right: 24px;
-  width: 320px;
-  height: 187px;
-  background-image: url(../assets/brand-emblem-green.png);
-  opacity: 0.11;
-}
-
-/* FAQ : 그린 엠블럼 */
-.faq-section::before {
-  right: -40px;
-  bottom: 36px;
-  width: 320px;
-  height: 187px;
-  background-image: url(../assets/brand-emblem-green.png);
-  opacity: 0.08;
-}
-
-/* 흰 섹션 브랜드 텍스처(대각 헤어라인) */
-.brand-intro::after,
-.franchise-section::after,
-.faq-section::after {
+}.brand-intro::after,
+.franchise-section::after{
   position: absolute;
   z-index: 0;
   background-image: repeating-linear-gradient(135deg, rgba(7, 86, 59, 0.045) 0 1px, transparent 1px 16px);
@@ -2650,15 +2115,6 @@ ul {
   mask-image: linear-gradient(0deg, #000, transparent 75%);
 }
 
-.faq-section::after {
-  top: 0;
-  left: 0;
-  width: 34%;
-  height: 58%;
-  -webkit-mask-image: linear-gradient(180deg, #000, transparent 80%);
-  mask-image: linear-gradient(180deg, #000, transparent 80%);
-}
-
 /* 가맹 여정 : 브랜드 그라데이션 + 좌측 마크 */
 .franchise-section {
   background: linear-gradient(180deg, var(--paper) 0%, #071e16 100%);
@@ -2673,18 +2129,10 @@ ul {
   opacity: 0.09;
 }
 
-@media (max-width: 900px) {
-  .brand-intro::before,
-  .franchise-section::before,
-  .principle-band::before,
-  .faq-section::before {
+@media (max-width: 900px) {.brand-intro::before,
+.franchise-section::before{
     width: 340px;
     height: 80px;
-  }
-
-  .system-section::before {
-    width: 420px;
-    height: 98px;
   }
 }
 
@@ -2858,38 +2306,31 @@ ul {
   .region-grid { grid-template-columns: minmax(0, 1fr); gap: 18px; }
   .region-group[data-span="2"] { grid-column: span 1; }
   .region-group[data-span="2"] ul { columns: 1; }
-}
-
-
-/* ── 제목 고아 줄 방지 (2026-07-29) ──
-   1600px 구간에서 운영 시스템 H2가 "지원합니/다"로 끊겼다.
-   text-wrap: balance는 줄 길이를 스스로 고르게 나눠 한 글자만 남는 줄을 없앤다.
-   미지원 브라우저는 기존 동작이므로 안전하다 */
-h1, h2, h3,
-.hero-lead,
-.branch-lead,
-.figure-caption strong {
+}h1,
+h2,
+h3,
+.hero-lead{
   text-wrap: balance;
 }
 
 /* 좁은 칼럼에 48px 제목이 들어가는 구간은 한 단 낮춘다 */
 @media (min-width: 1181px) and (max-width: 1700px) {
-  .system-copy h2 {
-    font-size: 48px;
-  }
-}
-
-
-/* ── 한국어 조판: 단어 중간 끊김 방지 (2026-07-29) ──
-   기본값은 CJK를 어디서든 끊어 "되도/록", "지/원합니다"처럼 한 글자가 남는다.
-   keep-all은 어절(공백) 단위로만 끊어 읽기 흐름을 지킨다.
-   한 어절이 칼럼보다 넓은 예외 상황만 anywhere로 흘려 넘침을 막는다 */
-h1, h2, h3, h4,
-p, li, dt, dd,
-figcaption, label,
-.hero-lead, .hero-copy, .kicker,
-.branch-name, .branch-addr, .branch-lead,
-.form-help, .trust-note, .footer-legal {
+}h1,
+h2,
+h3,
+h4,
+p,
+li,
+dt,
+dd,
+figcaption,
+label,
+.hero-lead,
+.kicker,
+.branch-name,
+.form-help,
+.trust-note,
+.footer-legal{
   word-break: keep-all;
   overflow-wrap: break-word;
 }
@@ -3035,30 +2476,10 @@ figcaption, label,
   .branch-meta small { opacity: 1; }
 }
 
-
-/* 30호점 돌파 서브 헤드라인 — 헤드라인과 안내문 사이의 브랜드 선언 */
-.branch-headline {
-  max-width: 760px;
-  margin-top: 20px;
-  color: var(--green-bright);
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 1.42;
-  letter-spacing: -0.01em;
-  word-break: keep-all;
-}
-
-.branch-headline + .branch-lead {
-  margin-top: 18px;
-}
-
 @media (max-width: 900px) {
-  .branch-headline { font-size: 18px; }
 }
 
 @media (max-width: 640px) {
-  .branch-headline { font-size: 18px; }
-  .branch-headline br { display: none; }
 }
 
 
@@ -3068,14 +2489,6 @@ figcaption, label,
    금액은 만 단위로 줄이지 않고 1,000,000 형식 그대로 쓴다 */
 .cost-section {
   background: var(--paper-soft);
-}
-
-.cost-lead {
-  max-width: 700px;
-  margin-top: 24px;
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.45;
 }
 
 .cost-grid {
@@ -3239,14 +2652,6 @@ figcaption, label,
   background: var(--paper);
 }
 
-.process-lead {
-  max-width: 760px;
-  margin-top: 24px;
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.45;
-}
-
 .process-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3369,14 +2774,6 @@ figcaption, label,
 .support-section .kicker { color: #f4e6c4; }
 .support-section .support-no { color: #f4e6c4; }
 
-.support-lead {
-  max-width: 720px;
-  margin-top: 24px;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 16px;
-  line-height: 1.45;
-}
-
 .support-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -3429,77 +2826,7 @@ figcaption, label,
   line-height: 1.45;
 }
 
-/* ══ 대회·커뮤니티 — 2단 대비 구성 ══ */
-.tournament-section {
-  padding: var(--sp-section) 0;
-  background: var(--paper-soft);
-}
-
-.tournament-grid {
-  display: grid;
-  grid-template-columns: 44% 1fr;
-  gap: 70px;
-  align-items: start;
-}
-
-.tournament-copy h2 {
-  margin-top: 18px;
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.tournament-copy > p {
-  margin-top: 26px;
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.78;
-}
-
 .tournament-copy .button { margin-top: 34px; }
-
-.tournament-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-  padding: 0;
-  list-style: none;
-}
-
-.tournament-list li {
-  padding: 28px 26px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  background: rgba(255, 255, 255, 0.045);
-  transition: transform 300ms var(--ease), box-shadow 300ms var(--ease);
-}
-
-.tournament-list li:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 32px rgba(7, 86, 59, 0.1);
-}
-
-.tournament-list h3 {
-  color: var(--green-bright);
-  font-size: 28px;
-  font-weight: 700;
-}
-
-.tournament-list p {
-  margin-top: 9px;
-  color: var(--ink-soft);
-  font-size: 18px;
-  line-height: 1.4;
-}
-
-/* ══ 점포 검토 — 가로 스텝 플로우 ══ */
-.site-lead {
-  max-width: 720px;
-  margin-top: 24px;
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.45;
-}
 
 .site-flow {
   display: grid;
@@ -3578,33 +2905,16 @@ figcaption, label,
 
 @media (max-width: 1180px) {
   .support-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .tournament-grid { grid-template-columns: minmax(0, 1fr); gap: 44px; }
-  .tournament-copy h2 { font-size: 48px; }
   .site-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .site-flow li:not(:last-child)::after { display: none; }
 }
 
 @media (max-width: 640px) {
   .support-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
-  .tournament-copy h2 { font-size: 28px; }
-  .tournament-list { grid-template-columns: minmax(0, 1fr); gap: 14px; }
   .site-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .support-card, .tournament-list li { transition: none; }
-  .support-card:hover, .tournament-list li:hover { transform: none; }
-}
-
-
-/* 30호점 근거 각주 — 누적 개설과 현재 운영을 구분해 표기 */
-.branch-basis {
-  max-width: 700px;
-  margin-top: 14px;
-  color: var(--ink-soft);
-  font-size: 14px;
-  line-height: 1.45;
-  word-break: keep-all;
+@media (prefers-reduced-motion: reduce) {.support-card{ transition: none; }.support-card:hover{ transform: none; }
 }
 
 /* ══ 매출 공개 (2026-08-10) ══
@@ -3617,14 +2927,6 @@ figcaption, label,
 
 .revenue-section .section-title h2 { color: #fff; }
 .revenue-section .kicker { color: #f4e6c4; }
-
-.revenue-lead {
-  max-width: 720px;
-  margin-top: 24px;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 16px;
-  line-height: 1.45;
-}
 
 .revenue-grid {
   display: grid;
@@ -3773,11 +3075,7 @@ figcaption, label,
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-  }
-
-  /* 동의 체크박스 — 16px 박스를 라벨 전체로 눌리게 한다 */
-  .consent > label,
-  .consent-row {
+  }.consent > label{
     display: flex;
     align-items: center;
     min-height: 44px;
@@ -3802,17 +3100,7 @@ figcaption, label,
     align-items: center;
     min-height: 44px;
   }
-}
-
-/* 2026-08-11: RunnerPub 8/9/12 구조를 포카드 데이터와 톤으로 재구성 */
-.event-ops-section {
-  background: var(--green-deep);
-  color: #fff;
-}
-
-.event-ops-head,
-.supply-head,
-.platform-head {
+}.supply-head{
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 520px);
   align-items: end;
@@ -3825,130 +3113,18 @@ figcaption, label,
 .platform-head .kicker {
   grid-column: 1 / -1;
   margin-bottom: -28px;
-}
-
-.event-ops-head h2,
-.supply-head h2,
-.platform-head h2 {
+}.supply-head h2{
   font-size: var(--fs-h2);
   line-height: 1.17;
   word-break: keep-all;
-}
-
-.event-ops-head > p:last-child,
-.supply-head > p:last-child,
-.platform-head > p:last-child {
+}.supply-head > p:last-child{
   color: rgba(255, 255, 255, 0.82);
   font-size: 16px;
   line-height: 1.45;
   word-break: keep-all;
 }
 
-.event-ops-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.event-ops-card {
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: var(--r-md);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.event-ops-card picture {
-  display: block;
-  aspect-ratio: 1;
-  overflow: hidden;
-  background: #f4e6c4;
-}
-
-.event-ops-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 500ms var(--ease);
-}
-
-.event-ops-card:hover img { transform: scale(1.035); }
-
-.event-ops-copy {
-  min-height: 250px;
-  padding: 32px;
-}
-
-.event-ops-copy > span {
-  display: block;
-  margin-bottom: 32px;
-  color: #f4e6c4;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.event-ops-copy h3 {
-  margin-bottom: 16px;
-  font-size: var(--fs-h3);
-  line-height: 1.3;
-}
-
-.event-ops-copy p {
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 18px;
-  line-height: 1.45;
-  word-break: keep-all;
-}
-
-.event-ops-flow {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
-  align-items: center;
-  gap: 0;
-  margin-top: 12px;
-  padding: 38px 40px;
-  border-radius: var(--r-md);
-  background: rgba(255, 255, 255, 0.045);
-  color: var(--ink);
-}
-
-.event-ops-flow > div {
-  display: grid;
-  grid-template-columns: 30px 1fr;
-  column-gap: 12px;
-  padding-right: 28px;
-  border-right: 1px solid var(--line);
-}
-
-.event-ops-flow > div + div { padding-left: 28px; }
-
-.event-ops-flow > div span {
-  grid-row: 1 / 3;
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: var(--paper-mint);
-  color: var(--green-bright);
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.event-ops-flow strong { font-size: 16px; }
-.event-ops-flow p { color: var(--ink-soft); font-size: 14px; }
-
-.event-ops-flow .button-dark {
-  margin-left: 32px;
-  background: var(--green-deep);
-  color: #fff;
-  white-space: nowrap;
-}
-
-.event-ops-flow .button-dark:hover { background: var(--green-bright); }
-
-.supply-section { background: var(--paper); }
-.supply-head > p:last-child,
-.platform-head > p:last-child { color: var(--ink-soft); }
+.supply-section { background: var(--paper); }.supply-head > p:last-child{ color: var(--ink-soft); }
 
 .supply-grid {
   display: grid;
@@ -4052,79 +3228,15 @@ figcaption, label,
   line-height: 1.45;
 }
 
-.platform-section { background: var(--paper-mint); }
-
-.platform-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.platform-card {
-  position: relative;
-  display: grid;
-  grid-template-columns: 38px minmax(0, 1fr) 24px;
-  align-items: center;
-  gap: 20px;
-  min-height: 148px;
-  padding: 34px;
-  border: 1px solid rgba(7, 86, 59, 0.16);
-  border-radius: var(--r-md);
-  background: rgba(255, 255, 255, 0.045);
-  transition: transform 250ms var(--ease), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-a.platform-card:hover {
-  border-color: var(--green);
-  box-shadow: 0 14px 32px rgba(7, 61, 45, 0.1);
-  transform: translateY(-3px);
-}
-
 .platform-card > .icon { color: var(--green-bright); }
-.platform-card h3 { margin-bottom: 6px; font-size: 28px; line-height: 1.3; }
-.platform-card p { color: var(--ink-soft); font-size: 18px; line-height: 1.4; word-break: keep-all; }
-.platform-arrow { color: var(--green-bright); }
-
-.platform-status {
-  position: absolute;
-  top: 12px;
-  right: 14px;
-  color: var(--gold);
-  font-size: 14px;
-  font-weight: 700;
-}
 
 .platform-status.is-live { color: var(--green-bright); }
-.platform-card-development { background: var(--paper-soft); }
-
-.platform-note {
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(7, 86, 59, 0.18);
-  color: var(--ink-soft);
-  font-size: 14px;
-  line-height: 1.45;
-}
-
-.platform-note strong { color: var(--green-bright); }
 
 @media (max-width: 1180px) {
   .desktop-nav { gap: 20px; font-size: 14px; }
-  .event-ops-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .event-ops-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .event-ops-flow .button-dark { grid-column: 1 / -1; margin: 28px 0 0; }
 }
 
-@media (max-width: 900px) {
-  .community-media {
-    width: 100%;
-    min-width: 0;
-    min-height: 0;
-  }
-
-  .event-ops-head,
-  .supply-head,
-  .platform-head {
+@media (max-width: 900px) {.supply-head{
     grid-template-columns: minmax(0, 1fr);
     gap: 22px;
     margin-bottom: 36px;
@@ -4132,57 +3244,19 @@ a.platform-card:hover {
 
   .event-ops-head .kicker,
   .supply-head .kicker,
-  .platform-head .kicker { margin-bottom: 0; }
-
-  .event-ops-head h2,
-  .supply-head h2,
-  .platform-head h2 { font-size: 48px; }
-
-  .event-ops-flow,
-  .supply-process { grid-template-columns: minmax(0, 1fr); }
-
-  .event-ops-flow > div,
-  .event-ops-flow > div + div,
-  .supply-process > div,
-  .supply-process > div:first-child,
-  .supply-process > div:last-child {
+  .platform-head .kicker { margin-bottom: 0; }.supply-head h2{ font-size: 48px; }.supply-process{ grid-template-columns: minmax(0, 1fr); }.supply-process > div,
+.supply-process > div:first-child,
+.supply-process > div:last-child{
     padding: 22px 0;
     border-right: 0;
     border-bottom: 1px solid var(--line);
-  }
-
-  .event-ops-flow > div:first-child,
-  .supply-process > div:first-child { padding-top: 0; }
-  .event-ops-flow > div:nth-child(3),
-  .supply-process > div:last-child { border-bottom: 0; }
+  }.supply-process > div:first-child{ padding-top: 0; }.supply-process > div:last-child{ border-bottom: 0; }
   .supply-process > div { border-color: rgba(255, 255, 255, 0.16); }
 }
 
 @media (max-width: 640px) {
   .inline-link,
-  .footer-contact a { min-height: 45px; }
-
-  .event-ops-head h2,
-  .supply-head h2,
-  .platform-head h2 { font-size: 28px; }
-
-  .event-ops-head > p:last-child,
-  .supply-head > p:last-child,
-  .platform-head > p:last-child { font-size: 16px; }
-
-  .event-ops-grid,
-  .supply-grid,
-  .platform-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
-  .event-ops-card picture { aspect-ratio: 1; }
-  .event-ops-copy { min-height: 244px; padding: 22px 18px; }
-  .event-ops-copy > span { margin-bottom: 22px; }
-  .event-ops-copy h3 { font-size: 16px; }
-  .event-ops-copy p { font-size: 14px; line-height: 1.4; }
-
-  .event-ops-flow,
-  .supply-process { padding: 28px 24px; }
-  .event-ops-flow .button-dark { width: 100%; padding-inline: 14px; font-size: 14px; }
+  .footer-contact a { min-height: 45px; }.supply-head h2{ font-size: 28px; }.supply-head > p:last-child{ font-size: 16px; }.supply-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }.supply-process{ padding: 28px 24px; }
 
   .supply-card { min-height: 332px; padding: 24px 18px; }
   .supply-card > .icon { margin-bottom: 22px; }
@@ -4194,25 +3268,10 @@ a.platform-card:hover {
   .supply-card dt { font-size: 14px; }
   .supply-card dd { margin-top: 4px; font-size: 16px; }
 
-  .platform-card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    min-height: 286px;
-    padding: 42px 20px 24px;
-  }
-
   .platform-card > .icon { flex: 0 0 auto; }
-  .platform-card h3 { font-size: 16px; }
-  .platform-card p { font-size: 14px; }
-  .platform-arrow { margin-top: auto; }
-  .platform-status { top: 13px; right: 12px; }
-  .platform-note { font-size: 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .event-ops-card img,
-  .platform-card { transition: none; }
 }
 
 
@@ -4514,9 +3573,6 @@ a.platform-card:hover {
 .process-list > li.is-visible .process-no,
 .support-card.is-visible .support-no { animation: pop-in 520ms cubic-bezier(.34,1.56,.64,1) both; }
 
-/* ── 4. 매장 캐러셀 — 자동 슬라이드 + 진행 인디케이터 ── */
-.track-shell { position: relative; }
-
 .branch-dots {
   display: flex;
   justify-content: center;
@@ -4604,10 +3660,9 @@ a.platform-card:hover {
 .process-list > li:hover .process-no {
   transform: translateY(-2px) scale(1.06);
   transition: transform 300ms var(--ease);
-}
-
-/* ── 7. 카드 테두리 살아나기 — 골드 라인이 훑고 지나간다 ── */
-.region-group, .process-list > li, .tournament-list li, .cost-card {
+}.region-group,
+.process-list > li,
+.cost-card{
   position: relative;
 }
 
@@ -4833,11 +3888,6 @@ a.platform-card:hover {
   line-height: 1.55;
 }
 
-.hero-copy {
-  max-width: 46ch;
-  margin-top: 14px;
-}
-
 .hero-facts {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -4914,7 +3964,6 @@ a.platform-card:hover {
   .hero h1 { font-size: 28px; }
   .hero h1 em::after { height: 4px; bottom: -4px; }
   .hero-lead { margin-top: 18px; font-size: 16px; }
-  .hero-copy { margin-top: 12px; font-size: 16px; }
   .hero-facts { grid-template-columns: 1fr; gap: 8px; margin-top: 22px; }
   .hero-facts li { grid-template-columns: auto 1fr; align-items: baseline; gap: 4px 12px; padding: 11px 14px; }
   .hero-facts span { font-size: 14px; }
@@ -4934,35 +3983,20 @@ a.platform-card:hover {
   text-wrap: balance;
 }
 
-.block-desc {
-  max-width: 62ch;
-  margin-top: 14px;
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.8;
-  word-break: keep-all;
-}
-
 /* 딥그린 섹션에서는 부제·설명 색을 뒤집는다 (흰 배경 전제 색이 묻힌다) */
 .revenue-section .block-sub,
 .support-section .block-sub,
 .system-section .block-sub,
 .event-ops-section .block-sub,
-.contact-section .block-sub { color: #f4e6c4; }
-
-.revenue-section .block-desc,
+.contact-section .block-sub { color: #f4e6c4; }.revenue-section .block-desc,
 .support-section .block-desc,
-.system-section .block-desc,
-.event-ops-section .block-desc,
-.contact-section .block-desc { color: rgba(255, 255, 255, 0.82); }
+.contact-section .block-desc{ color: rgba(255, 255, 255, 0.82); }
 
 @media (max-width: 900px) {
   .block-sub { margin-top: 14px; font-size: 18px; }
-  .block-desc { margin-top: 12px; font-size: 16px; line-height: 1.45; }
 }
 @media (max-width: 640px) {
   .block-sub { font-size: 16px; }
-  .block-desc { font-size: 14px; }
 }
 
 /* ── 팩트 카드 그리드 (러너펍 카드 413x274 3열 20px) ────────── */
@@ -5128,51 +4162,7 @@ a.platform-card:hover {
   .terms-strip dd { font-size: 18px; }
 }
 
-/* ── 블록 13 FAQ 주제 · 블록 14 상담 경로 ──────────────────── */
-.faq-topics,
-.contact-routes {
-  display: grid;
-  gap: 12px;
-  margin-top: 26px;
-  padding: 0;
-  list-style: none;
-}
-
-.faq-topics li,
-.contact-routes li {
-  display: grid;
-  gap: 4px;
-  padding: 14px 16px;
-  border-left: 3px solid var(--gold);
-  border-radius: 0 var(--r-md, 10px) var(--r-md, 10px) 0;
-  background: var(--paper-soft);
-}
-
-.faq-topics strong,
-.contact-routes strong {
-  color: var(--ink);
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.4;
-}
-
-.faq-topics span,
-.contact-routes span {
-  color: var(--ink-soft);
-  font-size: 14px;
-  line-height: 1.4;
-  word-break: keep-all;
-}
-
-/* 상담 섹션은 딥그린이라 반전한다 */
-.contact-routes li { background: rgba(255, 255, 255, 0.06); }
-.contact-routes strong { color: #f4e6c4; }
-.contact-routes span { color: rgba(255, 255, 255, 0.82); }
-
 @media (max-width: 640px) {
-  .faq-topics, .contact-routes { margin-top: 20px; gap: 8px; }
-  .faq-topics li, .contact-routes li { padding: 12px 14px; }
-  .faq-topics span, .contact-routes span { font-size: 14px; }
 }
 
 /* ── 블록 07 입지 검토 5단계: 설명이 길어졌다 ───────────────── */
@@ -5208,25 +4198,14 @@ a.platform-card:hover {
     background: linear-gradient(180deg, rgba(7, 86, 59, 0.36), rgba(7, 86, 59, 0.12));
   }
   .process-section .fact-grid { margin-bottom: 10px; }
-}
-
-/* ── 블록 11·12 헤더: 2단 그리드에서 부제가 제목 오른쪽으로 튀었다 ──
-   4층 리듬(EN 라벨 / 제목 2줄 / 부제 / 설명)이 블록마다 같아야 한다.
-   나머지 12개 블록과 같이 단일 칼럼으로 세운다. */
-.supply-head,
-.platform-head {
+}.supply-head{
   grid-template-columns: minmax(0, 1fr);
   gap: 20px;
 }
 
 /* 기존 규칙이 gap 48px 을 -28px 로 상쇄하고 있었다. 단일 칼럼에서는 상쇄가 겹침이 된다 */
 .supply-head .kicker,
-.platform-head .kicker { margin-bottom: 0; }
-
-/* 기존 `> p:last-child` 가 흰색 0.72 라 밝은 섹션에서 설명이 사라진다.
-   블록 11·12 는 밝은 배경이므로 되돌린다 (특이도가 더 높아 명시적으로 잡는다) */
-.supply-head > p.block-desc,
-.platform-head > p.block-desc { color: var(--ink-soft); font-size: 16px; }
+.platform-head .kicker { margin-bottom: 0; }.supply-head > p.block-desc{ color: var(--ink-soft); font-size: 16px; }
 .supply-head > p.block-sub,
 .platform-head > p.block-sub { color: var(--ink); }
 
@@ -5247,7 +4226,6 @@ a.platform-card:hover {
 
   .hero { padding-top: 12px; }
   .hero .kicker { margin-bottom: 12px; }
-  .hero-copy { display: none; }
   .hero-lead { margin-top: 16px; }
   .hero-facts { margin-top: 18px; }
   .hero-facts li { padding: 9px 14px; }
@@ -6532,48 +5510,28 @@ a.rp-app-card:hover .rp-app-go {
   .rp-ops__shot img { transition: none; }
   .rp-revisit__card:hover { transform: none; }
   .rp-ops__card:hover .rp-ops__shot img { transform: none; }
-}
-
-/* ══════ ChatGPT 시안 반영 (2026-08-14 · 이미지실 회수분) ══════
-   시안 실측: 배경 #01120e~#041812 · 카드면 반투명 딥그린 + **골드 테두리**
-   · 섹션 배경에 스포트라이트 조명 · 아이콘은 골드 아웃라인
-   기존 구현과의 갭은 색이 아니라 (1)테두리 (2)조명 (3)장식 이었다 */
-
-/* ── 1. 카드 골드 테두리 (시안의 가장 큰 특징) ── */
-.rp-sys-card,
+}.rp-sys-card,
 .support-card,
 .fact-card,
 .cost-card,
-.platform-card,
-.tournament-list li,
 .supply-card,
-.region-group {
+.region-group{
   border: 1px solid rgba(189, 152, 73, 0.28);
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.055), rgba(4, 21, 15, 0.4));
-}
-
-.rp-sys-card:hover,
+}.rp-sys-card:hover,
 .support-card:hover,
-.fact-card:hover,
-.platform-card:hover {
+.fact-card:hover{
   border-color: rgba(217, 185, 120, 0.55);
-}
-
-/* ── 2. 섹션 스포트라이트 (시안 상단에서 빛이 내려오는 표현) ── */
-.rp-system,
+}.rp-system,
 .rp-edu,
 .support-section,
-.branch-list,
-.platform-section {
+.branch-list{
   position: relative;
   isolation: isolate;
-}
-
-.rp-system::before,
+}.rp-system::before,
 .rp-edu::before,
 .support-section::before,
-.branch-list::before,
-.platform-section::before {
+.branch-list::before{
   content: "";
   position: absolute;
   top: -10%;
@@ -6605,8 +5563,9 @@ a.rp-app-card:hover .rp-app-go {
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(4, 21, 15, 0.5));
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .rp-sys-card, .support-card, .fact-card, .platform-card { transition: none; }
+@media (prefers-reduced-motion: reduce) {.rp-sys-card,
+.support-card,
+.fact-card{ transition: none; }
 }
 
 
@@ -6749,12 +5708,6 @@ a.rp-app-card:hover .rp-app-go {
   width: 0;
 }
 
-/* 11_app — 시안: 좌측 골드 아이콘 + 우측 2줄, 가로 와이드 카드 */
-.platform-card {
-  align-items: center;
-  gap: 18px;
-}
-
 .platform-card .card-icon,
 .platform-card .fact-icon {
   flex: 0 0 auto;
@@ -6762,24 +5715,6 @@ a.rp-app-card:hover .rp-app-go {
   height: 48px;
   border-radius: var(--r-md);
 }
-
-/* 12_faq — 시안: 골드 + 기호, 열리면 회전 */
-.faq-list details {
-  border: 1px solid rgba(189, 152, 73, 0.3);
-  border-radius: var(--r-md);
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.faq-list summary::after {
-  content: "+";
-  color: var(--gold);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1;
-  transition: transform 250ms var(--ease);
-}
-
-.faq-list details[open] summary::after { transform: rotate(45deg); }
 
 /* 페이지네이션 — 시안: 현재 페이지만 그린 채움, 나머지 골드 테두리 */
 .rp-pg-num,
@@ -6807,29 +5742,17 @@ a.rp-app-card:hover .rp-app-go {
 .footer-legal {
   border-top: 1px solid rgba(189, 152, 73, 0.42);
   padding-top: 22px;
-}
-
-
-/* ══ 시안 대조 교정 (2026-08-14 · 라이브 vs 시안원본 1:1) ══
-   시안 카드는 배경이 비치지 않는 짙은 면이다.
-   라이브는 rgba .045 라 섹션 배경 사진이 카드 안으로 비쳐 지저분했다 */
-.rp-sys-card,
+}.rp-sys-card,
 .support-card,
 .fact-card,
-.platform-card,
-.tournament-list li,
 .supply-card,
 .cost-card,
-.region-group {
+.region-group{
   background: linear-gradient(160deg, rgba(9, 32, 24, 0.94), rgba(4, 21, 15, 0.96));
   backdrop-filter: blur(2px);
-}
-
-/* 시안 02_system 하단 — 전체폭 골드 테두리 강조 박스 */
-.rp-system-note,
-.system-note,
+}.rp-system-note,
 .supply-note,
-.support-note {
+.support-note{
   margin-top: 26px;
   padding: 20px 26px;
   border: 1px solid rgba(189, 152, 73, 0.42);
@@ -6891,12 +5814,8 @@ a.rp-app-card:hover .rp-app-go {
 .supply-process > div:not(:last-child)::after {
   top: 46px;
   transform: none;
-}
-
-/* ══ 시안 11_app — 와이드 카드 아이콘을 좌측 정렬 골드 박스로 ══ */
-.platform-card .card-icon,
-.platform-card .fact-icon,
-.platform-card > span:first-child {
+}.platform-card .card-icon,
+.platform-card .fact-icon{
   border: 1px solid rgba(189, 152, 73, 0.45);
   border-radius: var(--r-md);
   color: var(--gold);
@@ -7476,18 +6395,12 @@ a.rp-app-card:hover .rp-app-go {
 
 /* 캐러셀 트랙(overflow-x:auto)의 내부 폭이 body 까지 번져 문서가 1584px 이 됐다.
    전 폭에서 문서 가로 넘침을 차단한다 (트랙 자체 스크롤은 유지) */
-html, body { overflow-x: clip; }
-
-
-/* 데스크톱 터치·클릭 최소 24px (2026-08-15 · 정본 기준: 모바일 44 / 데스크톱 24)
-   푸터 링크·약관 링크가 높이 17~22px 로 미달이었다. 시각 크기는 그대로 두고 클릭 영역만 넓힌다 */
-.footer-links a,
+html, body { overflow-x: clip; }.footer-links a,
 .footer-legal a,
 .quick-consent a,
 .form-help a,
 .consent-more,
-.contact-panel a[href^="#"],
-.legal-links a {
+.contact-panel a[href^="#"]{
   display: inline-flex;
   align-items: center;
   min-height: 24px;
@@ -7546,17 +6459,12 @@ h2,
   font-size: 28px;
   font-weight: 500;
   line-height: 1.45;
-}
-
-/* [MEDIUM] 정렬 — 러너펍 93% 중앙 vs 포카드 39%. 히어로만 좌측, 나머지 중앙 */
-.section-title,
+}.section-title,
 .rp-system-head,
 .rp-edu-head,
 .rp-ops__head,
 .supply-head,
-.platform-head,
-.space-head,
-.franchise-head {
+.franchise-head{
   text-align: center;
 }
 
@@ -7575,30 +6483,24 @@ h2,
 .rp-system-head .rp-system-sub,
 .rp-edu-head .rp-edu-sub {
   margin-inline: auto;
-}
-
-.hero .hero-content,
-.hero-copy { text-align: left; }
+}.hero .hero-content{ text-align: left; }
 
 /* 헤더 우측 버튼이 있는 2단 헤더는 좌측 유지 */
 .section-head-row .section-title { text-align: left; }
 
 /* [LOW] 라운드 9종 → 4종 (러너펍: 카드 0 · 이미지 17 · 원 50% · 폼 12) */
-:root { --r-sm: 8px; --r-md: 8px; --r-img: 17px; }
-
-.fact-card, .cost-card, .support-card, .platform-card, .rp-sys-card,
-.tournament-list li, .supply-card, .region-group, .faq-list details {
+:root { --r-sm: 8px; --r-md: 8px; --r-img: 17px; }.fact-card,
+.cost-card,
+.support-card,
+.rp-sys-card,
+.supply-card,
+.region-group{
   border-radius: 8px;
 }
 
 .branch-image, .support-visual, .rp-edu-card picture, figure picture {
   border-radius: 17px;
-}
-
-
-/* 라운드 4종 수렴 — 러너펍: 카드 8 · 이미지 17 · 원 50% · pill 999 (2026-08-15)
-   4/6/9/10/15px 잔여를 흡수한다 */
-.button,
+}.button,
 .header-cta,
 .rp-pg-num,
 .rp-pg-arrow,
@@ -7606,20 +6508,15 @@ h2,
 .quick-submit,
 .button-light,
 .button-gold,
-.button-dark,
 input,
 select,
-textarea {
+textarea{
   border-radius: 8px;
-}
-
-.branch-image,
+}.branch-image,
 .support-visual,
 figure picture,
 .rp-edu-card picture,
-.mosaic-main,
-.mosaic-side,
-.contact-visual {
+.contact-visual{
   border-radius: 17px;
 }
 
@@ -7700,20 +6597,11 @@ details { border-radius: 8px; }
   min-width: 34px;
   height: 26px;
   font-size: 14px;
-}
-
-
-/* ══════ 톤 교차 — 다크만 밀지 않는다 (2026-08-15 사장님 지시) ══════
-   포카드 승인작 원본 배색에는 밝은 면이 있었다: #f5f7f4 · #e7efe9 · #f4f8f5.
-   전부 다크로 뒤집으면서 그 면을 잃었다. 정보 전달 섹션을 밝은 면으로 되돌려
-   다크 ↔ 라이트 교차 리듬을 만든다. 브랜드 축(딥그린·골드)은 그대로다 */
-
-.cost-section,
+}.cost-section,
 .terms-section,
 .locations,
 .site-section,
-.platform-section,
-.rp-app-section {
+.rp-app-section{
   --paper: #f5f7f4;
   --paper-soft: #eef2ee;
   --paper-mint: #e7efe9;
@@ -7724,30 +6612,36 @@ details { border-radius: 8px; }
   --gold: #a8843c;           /* 밝은 면 위 골드는 진하게 (대비 4.5:1+) */
   background: var(--paper);
   color: var(--ink);
-}
-
-/* 밝은 섹션 안의 카드·요소 */
-.cost-section .fact-card, .terms-section .fact-card,
-.locations .fact-card, .site-section .fact-card,
-.platform-section .fact-card, .rp-app-section .fact-card,
-.cost-section .cost-card, .terms-section .cost-card,
-.site-section .site-flow li, .platform-section .platform-card,
-.rp-app-section .rp-app-card {
+}.cost-section .fact-card,
+.terms-section .fact-card,
+.locations .fact-card,
+.site-section .fact-card,
+.platform-section .fact-card,
+.rp-app-section .fact-card,
+.cost-section .cost-card,
+.terms-section .cost-card,
+.site-section .site-flow li,
+.rp-app-section .rp-app-card{
   background: #fff;
   border-color: rgba(7, 86, 59, 0.18);
   color: var(--ink);
   backdrop-filter: none;
-}
-
-.cost-section h2, .terms-section h2, .locations h2,
-.site-section h2, .platform-section h2, .rp-app-section h2,
-.cost-section h3, .terms-section h3, .locations h3,
-.site-section h3, .platform-section h3, .rp-app-section h3 {
+}.cost-section h2,
+.terms-section h2,
+.locations h2,
+.site-section h2,
+.rp-app-section h2,
+.cost-section h3,
+.terms-section h3,
+.locations h3,
+.site-section h3,
+.rp-app-section h3{
   color: var(--ink);
-}
-
-.cost-section p, .terms-section p, .locations p,
-.site-section p, .platform-section p, .rp-app-section p {
+}.cost-section p,
+.terms-section p,
+.locations p,
+.site-section p,
+.rp-app-section p{
   color: var(--ink-soft);
 }
 
@@ -7777,11 +6671,7 @@ details { border-radius: 8px; }
 }
 
 .cost-section .cost-total .cost-total-sum,
-.terms-section .terms-strip dd { color: #fff; }
-
-/* 밝은 면에서는 조명 효과를 끈다 */
-.platform-section::before,
-.site-section::before { display: none; }
+.terms-section .terms-strip dd { color: #fff; }.site-section::before{ display: none; }
 
 
 /* 밝은 섹션 전환의 부작용 교정 (2026-08-15)
@@ -7797,11 +6687,7 @@ details { border-radius: 8px; }
 .locations .branch-card .branch-meta {
   background: linear-gradient(0deg, rgba(4, 21, 15, 0.92) 0%, rgba(4, 21, 15, 0.55) 60%, rgba(4, 21, 15, 0) 100%);
   text-shadow: 0 1px 10px rgba(4, 26, 19, 0.6);
-}
-
-/* 앱 상태 배지 — 밝은 면에서 골드가 3.14:1 이라 딥그린 채움으로 */
-.rp-app-section .rp-app-state,
-.platform-section .platform-status {
+}.rp-app-section .rp-app-state{
   padding: 2px 8px;
   border-radius: 999px;
   background: var(--green);
@@ -7912,31 +6798,16 @@ details { border-radius: 8px; }
   .branch-list .branch-note {
     margin-top: 28px; padding: 16px 18px; font-size: 14px; text-align: left;
   }
-}
-
-
-/* ══════ 이미지 0장 섹션 8개에 배경 실사 투입 (2026-08-15) ══════
-   실측: 19섹션 중 8개(7,383px)에 이미지가 0장이었다. 러너펍은 정보 섹션에도
-   배경 실사를 깔아 '매장이 실재한다'를 계속 보여준다.
-   미사용 자산 branchbg · supportbg · systembg · principle 을 배정한다.
-   밝은 섹션(cost·terms·site·platform)은 톤 교차를 지키기 위해 배경을 넣지 않고
-   대신 상단에 골드 헤어라인 + 은은한 그린 글로우로 리듬만 준다 */
-
-/* 다크 정보 섹션 — 배경 실사 + 스크림 */
-.revenue-section,
+}.revenue-section,
 .supply-section,
 .process-section,
-.rp-faq-section,
-.faq-section {
+.rp-faq-section{
   position: relative;
   isolation: isolate;
-}
-
-.revenue-section::before,
+}.revenue-section::before,
 .supply-section::before,
 .process-section::before,
-.rp-faq-section::before,
-.faq-section::before {
+.rp-faq-section::before{
   content: "";
   position: absolute;
   inset: 0;
@@ -7954,20 +6825,14 @@ details { border-radius: 8px; }
 .supply-section::before {
   background-image: image-set(url(../assets/systembg-2400.avif) type("image/avif"),
     url(../assets/systembg-2400.webp) type("image/webp"));
-}
-
-.process-section::before,
-.rp-faq-section::before,
-.faq-section::before {
+}.process-section::before,
+.rp-faq-section::before{
   background-image: image-set(url(../assets/supportbg-2400.avif) type("image/avif"),
     url(../assets/supportbg-2400.webp) type("image/webp"));
-}
-
-.revenue-section::after,
+}.revenue-section::after,
 .supply-section::after,
 .process-section::after,
-.rp-faq-section::after,
-.faq-section::after {
+.rp-faq-section::after{
   content: "";
   position: absolute;
   inset: 0;
@@ -7977,23 +6842,16 @@ details { border-radius: 8px; }
     linear-gradient(180deg, rgba(4, 21, 15, 0.93) 0%, rgba(4, 21, 15, 0.86) 30%,
       rgba(4, 21, 15, 0.86) 70%, rgba(4, 21, 15, 0.95) 100%),
     radial-gradient(ellipse 56% 40% at 50% 0%, rgba(31, 181, 131, 0.12), transparent 70%);
-}
-
-/* 밝은 섹션 — 배경 사진 대신 상단 골드 헤어라인 + 하단 페이드로 리듬 */
-.cost-section,
+}.cost-section,
 .terms-section,
 .site-section,
-.platform-section,
-.rp-app-section {
+.rp-app-section{
   position: relative;
   border-top: 1px solid rgba(189, 152, 73, 0.3);
-}
-
-.cost-section::after,
+}.cost-section::after,
 .terms-section::after,
 .site-section::after,
-.platform-section::after,
-.rp-app-section::after {
+.rp-app-section::after{
   content: "";
   position: absolute;
   inset: 0;
@@ -8069,49 +6927,30 @@ details { border-radius: 8px; }
   --lh-body:    1.62;
   --lh-sm:      1.55;
   --lh-xs:      1.45;
-}
-
-/* ── 24px 폐기 → 28 계열 흡수 ───────────────────────────── */
-.branch-meta h3,
-.branch-headline,
+}.branch-meta h3,
 .hero-lead,
 .hero-facts strong,
-.terms-strip dd {
+.terms-strip dd{
   font-size: var(--fs-h2);
   line-height: var(--lh-h2);
   letter-spacing: -0.01em;
-}
-
-/* ── 20px 폐기 → 18 계열 흡수 (UI·내비·본문) ─────────────── */
-.mobile-nav a,
+}.mobile-nav a,
 .marquee span,
 .footer-contact a,
-.faq-list summary,
 .supply-process span,
 .system-list li > span,
-.journey-list strong,
 .intro-copy > p,
 .rp-pg-arrow,
 .rp-pg-num,
-[data-rp-nav] {
+[data-rp-nav]{
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-}
-
-/* ── 16px 폐기 → 18 계열로 올림 (본문·버튼·매장명) ────────
-   전체 텍스트의 56%가 16px 이하였다. 레퍼런스는 71%가 18~28px 다.
-   내리지 않고 올려서 계열을 줄인다. */
-body,
-.hero-copy,
+}body,
 .button,
 .text-link,
 .inline-link,
-.community-copy > p,
-.branch-lead,
 .branch-name,
-.system-copy > p,
 .principle-items > div,
-.faq-list details > p,
 .contact-direct a,
 .inquiry-form input,
 .inquiry-form textarea,
@@ -8120,21 +6959,11 @@ body,
 .sticky-cta a,
 .hero-inquiry-label,
 .skip-link,
-.cost-lead,
-.process-lead,
-.support-lead,
-.site-lead,
-.revenue-lead,
 .revenue-gap,
-.block-desc,
-.tournament-copy > p,
 .site-flow li span,
 .site-flow li strong,
-.event-ops-flow strong,
-.event-ops-copy h3,
 .supply-card h3,
 .supply-card dd,
-.platform-card h3,
 .rp-sys-card h3,
 .rp-sys-card p,
 .rp-app-benefit,
@@ -8142,15 +6971,7 @@ body,
 .rp-ops__step strong,
 .rp-revisit__card p,
 .rp-ops__copy p,
-.experience-list dt,
-.experience-list strong,
-.journey-list span,
-.space-head p:last-child,
-.faq-topics strong,
-.contact-routes strong,
-.event-ops-head > p:last-child,
-.supply-head > p:last-child,
-.platform-head > p:last-child {
+.supply-head > p:last-child{
   font-size: var(--fs-body);
   line-height: var(--lh-body);
 }
@@ -8274,14 +7095,7 @@ strong.pop-in {
   .support-duo  { gap: 20px; }
   .branch-track { gap: 20px; }
   .site-flow    { gap: 20px; }   /* 16 → 20 */
-}
-
-/* [imagery·P3] #faq · #process (다크 배경 사진 정리) */
-/* #faq — 안 보이는 배경 사진 제거, 러너펍처럼 무지 유지 (147k 회수) */
-.rp-faq-section::before,
-.faq-section::before { display: none; }
-.rp-faq-section::after,
-.faq-section::after {
+}.rp-faq-section::before{ display: none; }.rp-faq-section::after{
   background: radial-gradient(ellipse 56% 40% at 50% 0%, rgba(31, 181, 131, 0.12), transparent 70%);
 }
 
@@ -8292,22 +7106,13 @@ strong.pop-in {
     linear-gradient(180deg, rgba(4, 21, 15, 0.90) 0%, rgba(4, 21, 15, 0.78) 30%,
       rgba(4, 21, 15, 0.78) 70%, rgba(4, 21, 15, 0.93) 100%),
     radial-gradient(ellipse 56% 40% at 50% 0%, rgba(31, 181, 131, 0.12), transparent 70%);
-}
-
-/* [imagery·P3] #terms (+ 밝은 섹션 글로우 죽은 코드) */
-/* 밝은 섹션 글로우를 실제로 렌더시킨다 — isolation 없으면 z-index:-1 이 자기 배경 뒤로 간다 */
-.cost-section,
+}.cost-section,
 .terms-section,
 .site-section,
-.platform-section,
-.rp-app-section { isolation: isolate; }
-
-/* 상단 구분선 — 1px 실선 대신 양끝 페이드 골드 헤어라인 (러너펍 블록 경계 방식) */
-.cost-section,
+.rp-app-section{ isolation: isolate; }.cost-section,
 .terms-section,
 .site-section,
-.platform-section,
-.rp-app-section {
+.rp-app-section{
   border-top: 0;
   background-image: linear-gradient(90deg, transparent 0%,
     rgba(189, 152, 73, 0.5) 14%, rgba(189, 152, 73, 0.5) 86%, transparent 100%);
@@ -8387,17 +7192,19 @@ h3, .system-list h3, .rp-edu-card h3, .rp-revisit__card h3, .rp-ops__copy h3,
   --fs-h3: 28px;
   --fs-body: 18px;
   --fs-cap: 14px;
-}
-
-/* 20 → 18 흡수 */
-.rp-edu-sub, .support-sub, .revenue-sub,
-.section-sub, .lead, .hero p, .cost-sub, .terms-sub { font-size: 18px; }
-
-/* 12 → 14 (가독성 상승 · 종수 감소) */
-.kicker, .supply-index, .rp-edu-kicker, .fact-note, .cost-note,
-.terms-note, .revenue-note, .supply-note, .site-note, .platform-note,
-.branch-meta small, figcaption, .photo-cap, .disclaimer, .foot-note,
-small, .region-count, .badge, .chip { font-size: 14px; letter-spacing: 0.02em; }
+}.rp-edu-sub,
+.revenue-sub,
+.hero p{ font-size: 18px; }.kicker,
+.supply-index,
+.rp-edu-kicker,
+.cost-note,
+.terms-note,
+.supply-note,
+.site-note,
+.branch-meta small,
+figcaption,
+small,
+.chip{ font-size: 14px; letter-spacing: 0.02em; }
 
 /* 계열별 행간 — 큰 글자는 조이고 본문은 풀어 한글 가독성 확보 */
 .hero h1 { line-height: 1.22; letter-spacing: -0.02em; }
@@ -8415,22 +7222,28 @@ p, li, dd { line-height: 1.62; }
 @media (max-width: 1180px) {
   .supply-grid, .rp-system-grid, .region-grid, .cost-grid,
   .support-duo, .rp-app-grid, .fact-grid, .rp-edu-cards, .rp-ops__grid { gap: 16px; }
-}
-
-
-/* ══════ 위계 복구 — h3 가 h2 와 같은 48px 가 된 사고 수정 (2026-08-15) ══════
-   원인: 타이포 토큰 이름 충돌. 워크플로우 규칙은 h3 에 var(--fs-h2) 를 줬고
-   :root 의 --fs-h2 는 h2 용 48px 였다. 토큰을 믿지 않고 px 로 못 박는다.
-   러너펍 위계: 60(히어로) / 48(섹션 제목) / 28(카드 제목·배지 숫자) / 18(본문) / 14(캡션) */
-h2, .rp-system-head h2, .tournament-copy h2, .platform-head h2 {
+}h2,
+.rp-system-head h2{
   font-size: 48px !important;
-}
-
-h3, .system-list h3, .rp-edu-card h3, .rp-revisit__card h3, .rp-ops__copy h3,
-.support-duo .support-card h3, .supply-card h3, .platform-card h3, .rp-sys-card h3,
-.branch-meta h3, .event-ops-copy h3, .fact-card h3, .cost-card h3,
-.block-sub, .rp-system-sub, .rp-edu-sub, .rp-app-sub, .rp-faq-sub,
-.rp-revisit__sub, .rp-ops__sub, .rp-app-name {
+}h3,
+.system-list h3,
+.rp-edu-card h3,
+.rp-revisit__card h3,
+.rp-ops__copy h3,
+.support-duo .support-card h3,
+.supply-card h3,
+.rp-sys-card h3,
+.branch-meta h3,
+.fact-card h3,
+.cost-card h3,
+.block-sub,
+.rp-system-sub,
+.rp-edu-sub,
+.rp-app-sub,
+.rp-faq-sub,
+.rp-revisit__sub,
+.rp-ops__sub,
+.rp-app-name{
   font-size: 28px !important;
   line-height: 1.42;
   letter-spacing: -0.01em;
@@ -8448,18 +7261,10 @@ h3, .system-list h3, .rp-edu-card h3, .rp-revisit__card h3, .rp-ops__copy h3,
 
 /* 금액 — 값·자릿수·콤마는 그대로. 크기만 계열에 얹는다 */
 .cost-total-sum, .revenue-sum { font-size: 48px !important; }
-.cost-card-sum { font-size: 28px !important; }
-
-
-/* ══════ 밝은 섹션 배경 — ChatGPT Pro 생성작 투입 (2026-08-15) ══════
-   승인작 bg_paper_light_2172x724 · 이미지실에서 삽입영역 2장 + 색감/질감 레퍼런스 2장 실업로드 후 생성.
-   QA 실측: 중앙 60% 균질도 9.7 · 검은 글자 최악 10.62:1 (기준 4.5:1 통과) · 그린 계열 확인.
-   폐기작(하단 밴드형)은 중앙 균질도 87.8 · 대비 1.17:1 로 rejected/ 에 사유와 함께 보관 */
-.cost-section,
+.cost-card-sum { font-size: 28px !important; }.cost-section,
 .terms-section,
 .site-section,
-.platform-section,
-.rp-app-section {
+.rp-app-section{
   background-image: image-set(url(../assets/paperbg-2172.avif) type("image/avif"),
     url(../assets/paperbg-2172.webp) type("image/webp"));
   background-size: cover;
@@ -8467,12 +7272,10 @@ h3, .system-list h3, .rp-edu-card h3, .rp-revisit__card h3, .rp-ops__copy h3,
   background-repeat: no-repeat;
 }
 
-@media (max-width: 900px) {
-  .cost-section,
-  .terms-section,
-  .site-section,
-  .platform-section,
-  .rp-app-section {
+@media (max-width: 900px) {.cost-section,
+.terms-section,
+.site-section,
+.rp-app-section{
     background-image: image-set(url(../assets/paperbg-1440.avif) type("image/avif"),
       url(../assets/paperbg-1440.webp) type("image/webp"));
   }
@@ -8576,16 +7379,19 @@ h3, .system-list h3, .rp-edu-card h3, .rp-revisit__card h3, .rp-ops__copy h3,
    .terms-strip dd 겹침(Codex 치명)과 같은 원인이다.
    타이포 계열을 !important 로 못 박으면서 기존 반응형 규칙을 함께 죽였다.
    계열은 유지하되 좁은 폭에서는 한 단계씩 내린다. 금액 값은 건드리지 않는다 */
-@media (max-width: 900px) {
-  h2, .rp-system-head h2, .tournament-copy h2, .platform-head h2 { font-size: 38px !important; }
+@media (max-width: 900px) {h2,
+.rp-system-head h2{ font-size: 38px !important; }
   .cost-total-sum, .revenue-sum { font-size: 38px !important; }
   .process-no, .support-no, .rp-ops__no { font-size: 24px !important; }
 }
 
-@media (max-width: 640px) {
-  h2, .rp-system-head h2, .tournament-copy h2, .platform-head h2 { font-size: 30px !important; }
-  h3, .supply-card h3, .platform-card h3, .rp-sys-card h3,
-  .branch-meta h3, .fact-card h3, .cost-card h3 { font-size: 22px !important; }
+@media (max-width: 640px) {h2,
+.rp-system-head h2{ font-size: 30px !important; }h3,
+.supply-card h3,
+.rp-sys-card h3,
+.branch-meta h3,
+.fact-card h3,
+.cost-card h3{ font-size: 22px !important; }
   .cost-total-sum, .revenue-sum { font-size: 30px !important; }
   .cost-card-sum { font-size: 22px !important; }
   .process-no, .support-no, .rp-ops__no { font-size: 22px !important; }
@@ -8654,29 +7460,30 @@ section > .section-title.reveal,
 }
 
 /* 호버 — 들어올리기만. 그림자를 키우지 않는다(러너펍은 그림자를 안 쓴다) */
-@media (hover: hover) and (pointer: fine) {
-  .fact-card, .rp-sys-card, .supply-card, .platform-card,
-  .cost-card, .support-card, .rp-edu-card, .branch-card {
+@media (hover: hover) and (pointer: fine) {.fact-card,
+.rp-sys-card,
+.supply-card,
+.cost-card,
+.support-card,
+.rp-edu-card,
+.branch-card{
     transition: transform var(--dur-fast) var(--ease-out),
                 border-color var(--dur-fast) var(--ease-out);
-  }
-  .fact-card:hover, .rp-sys-card:hover, .supply-card:hover, .platform-card:hover,
-  .cost-card:hover, .support-card:hover, .rp-edu-card:hover, .branch-card:hover {
+  }.fact-card:hover,
+.rp-sys-card:hover,
+.supply-card:hover,
+.cost-card:hover,
+.support-card:hover,
+.rp-edu-card:hover,
+.branch-card:hover{
     transform: translate3d(0, -2px, 0);
     border-color: rgba(217, 185, 120, 0.55);
   }
-}
-
-/* CTA 골드 스윕 — 딱 한 곳. 남발하면 싸구려가 된다 */
-.inquiry-form button[type="submit"],
-.hero-form button[type="submit"] {
+}.inquiry-form button[type="submit"]{
   position: relative;
   overflow: hidden;
   isolation: isolate;
-}
-
-.inquiry-form button[type="submit"]::after,
-.hero-form button[type="submit"]::after {
+}.inquiry-form button[type="submit"]::after{
   content: "";
   position: absolute;
   inset: 0;
@@ -9223,12 +8030,9 @@ picture.fact-photo { background-color: var(--veil-1); }
 
 /* 흰 틴트 4종 → 2종 */
 .rp-faq-item,
-.rp-ops__cta { background-color: var(--tint-1); }
-
-.rp-edu-icon,
+.rp-ops__cta { background-color: var(--tint-1); }.rp-edu-icon,
 .inquiry-form input,
-.inquiry-form textarea,
-.hero-form input { background-color: var(--tint-2); }
+.inquiry-form textarea{ background-color: var(--tint-2); }
 
 /* 딥그린 단색 3종(#042b20 · #071e16 · #0a2a1f) → 1종 */
 .branch-card,
@@ -9260,11 +8064,8 @@ body .branch-card { background-color: var(--veil-2); }
 
 body picture.fact-photo,
 body figure.supply-photo,
-body .branch-image .crop-frame { background-color: var(--veil-1); }
-
-body .hero-caption,
-body .crop-caption,
-body .branch-image figcaption { background-color: var(--veil-3); }
+body .branch-image .crop-frame { background-color: var(--veil-1); }body .hero-caption,
+body .branch-image figcaption{ background-color: var(--veil-3); }
 
 body .rp-edu-card,
 body .rp-faq-item,
@@ -9368,12 +8169,9 @@ a.inline-link:hover { color: var(--gold-deep, #bd9849); }
 /* [flow·P5] .rp-sys-card · .support-card · .fact-card · .platform-card (css/ */
 /* 그림자 1종으로 수렴 — 러너펍 1종 2건 대비 포카드 4종 11건(대조표 1440px 실측).
    다크 섹션 카드는 테두리+반투명으로 띄우고, 그림자는 밝은 면에서만 쓴다. */
-:root { --shadow-1: 0 14px 34px rgba(4, 21, 15, 0.18); }
-
-.rp-sys-card,
+:root { --shadow-1: 0 14px 34px rgba(4, 21, 15, 0.18); }.rp-sys-card,
 .support-card,
-.fact-card,
-.platform-card {
+.fact-card{
   box-shadow: none;
   border: 1px solid rgba(189, 152, 73, 0.28);
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(4, 21, 15, 0.5));
@@ -9386,12 +8184,9 @@ a.inline-link:hover { color: var(--gold-deep, #bd9849); }
   box-shadow: var(--shadow-1);
   border: 1px solid rgba(7, 86, 59, 0.14);
   background: #fff;
-}
-
-.rp-sys-card:hover,
+}.rp-sys-card:hover,
 .support-card:hover,
-.fact-card:hover,
-.platform-card:hover { box-shadow: none; border-color: rgba(189, 152, 73, 0.5); }
+.fact-card:hover{ box-shadow: none; border-color: rgba(189, 152, 73, 0.5); }
 
 /* [typography·P6] css/style.css:4829 .hero-lead — 1440px @x100,y338, 391x49, 18px/ */
 /* [P2] 히어로 부제 — 러너펍 32px/500. .hero p(8404행)에 밀려 18px 였다. 28px/500 은 .block-sub 와 같은 조합 */
@@ -9467,18 +8262,11 @@ p, li, dd { font-weight: 500; }
   background-position: right bottom;
   opacity: 0.14;
   pointer-events: none;
-}
-
-/* 밝은 섹션은 그린 엠블럼 */
-.cost-section,
+}.cost-section,
 .terms-section,
-.site-section,
-.platform-section { position: relative; isolation: isolate; }
-
-.cost-section::before,
+.site-section{ position: relative; isolation: isolate; }.cost-section::before,
 .terms-section::before,
-.site-section::before,
-.platform-section::before {
+.site-section::before{
   content: "";
   position: absolute;
   right: -30px;
@@ -9498,9 +8286,9 @@ p, li, dd { font-weight: 500; }
   .rp-system::after, .rp-ops::after, .rp-faq-section::after,
   .supply-section::after, .revenue-section::after {
     width: 220px; height: 135px; opacity: 0.10; right: -24px; bottom: -16px;
-  }
-  .cost-section::before, .terms-section::before,
-  .site-section::before, .platform-section::before {
+  }.cost-section::before,
+.terms-section::before,
+.site-section::before{
     width: 180px; height: 111px; opacity: 0.06;
   }
 }
@@ -9635,12 +8423,18 @@ p, li, dd { font-weight: 500; }
 section.section-pad {
   padding-top: 78px;
   padding-bottom: 78px;
-}
-
-.rp-system, .rp-edu, .rp-revisit, .rp-ops,
-.rp-app-section, .rp-faq-section, .brand-intro,
-.locations, .supply-section, .site-section,
-.process-section, .platform-section, .contact-section {
+}.rp-system,
+.rp-edu,
+.rp-revisit,
+.rp-ops,
+.rp-app-section,
+.rp-faq-section,
+.brand-intro,
+.locations,
+.supply-section,
+.site-section,
+.process-section,
+.contact-section{
   padding-top: 78px;
   padding-bottom: 78px;
 }
@@ -9658,12 +8452,20 @@ section.section-pad {
 .support-duo, .rp-app-grid, .rp-edu-cards, .rp-ops__grid,
 .supply-grid, .process-list, .site-flow { margin-top: 30px; }
 
-@media (max-width: 900px) {
-  .section-pad, section.section-pad,
-  .rp-system, .rp-edu, .rp-revisit, .rp-ops,
-  .rp-app-section, .rp-faq-section, .brand-intro,
-  .locations, .supply-section, .site-section,
-  .process-section, .platform-section, .contact-section {
+@media (max-width: 900px) {.section-pad,
+section.section-pad,
+.rp-system,
+.rp-edu,
+.rp-revisit,
+.rp-ops,
+.rp-app-section,
+.rp-faq-section,
+.brand-intro,
+.locations,
+.supply-section,
+.site-section,
+.process-section,
+.contact-section{
     padding-top: 58px;
     padding-bottom: 58px;
   }
@@ -9674,12 +8476,20 @@ section.section-pad {
   .supply-grid, .process-list, .site-flow { margin-top: 22px; }
 }
 
-@media (max-width: 640px) {
-  .section-pad, section.section-pad,
-  .rp-system, .rp-edu, .rp-revisit, .rp-ops,
-  .rp-app-section, .rp-faq-section, .brand-intro,
-  .locations, .supply-section, .site-section,
-  .process-section, .platform-section, .contact-section {
+@media (max-width: 640px) {.section-pad,
+section.section-pad,
+.rp-system,
+.rp-edu,
+.rp-revisit,
+.rp-ops,
+.rp-app-section,
+.rp-faq-section,
+.brand-intro,
+.locations,
+.supply-section,
+.site-section,
+.process-section,
+.contact-section{
     padding-top: 52px;
     padding-bottom: 52px;
   }
@@ -9709,8 +8519,9 @@ section.section-pad {
 
 /* 다른 긴 섹션도 카드 내부 여백을 조인다 — 정보는 그대로, 밀도만 올린다 */
 .supply-card { padding: 0 0 24px; }
-.supply-card > *:not(.supply-photo) { padding-left: 26px; padding-right: 26px; }
-.rp-sys-card, .support-card, .rp-edu-card, .platform-card { padding: 22px 24px; }
+.supply-card > *:not(.supply-photo) { padding-left: 26px; padding-right: 26px; }.rp-sys-card,
+.support-card,
+.rp-edu-card{ padding: 22px 24px; }
 .process-list > li { padding: 20px 22px; }
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -9745,11 +8556,11 @@ section.section-pad {
 @media (max-width: 900px) {
   .franchise-visual, .brand-visual, .contact-visual { aspect-ratio: 16 / 9; }
   .supply-photo { aspect-ratio: 2 / 1; }
-}
-
-/* 카드 내부 문단 여백 — 19개 섹션에 걸쳐 누적된다 */
-.rp-sys-card p, .support-card p, .rp-edu-card p,
-.platform-card p, .supply-card p, .process-list p { line-height: 1.55; }
+}.rp-sys-card p,
+.support-card p,
+.rp-edu-card p,
+.supply-card p,
+.process-list p{ line-height: 1.55; }
 
 /* ══════════════════════════════════════════════════════════════════════
    문서 폭 3,501px 누출 (2026-08-19 · 캡처 26%가 빈 공간이던 진짜 원인)
@@ -9775,10 +8586,7 @@ section.section-pad {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-/* 마퀴 트랙 2,432px 도 같은 계열 — 부모에 가둔다 */
-.marquee, .marquee-wrap { overflow: hidden; max-width: 100%; }
+}.marquee{ overflow: hidden; max-width: 100%; }
 .marquee-track { will-change: transform; }
 
 /* 그리드 아이템이 내용 폭으로 부풀지 않게 (min-width:auto 기본값 차단) */
@@ -10011,14 +8819,8 @@ section.section-pad {
   [data-reveal-card] {
     opacity: 1 !important;
     transform: none !important;
-  }
-
-  /* 자동 이동(마키·자동 슬라이더)은 정지 상태로 고정한다 */
-  .marquee-track,
-  .region-marquee,
-  .photo-track,
-  .track-inner,
-  [class*="marquee"] {
+  }.marquee-track,
+[class*="marquee"]{
     animation: none !important;
     transform: none !important;
   }
@@ -10136,17 +8938,10 @@ section.section-pad {
 .rp-revisit__card {
   background-color: rgba(4, 21, 15, 0.92);
   border: 1px solid rgba(226, 198, 137, 0.2);
-}
-
-/* ── UP-4. 아이콘이 얇아 인지가 늦다
-   러너펍: 카드 상단 아이콘이 굵고 색이 있어 3초 안에 무슨 카드인지 잡힌다.
-   포카드는 1.5px 라인 아이콘이라 어두운 배경에서 사라진다.
-   해결: 굵기·크기·색을 올린다. 아이콘을 새로 만들지 않는다. ── */
-.rp-sys-card svg,
+}.rp-sys-card svg,
 .rp-revisit__ico svg,
 .support-card svg,
-.fact-icon svg,
-.platform-card svg {
+.fact-icon svg{
   stroke-width: 2.1;
 }
 
@@ -10207,18 +9002,8 @@ li:has(.branch-name.is-pending) .branch-thumb::after {
   font-weight: 700;
   letter-spacing: 0.06em;
   content: "OPEN SOON";
-}
-
-/* ── UP-6. 섹션 마무리가 없다
-   러너펍: 카드 묶음 끝을 테두리 패널 한 줄로 맺어 시각적 단락을 만든다(6개 섹션에서 확인).
-   포카드는 카드가 끝나면 그냥 다음 섹션이 시작된다.
-   해결: 기존 마무리 문구 요소에 패널 형태를 입힌다. 새 요소를 만들지 않는다. ── */
-.rp-system__note,
-.rp-ops__note,
-.supply-note,
-.system-note,
-.branch-note,
-.platform-note {
+}.supply-note,
+.branch-note{
   margin-top: 28px;
   padding: 22px 28px;
   border: 1px solid rgba(7, 86, 59, 0.55);
@@ -10240,23 +9025,10 @@ li:has(.branch-name.is-pending) .branch-thumb::after {
    실측: DAEJEON · GYEONGNAM · DAEGU … 지역명만 무한 반복. 클릭도 안 되고 수치도 없다.
    해결: 지우지 않고 밀도를 낮춰 배경 장식으로 내린다. 시선을 뺏지 않게 한다. ── */
 .marquee { opacity: 0.5; }
-.marquee-track { font-size: 13px; letter-spacing: 0.14em; }
-
-/* ── UP-8. 이미지가 한 장도 없는 섹션이 8개(문서의 35%)
-   실측: cost·terms·revenue·system·site·process·platform·faq 합계 7,691px 에 img 0장.
-   러너펍은 텍스트만 있는 구간을 숫자 배지·연결선·강조 패널로 채운다.
-   해결: 결정론 CSS 그래픽으로 리듬을 만든다(AI 생성 없음). ── */
-.process-list > li::before,
-.site-steps > li::before {
+.marquee-track { font-size: 13px; letter-spacing: 0.14em; }.process-list > li::before{
   border-radius: 12px;
-}
-
-/* 숫자 배지 강화 — 러너펍 배지 100x100 원리, 포카드 색으로
-   주의: .supply-index 는 숫자가 아니라 "GAME EQUIPMENT" 라벨이다. 대상에서 뺀다.
-        .support-no 는 display:block 이라 inline-flex 를 명시하지 않으면 248px 막대가 된다. */
-.process-no,
-.support-no,
-.site-step-no {
+}.process-no,
+.support-no{
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -10300,21 +9072,11 @@ li:has(.branch-name.is-pending) .branch-thumb::after {
 .branch-name.is-pending::after { display: none !important; }
 .branch-name.is-pending { display: inline-flex; }
 
-/* ── UP-10. #branches 섹션 배경 사진이 카드 뒤에서 계속 어른거린다
-   실측: branchbg-2400 = systembg-2400 = 동대구점 썸네일(dHash 1). 같은 사진이 3곳.
-   러너펍은 매장 목록 구간 배경이 순색이다. 사진을 걷고 브랜드 그라데이션으로 간다. ── */
-.branch-section::before,
-.branch-section::after { opacity: 0.06; }
-
 #branches {
   background-image:
     radial-gradient(120% 80% at 50% 0%, rgba(7, 86, 59, 0.34) 0%, rgba(4, 21, 15, 0) 60%),
     linear-gradient(180deg, #04150f 0%, #041c14 55%, #04150f 100%);
 }
-
-#branches > .branch-bg,
-#branches .section-bg,
-#branches .branch-photo-bg { display: none; }
 
 /* ── UP-10b. 배경 사진의 실체는 ::before 의사요소였다
    실측: #branches::before = principle-1760.avif(= 성서점 지점 사진) opacity 0.72
@@ -10656,34 +9418,20 @@ li:has(.branch-name.is-new) .branch-thumb::after {
     line-height: 1.45;
     color: rgba(255, 255, 255, .78);
   }
-}
-
-/* ══════════════════════════════════════════════════════════════════════
-   upgrade_v9 — 4차 밀도압축 (2026-08-24 · 갤럭시북 Claude Code 선장)
-
-   출발점: analysis4/정정_이미지밀도_착시.md · analysis4/독립추정_보수.md
-   남은 격차 3건은 전부 레이아웃 밀도·타이포·모션이며 자산 부족이 아니다.
-
-   기준선(작업본 실측): 320 25,803 / 375 24,078 / 390 23,926 / 414 23,364 /
-                       768 25,264 / 1024 22,823 / 1180 22,002 / 1280 20,976 / 1440 20,983
-                       모션 선언 요소 295 · 모션 종류 33
-   목표: 모바일 390 ≤ 18,000 · 데스크톱 1440 ≤ 17,500 · 모션 종류 3
-   하드락: 12px 미만 금지 · 정보 삭제 0 · 구조(grid 열 수) 변경 0
-
-   구조를 건드리지 않는 이유: 2·3차에서 열 수를 바꾼 규칙이 전부 회귀를 냈다
-   (site-flow 34x34 겹침 · process 제목 세로찢김 · rp-app-card 붕괴).
-   이번 회차는 여백·타이포·모션만 조정한다.
-   ══════════════════════════════════════════════════════════════════════ */
-
-/* ── [v9-1] 섹션 리듬 — 78/58/52 → 56/44/36 ──────────────────────────
-   러너펍은 섹션 사이 간격이 화면 높이의 6~7%다. 포카드는 78px 고정이라
-   1440에서 20개 섹션이 3,120px, 즉 문서의 15%를 여백만으로 쓴다. */
-.section-pad,
+}.section-pad,
 section.section-pad,
-.rp-system, .rp-edu, .rp-revisit, .rp-ops,
-.rp-app-section, .rp-faq-section, .brand-intro,
-.locations, .supply-section, .site-section,
-.process-section, .platform-section, .contact-section {
+.rp-system,
+.rp-edu,
+.rp-revisit,
+.rp-ops,
+.rp-app-section,
+.rp-faq-section,
+.brand-intro,
+.locations,
+.supply-section,
+.site-section,
+.process-section,
+.contact-section{
   padding-top: 56px;
   padding-bottom: 56px;
 }
@@ -10706,12 +9454,20 @@ section.section-pad,
 .rp-system-note, .supply-note, .revenue-gap, .revenue-disclaimer,
 .cost-disclaimer { margin-top: 20px; }
 
-@media (max-width: 900px) {
-  .section-pad, section.section-pad,
-  .rp-system, .rp-edu, .rp-revisit, .rp-ops,
-  .rp-app-section, .rp-faq-section, .brand-intro,
-  .locations, .supply-section, .site-section,
-  .process-section, .platform-section, .contact-section {
+@media (max-width: 900px) {.section-pad,
+section.section-pad,
+.rp-system,
+.rp-edu,
+.rp-revisit,
+.rp-ops,
+.rp-app-section,
+.rp-faq-section,
+.brand-intro,
+.locations,
+.supply-section,
+.site-section,
+.process-section,
+.contact-section{
     padding-top: 44px;
     padding-bottom: 44px;
   }
@@ -10723,12 +9479,20 @@ section.section-pad,
   .supply-grid, .process-list, .site-flow { margin-top: 18px; }
 }
 
-@media (max-width: 640px) {
-  .section-pad, section.section-pad,
-  .rp-system, .rp-edu, .rp-revisit, .rp-ops,
-  .rp-app-section, .rp-faq-section, .brand-intro,
-  .locations, .supply-section, .site-section,
-  .process-section, .platform-section, .contact-section {
+@media (max-width: 640px) {.section-pad,
+section.section-pad,
+.rp-system,
+.rp-edu,
+.rp-revisit,
+.rp-ops,
+.rp-app-section,
+.rp-faq-section,
+.brand-intro,
+.locations,
+.supply-section,
+.site-section,
+.process-section,
+.contact-section{
     padding-top: 36px;
     padding-bottom: 36px;
   }
@@ -10751,11 +9515,15 @@ section.section-pad,
    ⚠ 되돌린 것: 1차에 `.rp-app-benefit`·`.rp-app-card p` 를 15px 로 올렸다가
    .rp-app-grid 가 739 → 788px 로 늘었다. 이 둘은 이미 14px 이라 내 규칙이
    글자를 키운 것이었다. 목록에서 뺐다. 줄이는 규칙만 남긴다. ── */
-@media (max-width: 900px) {
-  /* 섹션 제목 */
-  .section-title h2, .space-head h2, .franchise-head h2,
-  .rp-ops__head h2, .rp-revisit__head h2, .rp-system-head h2,
-  .rp-edu-head h2, .rp-app-head h2, .rp-faq-head h2, .supply-head h2 {
+@media (max-width: 900px) {.section-title h2,
+.franchise-head h2,
+.rp-ops__head h2,
+.rp-revisit__head h2,
+.rp-system-head h2,
+.rp-edu-head h2,
+.rp-app-head h2,
+.rp-faq-head h2,
+.supply-head h2{
     font-size: 32px !important;
     line-height: 1.24 !important;
   }
@@ -10768,13 +9536,17 @@ section.section-pad,
   .supply-head p, .franchise-head p {
     font-size: 17px !important;
     line-height: 1.55 !important;
-  }
-
-  /* 카드 제목 — 8429 의 선택자를 그대로 받아 특이도를 맞춘다 */
-  .system-list h3, .rp-edu-card h3, .rp-revisit__card h3, .rp-ops__copy h3,
-  .support-duo .support-card h3, .supply-card h3, .platform-card h3,
-  .rp-sys-card h3, .branch-meta h3, .event-ops-copy h3, .fact-card h3,
-  .cost-card h3, .rp-app-name {
+  }.system-list h3,
+.rp-edu-card h3,
+.rp-revisit__card h3,
+.rp-ops__copy h3,
+.support-duo .support-card h3,
+.supply-card h3,
+.rp-sys-card h3,
+.branch-meta h3,
+.fact-card h3,
+.cost-card h3,
+.rp-app-name{
     font-size: 20px !important;
     line-height: 1.34 !important;
   }
@@ -10792,10 +9564,15 @@ section.section-pad,
   }
 }
 
-@media (max-width: 640px) {
-  .section-title h2, .space-head h2, .franchise-head h2,
-  .rp-ops__head h2, .rp-revisit__head h2, .rp-system-head h2,
-  .rp-edu-head h2, .rp-app-head h2, .rp-faq-head h2, .supply-head h2 {
+@media (max-width: 640px) {.section-title h2,
+.franchise-head h2,
+.rp-ops__head h2,
+.rp-revisit__head h2,
+.rp-system-head h2,
+.rp-edu-head h2,
+.rp-app-head h2,
+.rp-faq-head h2,
+.supply-head h2{
     font-size: 26px !important;
   }
   .block-sub, .rp-system-sub, .rp-edu-sub, .rp-app-sub, .rp-faq-sub,
@@ -10804,11 +9581,17 @@ section.section-pad,
   .rp-system-head p, .rp-edu-head p, .rp-app-head p, .rp-faq-head p,
   .supply-head p, .franchise-head p {
     font-size: 16px !important;
-  }
-  .system-list h3, .rp-edu-card h3, .rp-revisit__card h3, .rp-ops__copy h3,
-  .support-duo .support-card h3, .supply-card h3, .platform-card h3,
-  .rp-sys-card h3, .branch-meta h3, .event-ops-copy h3, .fact-card h3,
-  .cost-card h3, .rp-app-name {
+  }.system-list h3,
+.rp-edu-card h3,
+.rp-revisit__card h3,
+.rp-ops__copy h3,
+.support-duo .support-card h3,
+.supply-card h3,
+.rp-sys-card h3,
+.branch-meta h3,
+.fact-card h3,
+.cost-card h3,
+.rp-app-name{
     font-size: 18px !important;
   }
   .rp-revisit__card p, .rp-edu-card p, .cost-lines li {
@@ -10901,10 +9684,15 @@ section.section-pad,
    섹션이 18개라 4,284px, 문서의 21% 를 제목 블록만으로 쓴다.
    또 마진이 64 · 56 · 44px 처럼 큰 값으로 흩어져 있다(러너펍은 20px 단일).
    제목 위계는 유지하되 한 단계씩 내리고 큰 마진을 32/24 로 묶는다. ──── */
-@media (min-width: 901px) {
-  .section-title h2, .space-head h2, .franchise-head h2,
-  .rp-ops__head h2, .rp-revisit__head h2, .rp-system-head h2,
-  .rp-edu-head h2, .rp-app-head h2, .rp-faq-head h2, .supply-head h2 {
+@media (min-width: 901px) {.section-title h2,
+.franchise-head h2,
+.rp-ops__head h2,
+.rp-revisit__head h2,
+.rp-system-head h2,
+.rp-edu-head h2,
+.rp-app-head h2,
+.rp-faq-head h2,
+.supply-head h2{
     font-size: 40px !important;
     line-height: 1.2 !important;
   }
@@ -10926,14 +9714,20 @@ section.section-pad,
   .franchise-visual, .brand-visual { margin-top: 32px; }
   .scope-table { margin-top: 28px; }
   .cost-bar { margin-top: 20px; }
-  .rp-ops__head, .supply-head, .rp-revisit__head, .rp-system-head { margin-bottom: 28px; }
-
-  /* 섹션 리듬 한 단계 더 (56 → 44) */
-  .section-pad, section.section-pad,
-  .rp-system, .rp-edu, .rp-revisit, .rp-ops,
-  .rp-app-section, .rp-faq-section, .brand-intro,
-  .locations, .supply-section, .site-section,
-  .process-section, .platform-section, .contact-section {
+  .rp-ops__head, .supply-head, .rp-revisit__head, .rp-system-head { margin-bottom: 28px; }.section-pad,
+section.section-pad,
+.rp-system,
+.rp-edu,
+.rp-revisit,
+.rp-ops,
+.rp-app-section,
+.rp-faq-section,
+.brand-intro,
+.locations,
+.supply-section,
+.site-section,
+.process-section,
+.contact-section{
     padding-top: 44px;
     padding-bottom: 44px;
   }
