@@ -10174,3 +10174,18 @@ section.section-pad,
 .rp-system-cta,
 .rp-revisit__cta,
 .rp-ops__cta { min-height: var(--fc-cta-height); }
+
+/* ─────────────────────────────────────────────────────────
+   [타이포 토큰] 본문 섹션 제목 17개는 40px/700/48px 로 이미 같은데
+   letter-spacing 만 normal(10개)·-0.4px(3)·-0.6px(3)·-0.72px(1) 네 갈래였다.
+   같은 위계인데 자간이 다르면 섹션을 넘길 때 글자 밀도가 미세하게 흔들린다.
+   다수인 normal 로 맞춘다. #top(60px 히어로)·#contact(48px 마감)는 위계가 달라 건드리지 않는다.
+   ───────────────────────────────────────────────────────── */
+#branches .section-title h2, #cost .section-title h2, #franchise .section-title h2,
+#terms .section-title h2, #revenue .section-title h2, #system h2,
+#education h2, #support .section-title h2, #locations h2, #experience h2,
+#tournament h2, #event-support h2, #supply .section-title h2,
+#site .section-title h2, #process .section-title h2, #platform h2, #faq h2,
+#supply h2 {
+  letter-spacing: normal;
+}
