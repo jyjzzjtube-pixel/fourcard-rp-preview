@@ -11249,3 +11249,15 @@ section.section-pad,
 /* 4장 카드가 세로로 과하게 늘어나 아래가 비었다 — 내용 높이에 맞춘다 */
 #tournament [class*="grid"], #tournament ul, #tournament ol { align-items: start; }
 #tournament [class*="card"] { min-height: 0; height: auto; padding-bottom: 26px; }
+
+/* ══════════════════════════════════════════════════════════════
+   [마무리] 캐러셀 사진 초점 개별 지정
+   일괄 68% 로 줬더니 사진마다 피사체 위치가 달라 어떤 건 천장, 어떤 건 바닥만 보였다.
+   각 사진을 세로 10구간으로 나눠 정보량(밝기 분산)이 가장 큰 구간을 찾아 그 지점에 맞춘다.
+   ══════════════════════════════════════════════════════════════ */
+#locations img[src*="seolv1"]      { object-position: 50% 88%; }  /* 원본이 천장 중심이라 더 내린다 */
+#locations img[src*="gangnam-v"]   { object-position: 50% 15%; }
+#locations img[src*="jamsil-v"]    { object-position: 50% 35%; }
+#locations img[src*="chilgok-v"]   { object-position: 50% 45%; }
+#locations img[src*="nampo-v"]     { object-position: 50% 35%; }
+#locations img[src*="dongseongro"] { object-position: 50% 45%; }
