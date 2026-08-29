@@ -7,6 +7,15 @@
   const hero = document.querySelector(".hero");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // 두 상담 폼이 같은 규칙을 쓰도록 한 곳에 둔다.
+  // 기존에는 빈 값만 막아서 "1" 같은 값도 접수됐다. 잘못된 번호로 접수되면 연락이 닿지 않는다.
+  const isValidPhone = (v) => {
+    const d = String(v || "").replace(/\D/g, "");
+    return d.length >= 9 && d.length <= 11 && d.startsWith("0");
+  };
+  const PHONE_HINT = "연락처를 다시 확인해 주세요. 0으로 시작하는 숫자 9~11자리입니다.";
+
+
   // 아이콘은 인라인 SVG다 (외부 CDN 의존 없음 = 오프라인·CDN 장애에도 표시된다)
   const ICON_SVG = (paths) =>
     '<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" ' +
@@ -178,16 +187,26 @@
         if (qStatus) qStatus.textContent = "성함과 연락처를 입력해 주세요.";
         return;
       }
+      if (!isValidPhone(phone)) {
+        if (qStatus) qStatus.textContent = PHONE_HINT;
+        quickForm.querySelector('[name="qphone"]')?.focus();
+        return;
+      }
       if (!agreed) {
         if (qStatus) qStatus.textContent = "개인정보 수집·이용 동의가 필요합니다.";
         return;
       }
       const btn = quickForm.querySelector(".quick-submit");
+      let qTimer = null;
       if (btn) btn.disabled = true;
       if (qStatus) qStatus.textContent = "상담 신청을 접수하고 있습니다.";
       try {
+        // 정식 폼과 동일하게 12초에서 끊는다. 없으면 버튼이 비활성 상태로 고착된다.
+        const qac = new AbortController();
+        qTimer = setTimeout(() => qac.abort(), 12000);
         const res = await fetch("/api/inquiry", {
           method: "POST",
+          signal: qac.signal,
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name, phone, region: "", message: "히어로 빠른 상담", privacy: true, source: "hero-quick" }),
         });
@@ -210,6 +229,7 @@
         if (qStatus) qStatus.textContent = "아래 상담 폼으로 옮겼습니다. 희망 지역만 확인하고 신청해 주세요.";
         document.querySelector("#contact")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
       } finally {
+        if (qTimer) clearTimeout(qTimer);
         if (btn) btn.disabled = false;
       }
     });
@@ -320,23 +340,46 @@
     dots.className = "branch-dots";
     dots.setAttribute("role", "tablist");
     dots.setAttribute("aria-label", "매장 사진 위치");
-    const pages = Math.max(1, Math.ceil(cards.length / 3));
-    for (let i = 0; i < pages; i++) {
-      const b = document.createElement("button");
-      b.type = "button";
-      b.setAttribute("aria-label", i + 1 + "번째 묶음 보기");
-      b.setAttribute("role", "tab");
-      b.setAttribute("aria-selected", i === 0 ? "true" : "false");
-      if (i === 0) b.classList.add("is-on");
-      b.addEventListener("click", () => {
-        const step = track.scrollWidth / pages;
-        track.scrollTo({ left: step * i, behavior: reducedMotion ? "auto" : "smooth" });
-        pauseAuto();
-      });
-      dots.appendChild(b);
-    }
+    // 한 화면에 실제로 몇 장이 보이는지로 페이지를 센다.
+    // 3장 고정이면 모바일(1장)·태블릿(2장)에서 점 개수가 실제 위치와 어긋난다.
+    const perPage = () => {
+      const cw = cards[0].getBoundingClientRect().width;
+      const cs = getComputedStyle(track);
+      const gap = parseFloat(cs.columnGap || cs.gap || "0") || 0;
+      if (cw <= 0) return 1;
+      return Math.max(1, Math.round(track.clientWidth / (cw + gap)));
+    };
+    let pages = Math.max(1, Math.ceil(cards.length / perPage()));
+    let dotEls = [];
+
+    const buildDots = () => {
+      pages = Math.max(1, Math.ceil(cards.length / perPage()));
+      dots.textContent = "";
+      for (let i = 0; i < pages; i++) {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.setAttribute("aria-label", i + 1 + "번째 묶음 보기");
+        b.setAttribute("role", "tab");
+        b.setAttribute("aria-selected", i === 0 ? "true" : "false");
+        if (i === 0) b.classList.add("is-on");
+        b.addEventListener("click", () => {
+          const step = track.scrollWidth / pages;
+          track.scrollTo({ left: step * i, behavior: reducedMotion ? "auto" : "smooth" });
+          pauseAuto();
+        });
+        dots.appendChild(b);
+      }
+      dotEls = [...dots.children];
+    };
+    buildDots();
     track.parentElement.appendChild(dots);
-    const dotEls = [...dots.children];
+
+    // 폭이 바뀌면 한 화면 장수가 달라지므로 점을 다시 만든다
+    let dotsTimer = null;
+    window.addEventListener("resize", () => {
+      if (dotsTimer) clearTimeout(dotsTimer);
+      dotsTimer = setTimeout(() => { buildDots(); syncDots(); }, 180);
+    });
 
     const syncDots = () => {
       const step = track.scrollWidth / pages;
@@ -470,7 +513,7 @@
 
   inquiryForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
-    formStatus?.classList.remove("is-error", "is-ready");
+    formStatus?.classList.remove("is-error", "is-ready", "is-done");
 
     if (!inquiryForm.checkValidity()) {
       inquiryForm.reportValidity();
@@ -496,6 +539,16 @@
 
     const name = String(data.get("name") || "").trim();
     const phone = String(data.get("phone") || "").trim();
+
+    // 빠른 폼과 같은 규칙. HTML required 는 빈 값만 막아서 "1" 도 통과한다.
+    if (!isValidPhone(phone)) {
+      if (formStatus) {
+        formStatus.textContent = PHONE_HINT;
+        formStatus.classList.add("is-error");
+      }
+      inquiryForm.querySelector('[name="phone"]')?.focus();
+      return;
+    }
     const region = String(data.get("region") || "").trim();
     const message = String(data.get("message") || "").trim();
     const subject = `[FOURCARD 가맹 상담] ${name} / ${region || "지역 미정"}`;
