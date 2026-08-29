@@ -89,8 +89,8 @@
 
   // 같은 묶음은 순서대로 흘러들어오게 인덱스를 심는다 (CSS가 --i로 지연을 계산)
   const staggerGroups = [
-    ".region-grid", ".system-list", ".principle-items",
-    ".branch-track", ".trust-strip", ".rp-faq-list", ".space-mosaic",
+    ".region-grid",
+    ".branch-track", ".trust-strip", ".rp-faq-list",
   ];
   staggerGroups.forEach((sel) => {
     const group = document.querySelectorAll(sel);
@@ -149,27 +149,6 @@
     }
   }
 
-  // 운영 시스템 4단계 진행선 — 스크롤 위치에 따라 채워진다
-  const systemList = document.querySelector(".system-list");
-  if (systemList && !reducedMotion) {
-    let queued = false;
-    const updateProgress = () => {
-      queued = false;
-      const rect = systemList.getBoundingClientRect();
-      const span = rect.height + window.innerHeight * 0.5;
-      const passed = window.innerHeight * 0.75 - rect.top;
-      const p = Math.max(0, Math.min(1, passed / span));
-      systemList.style.setProperty("--p", p.toFixed(3));
-    };
-    const onScroll = () => {
-      if (queued) return;
-      queued = true;
-      requestAnimationFrame(updateProgress);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
-    updateProgress();
-  }
 
 
   // ── 히어로 고정 상담바 (러너펍 패턴 복제) ──
